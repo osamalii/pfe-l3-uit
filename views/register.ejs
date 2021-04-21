@@ -1,0 +1,51 @@
+<div class="row mt-5">
+    <form action="/users/register" method="post">
+        <%- include('./partials/messages.ejs') %>
+        <fieldset>
+            <legend>Register</legend>
+            <div class="form-group">
+                <label for="name">Nom</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Nom" value="<%= typeof name != 'undefined' ? name : '' %>">
+            </div>
+            <div class="form-group">
+                <label for="Prenom">Prenom</label>
+                <input type="text" class="form-control" id="Prenom" name="lastname" placeholder="Prenom" value="<%= typeof lastname != 'undefined' ? lastname : '' %>">
+            </div>
+            <div class="form-group">
+                <label for="Prenom">CIN</label>
+                <input type="text" class="form-control" id="cin" name="cin" placeholder="CIN" value="<%= typeof cin != 'undefined' ? cin : '' %>">
+            </div>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" class="form-control" id="Email" name="email" aria-describedby="emailHelp" placeholder="Enter email" value="<%= typeof eamil != 'undefined' ? email : '' %>" >
+                <small id="emailHelp" class="form-text text-muted">Nous ne partagerons jamais votre e-mail avec qui que ce soit.</small>
+            </div>
+            <div class="form-group">
+                <label for="Password">Mot de passe</label>
+                <input type="password" class="form-control" id="Password" name="password" placeholder="Mot de passe">
+            </div>
+            <div class="form-group">
+                <label for="Password2">Confirmer Mot de passe</label>
+                <input type="password" class="form-control" id="Password2" name="password2" placeholder="Mot de passe">
+            </div>
+            <div class="form-group">
+                <label for="Password2">Date de Naissance</label>
+                <input id="date" name="birthDate" class="form-control" id="birthDate" type="date" value="2017-06-01">
+
+            </div>
+            <div class="form-group">
+                <label for="gender">Sexe</label>
+                <select class="form-control" name="gender" id="gender">
+                    <option>Homme</option>
+                    <option>Femme</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </fieldset>
+    </form>
+
+</div>
+<div class="row">
+    <p class="lead mt-4">Have An Account ? <a href="/users/login">Login</a></p>
+</div>
+

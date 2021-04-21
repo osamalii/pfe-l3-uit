@@ -1,0 +1,24 @@
+<h1>Dashboard</h1>
+<a href="/users/logout" class="btn btn-secondary">Logout</a>
+<p class="lead mb-3"> Welcome <%= user.name %></p>
+
+<%- include('./partials/messages.ejs') %>
+
+<% if(user.AccountType === 'patient') { %>
+
+    <%- include('./patient/patientDashboard') %>
+
+<% }else if(user.AccountType === 'doctor') {%>
+
+    <%- include('./doctor/doctorDashboard') %>
+
+<% }else if(user.AccountType === 'admin') { %>
+
+    <%- include('./admin/adminDashboard') %>
+
+<% }else if(user.AccountType === 'director') { %>
+
+    <%- include('./director/directorDashboard') %>
+
+<% } %>
+
