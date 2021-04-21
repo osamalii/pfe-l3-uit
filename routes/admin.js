@@ -45,6 +45,7 @@ router.post('/addDirector', ensureAuthenticated, (req, res)=>{
                 }else { // user object
                     req.flash('success_msg', 'You Created An Admin Account');
                     res.redirect('/dashboard');
+
                 }
 
             })
