@@ -1,22 +1,25 @@
-<div class="row mt-5">
-    <form action="/users/login" method="post">
-        <fieldset>
-            <legend>Login</legend>
-            <%- include('./partials/messages.ejs') %>
-            <div class="form-group">
-                <label for="Email">Email</label>
-                <input type="email" name="email" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="Enter email" value="<% typeof name != 'undefined' ? name : '' %>" >
-                <small id="emailHelp" class="form-text text-muted">Nous ne partagerons jamais votre e-mail avec qui que ce soit.</small>
-            </div>
-            <div class="form-group">
-                <label for="Password">Mot de passe</label>
-                <input type="password" name="password" class="form-control" id="Password" placeholder="Mot de passe">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </fieldset>
-    </form>
+<div class="container">
+    <div class="row mt-5">
+        <form action="/users/login" method="post">
+            <fieldset>
+                <legend>Login</legend>
+                <%- include('./partials/messages.ejs') %>
+                <div class="form-group">
+                    <label for="Email">Email</label>
+                    <input type="email" name="email" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="Enter email" value="<% typeof name != 'undefined' ? name : '' %>" >
+                    <small id="emailHelp" class="form-text text-muted">Nous ne partagerons jamais votre e-mail avec qui que ce soit.</small>
+                </div>
+                <div class="form-group">
+                    <label for="Password">Mot de passe</label>
+                    <input type="password" name="password" class="form-control" id="Password" placeholder="Mot de passe">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </fieldset>
+        </form>
+    </div>
+    <div class="row">
+        <p class="lead mt-4">Don't Have An Account ? <a href="/users/register">register</a></p>
+    </div>
 </div>
-<div class="row">
-    <p class="lead mt-4">Don't Have An Account ? <a href="/users/register">register</a></p>
-</div>
+
 

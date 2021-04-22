@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {ensureAuthenticated} = require('../config/auth');
 const City = require('../models/City');
+const User = require('../models/User');
 const createUser = require('../utilitis/createUser');
 
 router.get('/addCity/:cityname', ensureAuthenticated,(req,res)=>{
@@ -32,9 +33,16 @@ router.get('/addCity/:cityname', ensureAuthenticated,(req,res)=>{
 
 router.post('/addDirector', ensureAuthenticated, (req, res)=>{
     if(req.user.AccountType === 'admin'){
-        console.log('yep you are ana admin');
         const {directorEmail, directorPassword} = req.body;
-        createUser({email: directorEmail, password: directorPassword, name:'xxx',lastname:'xxx',cin:'G706890',birthDate: Date.now(),gender:'Homme'})
+        createUser(
+            {email: directorEmail,
+                password: directorPassword,
+                name:'xxx',
+                lastname:'xxx',
+                cin:'G706890',
+                birthDate: Date.now(),
+                gender:'Homme'
+            })
             .then(creation => {
                 if(Array.isArray(creation)){ // Array of errors
                     res.render('dashboard', {
@@ -51,6 +59,56 @@ router.post('/addDirector', ensureAuthenticated, (req, res)=>{
             })
             .catch(err=>console.log(err));
     }
+});
+
+router.post('/addCenter', ensureAuthenticated, (req, res)=> {
+   if(req.user.AccountType === 'admin'){
+       const {centerName, city, directorCin} = req.body;
+       console.log(directorCin);
+       User.findOne({cin:directorCin.toUpperCase()})
+           .then(user => {
+               if(user){
+                   City.findOne({name: city.toUpperCase(),"centers.centerName":centerName.toUpperCase()})
+                       .then(theCity => {
+                           if(theCity){
+                              theCity.centers.push({
+                                   centerName:centerName.toUpperCase(),
+                                   director : directorCin.toUpperCase(),
+                                   doctors: [],
+                                   patients : [],
+                              });
+                              theCity.save()
+                                  .then(()=>{
+                                      req.flash('success_msg', 'You Added A City');
+                                  })
+                                  .catch(err => {
+                                      req.flash('success_msg', 'Coudnt Add The City');
+                                  });
+                           }else {
+                               const newCity = new City({
+                                   name: city.toUpperCase(),
+                                   centers:[
+                                       {
+                                           centerName:centerName.toUpperCase(),
+                                           director : directorCin.toUpperCase(),
+                                           doctors: [],
+                                           patients : [],
+                                       }
+                                   ]
+                               });
+                               newCity.save()
+                                   .then(()=>{
+                                       console.log('city and center saved');
+                                       req.flash('success_msg', 'You Added A City And A Center');
+                                       res.redirect('/dashboard');
+                                   })
+                                   .catch(err => console.log(err));
+                           }
+                       })
+               }
+           });
+
+   }
 });
 
 module.exports = router;

@@ -6,12 +6,12 @@ const CitySchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    centers:{
-        name: String,
+    centers:[{
+        centerName: String,
         director : String,
         doctors: Array,
         patients : Array,
-    }
+    }]
 });
 
 const City = mongoose.model('City', CitySchema);

@@ -1,0 +1,31 @@
+<script>
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            // document.getElementById("myNavbar").style.padding = "30px 10px";
+            document.getElementById("brandText").style.fontSize = "25px";
+            $('#myNavbar').animate({
+                padding: '0px 5px'
+            },10);
+        } else {
+            // document.getElementById("myNavbar").style.padding = "60px 20px";
+            document.getElementById("brandText").style.fontSize = "35px";
+            $('#myNavbar').animate({
+                padding: '60px 20px'
+            },10);
+        }
+    }
+</script>
+<nav id="myNavbar" class="navbar fixed-top navbar-light bg-light">
+    <div class="container">
+        <a id="navbarBrand" class="navbar-brand" href="/">
+            <img id="imgBrand" style="display: inline-block" src="/img/icon.png" alt="" width="30" height="24">
+            <div id="brandText" style="display: inline-block">
+                <h6>COVID-19</h6>
+                <h6>VACCINE</h6>
+            </div>
+        </a>
+    </div>
+</nav>
+

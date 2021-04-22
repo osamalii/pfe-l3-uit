@@ -22,6 +22,8 @@ mongoose.connect(process.env.mongodb2, {useNewUrlParser: true})
 app.use(expressLyouts);
 app.set('view engine','ejs');
 
+app.use(express.static(__dirname + '/public'));
+
 //BodyParser
 app.use(express.urlencoded({extended: false}));
 

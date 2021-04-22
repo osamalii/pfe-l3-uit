@@ -1,24 +1,27 @@
-<h1>Dashboard</h1>
-<a href="/users/logout" class="btn btn-secondary">Logout</a>
-<p class="lead mb-3"> Welcome <%= user.name %></p>
+<div class="container">
+    <h1>Dashboard</h1>
+    <a href="/users/logout" class="btn btn-secondary">Logout</a>
+    <p class="lead mb-3"> Welcome <%= user.name %></p>
 
-<%- include('./partials/messages.ejs') %>
+    <%- include('./partials/messages.ejs') %>
 
-<% if(user.AccountType === 'patient') { %>
+    <% if(user.AccountType === 'patient') { %>
 
-    <%- include('./patient/patientDashboard') %>
+        <%- include('./patient/patientDashboard') %>
 
-<% }else if(user.AccountType === 'doctor') {%>
+    <% }else if(user.AccountType === 'doctor') {%>
 
-    <%- include('./doctor/doctorDashboard') %>
+        <%- include('./doctor/doctorDashboard') %>
 
-<% }else if(user.AccountType === 'admin') { %>
+    <% }else if(user.AccountType === 'admin') { %>
 
-    <%- include('./admin/adminDashboard') %>
+        <%- include('./admin/adminDashboard') %>
 
-<% }else if(user.AccountType === 'director') { %>
+    <% }else if(user.AccountType === 'director') { %>
 
-    <%- include('./director/directorDashboard') %>
+        <%- include('./director/directorDashboard') %>
 
-<% } %>
+    <% } %>
 
+
+</div>
