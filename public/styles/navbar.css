@@ -10,7 +10,7 @@ and (max-device-width: 576px)
 
 #myNavbar{
     background-color: #09538b !important;
-    height: 120px;
+    height: 100px;
     flex-flow: row nowrap;
     justify-content: flex-start;
     max-height: 100px;
@@ -96,3 +96,49 @@ and (max-device-width: 576px)
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+
+#help{
+    bottom: 2.5rem;
+    right: 2rem;
+    z-index: 1;
+}
+#askbtn{
+    background-color: #EF780E;
+    color: white;
+    font-size: large;
+    font-family: 'Noto Sans TC', sans-serif;
+    border-color: white;
+    border-style: solid;
+    -webkit-box-shadow: 5px 5px 28px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 5px 5px 28px 0px rgba(0,0,0,0.5);
+    box-shadow: 5px 5px 28px 0px rgba(0,0,0,0.5);
+    border-radius: 10px !important;
+}
+
+#askbtn:hover{
+    border: none;
+    -webkit-box-shadow: 5px 5px 28px 0px rgba(0,0,0,0);
+    -moz-box-shadow: 5px 5px 28px 0px rgba(0,0,0,0);
+    box-shadow: 5px 5px 28px 0px rgba(0,0,0,0);
+}
+.center{
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.resource{
+    text-align: center;
+    border: #e2e8f3;
+    border-radius: .5rem;
+    border-style: solid;
+    border-left-color: #09538b;
+    border-left-style: solid;
+    border-left-width: .3rem;
+    /*border-top-left-radius: .2rem;*/
+    /*border-bottom-left-radius: .2rem;*/
+}
+ .top3rem{
+     top: 3rem;
+ }
