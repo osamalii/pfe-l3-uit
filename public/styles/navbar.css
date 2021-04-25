@@ -129,16 +129,17 @@ and (max-device-width: 576px)
 }
 
 .resource{
-    text-align: center;
-    border: #e2e8f3;
-    border-radius: .5rem;
-    border-style: solid;
-    border-left-color: #09538b;
-    border-left-style: solid;
-    border-left-width: .3rem;
-    /*border-top-left-radius: .2rem;*/
-    /*border-bottom-left-radius: .2rem;*/
+    border-color: #e2e8f3 !important;
+    border-radius: .5rem !important;
+    border-style: solid !important;
+    border-left-color: #09538b !important;
+    border-left-style: solid !important;
+    border-left-width: .3rem !important;
 }
  .top3rem{
      top: 3rem;
+ }
+
+ .textAlignCenter{
+     text-align: center;
  }
