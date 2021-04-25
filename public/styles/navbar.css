@@ -16,13 +16,17 @@ and (max-device-width: 576px)
     max-height: 100px;
 }
 #underNav{
+    display: block;
+    overflow: auto;
+    margin-top: 100px;
+    overflow: hidden;
     /*margin-top: 100px;*/
     background: rgb(6,56,87);
     background: linear-gradient(90deg, rgba(6,56,87,1) 6%, rgba(0,0,0,0) 100%, rgba(255,255,255,0.3757878151260504) 100%);
     height: 250px;
     position: relative;
-    min-height: 26.625rem;
-    display: flex;
+    /*min-height: 26.625rem;*/
+    /*display: flex;*/
     align-items: center;
 }
 
@@ -81,13 +85,13 @@ and (max-device-width: 576px)
     display: block;
 }
 .marginT-30{
-    margin-top: 30px;
+    margin-top: 30px !important;
 }
 .marginB-30{
-    margin-bottom: 30px;
+    margin-bottom: 30px !important;
 }
 .marginT-120{
-    margin-top: 120px;
+    margin-top: 120px !important;
 }
 
 #rightMain1, #rightMain2{
