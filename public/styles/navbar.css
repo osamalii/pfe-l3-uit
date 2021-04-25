@@ -51,7 +51,8 @@ and (max-device-width: 576px)
     color: white;
 }
 .carouselImg{
-    width: 100vh;
+    /*width: 100vh;*/
+    width: 100%;
 }
 
 #myCrousel{
@@ -135,6 +136,7 @@ and (max-device-width: 576px)
     border-left-color: #09538b !important;
     border-left-style: solid !important;
     border-left-width: .3rem !important;
+    margin-top: 10px;
 }
  .top3rem{
      top: 3rem;
