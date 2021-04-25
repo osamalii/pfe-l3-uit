@@ -18,7 +18,7 @@ and (max-device-width: 576px)
 #underNav{
     /*margin-top: 100px;*/
     background: rgb(6,56,87);
-    background: linear-gradient(90deg, rgba(6,56,87,1) 0%, rgba(109,140,159,0.9640231092436975) 44%, rgba(255,255,255,0.3757878151260504) 100%);
+    background: linear-gradient(90deg, rgba(6,56,87,1) 6%, rgba(0,0,0,0) 100%, rgba(255,255,255,0.3757878151260504) 100%);
     height: 250px;
     position: relative;
     min-height: 26.625rem;
@@ -83,6 +83,9 @@ and (max-device-width: 576px)
 .marginT-30{
     margin-top: 30px;
 }
+.marginB-30{
+    margin-bottom: 30px;
+}
 .marginT-120{
     margin-top: 120px;
 }
@@ -92,10 +95,11 @@ and (max-device-width: 576px)
 }
 
 .topleftborderraduis{
-    border-top-style: solid;
-    border-top-color: #09538b;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border: none !important;
+    border-top-style: solid !important;
+    border-top-color: #09538b!important;
+    border-top-left-radius: 5px!important;
+    border-top-right-radius: 5px!important;
 }
 
 #help{
@@ -144,4 +148,12 @@ and (max-device-width: 576px)
 
  .textAlignCenter{
      text-align: center;
+ }
+
+ .sideEffect{
+     border:none !important;
+ }
+
+ .sideEffectImg{
+     width: 10rem !important;
  }
