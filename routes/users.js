@@ -1,13 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
+const Token = require('../models/Token');
 const bcrypt = require('bcryptjs');
 const utilitis = require('../utilitis/cin');
 const passport = require('passport');
+const crypto = require('crypto');
+const emailVerification = require("../utilitis/emailVerification");
 
-router.get('/login', (req, res) => res.render('login', {title:'Login'}));
 
-router.get('/register', (req, res) => res.render('register', {title:'Register'}));
+router.get('/login', (req, res) => res.render('login', {user:null,title:'Login'}));
+
+router.get('/register', (req, res) => res.render('register', {user:null,title:'Register'}));
 
 router.post('/register', (req, res) => {
     const { name,lastname,email,password,password2,gender,birthDate,cin} = req.body;
@@ -40,7 +44,7 @@ router.post('/register', (req, res) => {
         User.findOne({cin: cin})
             .then(user => {
                if(user){
-                   errors.push({msg: 'CIN Is Already Registred'});
+                   errors.push({msg: 'CIN Is Already Registered'});
                    res.render('register', {
                        errors,
                        name,
@@ -52,8 +56,8 @@ router.post('/register', (req, res) => {
                    User.findOne({email: email})
                        .then((user)=>{
                            console.log(user);
-                           if(user){ //user already exists and cin not registred
-                               errors.push({msg: 'Email Is Already Registred'});
+                           if(user){ // User Already Exists And CIN Not Registered
+                               errors.push({msg: 'Email Is Already Registered'});
                                res.render('register', {
                                    errors,
                                    name,
@@ -62,7 +66,7 @@ router.post('/register', (req, res) => {
                                    cin,
                                    title:'Register'
                                });
-                           }else { //user doesnt exxist neither cin
+                           }else { //user doesnt exist neither cin
                                const newUser = new User({
                                    name,
                                    lastname,
@@ -74,6 +78,13 @@ router.post('/register', (req, res) => {
                                    AccountType: 'patient'
                                });
                                console.log(newUser);
+                               let token = new Token({ _userId: newUser._id, token: crypto.randomBytes(16).toString('hex') });
+                               token.save(function (err) {
+                                   if (err)
+                                       throw err;
+                                   emailVerification(email, token);
+                               });
+
                                //hash password
                                bcrypt.genSalt(10, (err, salt) => {
                                    bcrypt.hash(newUser.password, salt, (err,hash)=>{
@@ -102,7 +113,7 @@ router.post('/register', (req, res) => {
 router.post('/login',(req, res, next)=>{
     console.log(req.body);
   passport.authenticate('local', {
-      successRedirect : '/dashboard',
+      successRedirect :'/dashboard',
       failureRedirect: '/users/login',
       failureFlash: true
   })(req, res, next);

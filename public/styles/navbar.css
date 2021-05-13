@@ -161,3 +161,7 @@ and (max-device-width: 576px)
  .sideEffectImg{
      width: 10rem !important;
  }
+
+ #logOutBtn{
+     height: auto !important;
+ }

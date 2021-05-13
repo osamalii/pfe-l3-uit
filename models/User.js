@@ -12,11 +12,13 @@ const UserSchema = new mongoose.Schema({
     },
     cin:{
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     email:{
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     password:{
         type: String,
@@ -33,7 +35,10 @@ const UserSchema = new mongoose.Schema({
     AccountType: {
         type: String, //patient // doctor // director // admin
         required:true
-    }
+    },
+    isVerified: {
+       type: Boolean, default: false
+    },
 });
 
 const User = mongoose.model('User', UserSchema);

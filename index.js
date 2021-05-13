@@ -3,7 +3,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const express = require('express');
 const app = express();
-const bcrypt = require('bcrypt');
 const passport = require('passport');
 const session = require('express-session');
 const methodOverride = require('method-override');
@@ -49,6 +48,7 @@ app.use((req,res,next)=>{
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/admin', require('./routes/admin'));
+app.use('/token', require('./routes/tokens'));
 // app.use('/api', require('./routes/api'));
 app.use((req, res)=>{
     res.status(404).render('404');
