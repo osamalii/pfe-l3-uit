@@ -28,8 +28,8 @@ router.get('/confirmation/:token', function(req, res){
                             if (err) {
                                 req.flash('success_msg','error saving');
                             }
-                            req.flash('success_msg','verified');
                         });
+                        req.flash('success_msg','verified');
                     }
                 }
 
@@ -37,8 +37,6 @@ router.get('/confirmation/:token', function(req, res){
             });
         }
         res.render("emailVerification", {title:"email verification"});
-
-
     });
     // res.render('index',{user: req.user, title:'Home'})
 });

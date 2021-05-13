@@ -82,7 +82,7 @@ router.post('/register', (req, res) => {
                                token.save(function (err) {
                                    if (err)
                                        throw err;
-                                   emailVerification(email, token);
+                                   emailVerification(email, token, req.headers.host);
                                });
 
                                //hash password
@@ -94,7 +94,7 @@ router.post('/register', (req, res) => {
                                        newUser.save()
                                            .then(user => {
                                                console.log(user);
-                                               req.flash('success_msg','You are now register , you can login');
+                                               req.flash('success_msg','Complete registration by verifying your email');
                                                res.redirect('/users/login');
                                            })
                                            .catch(err => console.log(err));
