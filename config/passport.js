@@ -11,7 +11,10 @@ module.exports = (passport) => {
             User.findOne({email:email})
                 .then(user => {
                     if(!user){
-                        return done(null, false, {message:'Email Is Not Registred'});
+                        return done(null, false, {message:'Email Is Not Registered'});
+                    }
+                    if(!user.isVerified){
+                        return done(null, false, {message:'Email Is Not Verified'});
                     }
                     bcrypt.compare(password,user.password, (err, isMatch)=> {
                         if(err) throw err;
