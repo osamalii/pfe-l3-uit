@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const Token = require('../models/Token');
+const emailVerification = require("../utilitis/emailVerification");
 
 router.get('/confirmation/:token', function(req, res){
     console.log(req.params);
-    Token.findOne({ token: req.params.token }, function (err, token) {
+    Token.findOne({ token: req.params.token, T_type: 'verify'}, function (err, token) {
         if (!token) {
             console.log('We were unable to find a valid token. Your token my have expired.');
             req.flash('error_msg','We were unable to find a valid token. Your token my have expired.');
@@ -41,5 +42,15 @@ router.get('/confirmation/:token', function(req, res){
     // res.render('index',{user: req.user, title:'Home'})
 });
 
+router.post('/request', function (req, res) {
+   console.log(req.body);
+   User.findOne({email :req.body.email})
+       .then(user => {
+           if(user){
+               emailVerification(user.email, user._id, req.headers.host, 'verify');
+           }
+       });
+   res.redirect("/users/login");
+});
 
 module.exports = router;
