@@ -1,6 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const emailVerification = require("../utilitis/emailVerification");
 
 
 const  User = require('../models/User');
@@ -14,6 +15,8 @@ module.exports = (passport) => {
                         return done(null, false, {message:'Email Is Not Registered'});
                     }
                     if(!user.isVerified){
+                        console.log(user);
+                        emailVerification(email, user._id, 'vaccination-covid19.herokuapp.com', 'verify');
                         return done(null, false, {message:'Email Is Not Verified'});
                     }
                     bcrypt.compare(password,user.password, (err, isMatch)=> {

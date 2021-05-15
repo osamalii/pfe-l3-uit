@@ -31,17 +31,18 @@ router.get('/addCity/:cityname', ensureAuthenticated,(req,res)=>{
 
 });
 
-router.post('/addDirector', ensureAuthenticated, (req, res)=>{
+router.post('/AddDoctor', ensureAuthenticated, (req, res)=>{
     if(req.user.AccountType === 'admin'){
-        const {directorEmail, directorPassword} = req.body;
-        createUser(
-            {email: directorEmail,
-                password: directorPassword,
-                name:'xxx',
-                lastname:'xxx',
-                cin:'G706890',
+        const {directorEmail, directorCin} = req.body;
+        createUser({
+                email: directorEmail,
+                cin: directorCin,
+                AccountType: 'doctor',
+                name: 'x',
+                lastname: 'x',
+                password: 'x',
                 birthDate: Date.now(),
-                gender:'Homme'
+                gender: 'x',
             })
             .then(creation => {
                 if(Array.isArray(creation)){ // Array of errors
@@ -51,9 +52,9 @@ router.post('/addDirector', ensureAuthenticated, (req, res)=>{
                         user: req.user
                     });
                 }else { // user object
-                    req.flash('success_msg', 'You Created An Admin Account');
-                    res.redirect('/dashboard');
 
+                    req.flash('success_msg', 'You Created An Doctor Account');
+                    res.redirect('/dashboard');
                 }
 
             })

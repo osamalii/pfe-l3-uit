@@ -25,7 +25,7 @@ module.exports = async (UserInfo) => {
                                 birthDate: UserInfo.birthDate,
                                 gender: UserInfo.gender,
                                 cin: UserInfo.cin,
-                                AccountType: 'director'
+                                AccountType: UserInfo.AccountType
                             });
                             console.log(newUser);
                             //hash password
@@ -33,7 +33,7 @@ module.exports = async (UserInfo) => {
                                 bcrypt.hash(newUser.password, salt, (err, hash) => {
                                     if (err)
                                         throw err;
-                                    newUser.password = hash;
+                                     newUser.password = hash;
                                      newUser.save()
                                         .then(user => {
                                             console.log(user);

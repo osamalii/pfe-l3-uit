@@ -17,7 +17,10 @@ const emailVerfication = (userEmail, _userId, host, type)=>{
     var template = emailBuilder.verifyEmailBuilder(url);
     if(token.T_type === 'reset'){
         url = `http://${host}/users/requestresetpassword/${token.token}`;
-        template = emailBuilder.ResetEmaolBuilder(url)
+        template = emailBuilder.ResetEmailBuilder(url)
+    }else if(token.T_type === 'completeRegistration'){
+        url = `http://${host}/users/completeRegistration/${token.token}`;
+        template = emailBuilder.completeRegistrationEmailBuilder(url)
     }
    console.log(url);
     const msg = {

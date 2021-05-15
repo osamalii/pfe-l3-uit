@@ -1,20 +1,16 @@
 <div class="row">
     <%- include('./sideBare') %>
   <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <form action="/admin/addDirector" method="post">
+        <form action="/admin/AddDoctor" method="post">
             <fieldset>
-                <legend>Add Director</legend>
+                <legend>Ajouter Un Medecin</legend>
                 <div class="form-group">
                     <label for="directorEmail">Email</label>
-                    <input type="text" name="directorEmail" class="form-control" id="directorEmail" aria-describedby="directorHelp" placeholder="Enter Email de directeur">
-                </div>
-                <div class="form-group">
-                    <label for="directorPassword">Mot de pass</label>
-                    <input type="password" name="directorPassword" class="form-control" id="directorPassword" placeholder="Mot de pass de Directeur">
+                    <input type="text" name="directorEmail" class="form-control" id="directorEmail" aria-describedby="directorHelp" placeholder="Enter Email de Medecin">
                 </div>
                 <div class="form-group">
                     <label for="directorCin">Cin</label>
-                    <input type="text" name="directorCin" class="form-control" id="directorCin" placeholder="Cin de Directeur">
+                    <input type="text" name="directorCin" class="form-control" id="directorCin" placeholder="Cin de Medecin">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </fieldset>
