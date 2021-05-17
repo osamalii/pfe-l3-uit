@@ -16,7 +16,7 @@ module.exports = (passport) => {
                     }
                     if(!user.isVerified){
                         console.log(user);
-                        emailVerification(email, user._id, 'vaccination-covid19.herokuapp.com', 'verify');
+                        emailVerification(email, user._id, 'verify');
                         return done(null, false, {message:'Email Is Not Verified'});
                     }
                     bcrypt.compare(password,user.password, (err, isMatch)=> {

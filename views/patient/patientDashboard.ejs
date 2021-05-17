@@ -1,1 +1,6 @@
 <h1>Hello I'm <%= user.name %> And I'm a Patient</h1>
+<form method="post" action="/users/demander_rendez-vous">
+    <input type="text" hidden name="_userId" value="<%= user._id %>">
+     <button class="btn btn-success">Demander Rendez-vous</button>
+</form>
+

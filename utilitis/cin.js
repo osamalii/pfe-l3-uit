@@ -1,11 +1,11 @@
 let cin_by_validity = [
-    {key:["A", "AA", "AJ"], city: "Rabat"},
+    {key:["A", "AA", "AJ"], city: "Rabat"}, //
     {key:["AB", "AE"] , city :"Salé"},
     {key: ["AD"], city : "Témara"},
     {key:["B", "BB", "BE", "BH", "BJ", "BK", "BL", "BM", "BF"], city: "Casablanca"},
     {key:["C", "CC", "CD"], city:"Fès"},
-    {key: ["CB"], city: "Sefrou"},
-    {key:["D"], city: "Meknès"},
+    {key: ["CB"], city: "Sefrou"}, //
+    {key:["D"], city: "Meknès"}, //
     {key:["DA"], city: "Azrou"},
     {key:["DB"],city: "Ifrane"},
     {key:["DC"], city: "Moulay Driss Zerhoun"},
@@ -23,13 +23,13 @@ let cin_by_validity = [
     {key:["FJ"],city: "Ahfir"},
     {key:["FK"],city: "Touissit"},
     {key:["FL"], city : "Beni Tadjite"},
-    {key:["G"], city: "Kénitra, Sidi Yahya Gharb"},
-    {key:["GA"], city: "Sidi Slimane, Sidi Yahya Gharb"},
+    {key:["G"], city: "Kénitra, Sidi Yahya Gharb"}, //
+    {key:["GA"], city: "Sidi Slimane, Sidi Yahya Gharb"},//
     {key:["GB"],city: "Souk El Arbâa du Gharb"},
-    {key:["GK"], city : "Sidi Kacem"},
-    {key:["GM"], city : "Ouezzane"},
+    {key:["GK"], city : "Sidi Kacem"}, //
+    {key:["GM"], city : "Ouezzane"}, //
     {key:["GN"], city : "Mechraa Belqsiri"},
-    {key:["H", "HH"], city : "Safi"},
+    {key:["H", "HH"], city : "Safi"}, //
     {key:["HA"], city : "Youssoufia"},
     {key:["I"], city : "Beni Mellal"},
     {key:["IA"], city : "Kasba Tadla"},
@@ -37,11 +37,11 @@ let cin_by_validity = [
     {key:["IC"], city : "Azilal"},
     {key:["ID"], city : "Souk Sebt"},
     {key:["IE"], city : "Demnate"},
-    {key:["J", "JK"], city : "Agadir"},
+    {key:["J", "JK"], city : "Agadir"}, //
     {key:["JA"], city : "Guelmim"},
     {key:["JB"], city : "Inzegane, Ait Melloul"},
     {key:["JC"], city : "Taroudant"},
-    {key:["JD"], city : "Sidi Ifni"},
+    {key:["JD"], city : "Sidi Ifni"}, //
     {key:["JE"], city : "Tiznit"},
     {key:["JF"], city : "Tan Tan"},
     {key:["JT"], city : "Ouled Teima"},
@@ -60,16 +60,16 @@ let cin_by_validity = [
     {key:["MC"], city : "Sidi Bennour"},
     {key:["N"], city : "Essaouira"},
     {key:["O", "OD"], city : "Dakhla"},
-    {key:["P"], city : "Ouarzazate"},
+    {key:["P"], city : "Ouarzazate"}, //
     {key:["PA"], city : "Tinghir"},
     {key:["PB"], city : "Zagora"},
     {key:["BX", "DF", "PP"], city :"MRE (Marocains Résidents à l'Étranger)"},
     {key:["Q"], city : "Khouribga"},
     {key:["QA"], city : "Oued Zem"},
-    {key:["R"], city: "Al Hoceima"},
+    {key:["R"], city: "Al Hoceima"}, //
     {key:["RB"], city : "Imzouren"},
     {key:["RC"], city : "Targuist"},
-    {key:["S"], city : "Nador"},
+    {key:["S"], city : "Nador"}, //
     {key:["SH"], city : "Lâayoune"},
     {key:["SJ"], city : "Smara"},
     {key:["SK"], city : "Tarfaya"},
@@ -84,7 +84,7 @@ let cin_by_validity = [
     {key:["V"], city : "Khenifra"},
     {key:["VA"], city : "Midelt, Itzer"},
     {key:["VM"], city : "M'rirt"},
-    {key:["W"], city : "Settat"},
+    {key:["W"], city : "Settat"}, //
     {key:["WA"], city : "Berrechid"},
     {key:["WB"], city : "Ben Ahmed"},
     {key:["X"], city : "Khemisset"},
@@ -95,16 +95,12 @@ let cin_by_validity = [
     {key:["ZT"], city : "Taounate"}
 ];
 
-let cin2City = (cin)=>{
+module.exports = (cin) => {
     let ind = isNaN(Number(cin[1])) ? cin.substr(0,2) :  cin[0];
     for (el in cin_by_validity)
         for(let i = 0; i < cin_by_validity[el].key.length; i++)
             if (cin_by_validity[el].key[i] === ind.toUpperCase()){
                 return cin_by_validity[el].city;
             }
-    return null;
-};
-
-module.exports = {
-    cin2City:cin2City
+        return null;
 };

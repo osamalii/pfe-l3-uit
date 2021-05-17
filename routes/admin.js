@@ -4,6 +4,8 @@ const {ensureAuthenticated} = require('../config/auth');
 const City = require('../models/City');
 const User = require('../models/User');
 const createUser = require('../utilitis/createUser');
+const emailVerification = require("../utilitis/emailVerification");
+
 
 router.get('/addCity/:cityname', ensureAuthenticated,(req,res)=>{
     console.log(req.user);
@@ -33,32 +35,26 @@ router.get('/addCity/:cityname', ensureAuthenticated,(req,res)=>{
 
 router.post('/AddDoctor', ensureAuthenticated, (req, res)=>{
     if(req.user.AccountType === 'admin'){
-        const {directorEmail, directorCin} = req.body;
-        createUser({
-                email: directorEmail,
-                cin: directorCin,
-                AccountType: 'doctor',
-                name: 'x',
-                lastname: 'x',
-                password: 'x',
-                birthDate: Date.now(),
-                gender: 'x',
+        const {email, Cin} = req.body;
+        const newUser = [
+            ['cin', Cin],
+            ['email', email],
+            ['AccountType', 'doctor'],
+        ];
+        createUser(newUser, false)
+            .catch(errors=>{
+                res.render('dashboard', {
+                    errors: errors,
+                    title: 'dashboard',
+                    user: req.user
+                });
             })
             .then(creation => {
-                if(Array.isArray(creation)){ // Array of errors
-                    res.render('dashboard', {
-                        errors: creation,
-                        title: 'dashboard',
-                        user: req.user
-                    });
-                }else { // user object
-
+                    console.log(creation._id);
+                    emailVerification(email, creation._id, 'completeRegistration');
                     req.flash('success_msg', 'You Created An Doctor Account');
                     res.redirect('/dashboard');
-                }
-
             })
-            .catch(err=>console.log(err));
     }
 });
 

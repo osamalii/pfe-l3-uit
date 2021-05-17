@@ -47,7 +47,7 @@ router.post('/request', function (req, res) {
    User.findOne({email :req.body.email})
        .then(user => {
            if(user){
-               emailVerification(user.email, user._id, req.headers.host, 'verify');
+               emailVerification(user.email, user._id, 'verify');
            }
        });
    res.redirect("/users/login");
