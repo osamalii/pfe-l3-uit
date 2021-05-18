@@ -76,14 +76,15 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res, next) => {
     recaptha(req.body.v3Token)
-        .then(res => console.log(res))
-        // .catch(res.redirect('/users/login'));
-    // console.log(req.body);
-    passport.authenticate('local', {
-        successRedirect: '/dashboard',
-        failureRedirect: '/users/login',
-        failureFlash: true
-    })(req, res, next);
+        .then(captcha => {
+            if(captcha)
+                passport.authenticate('local', {
+                    successRedirect: '/dashboard',
+                    failureRedirect: '/users/login',
+                    failureFlash: true
+                })(req, res, next);
+        })
+        .catch(res.redirect('/'));
 });
 
 router.get('/logout', (req, res) => {

@@ -6,10 +6,12 @@ module.exports = async (token) => {
         method: 'post'
     })
         .then(response => {
-           console.log(response);
-           return  response.json()
+           return response.json()
         })
-        .then(google_response =>  google_response )
+        .then(google_response =>  {
+           console.log(google_response);
+            return google_response
+        } )
         .catch(error => {
             console.log(error);
         return  error
