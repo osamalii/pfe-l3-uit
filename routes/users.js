@@ -77,14 +77,17 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res, next) => {
     recaptha(req.body.v3Token)
         .then(captcha => {
-            if(captcha)
+            console.log(captcha);
                 passport.authenticate('local', {
                     successRedirect: '/dashboard',
                     failureRedirect: '/users/login',
                     failureFlash: true
                 })(req, res, next);
         })
-        .catch(res.redirect('/'));
+        .catch((err)=>{
+            console.log(err);
+            res.redirect('/')
+        });
 });
 
 router.get('/logout', (req, res) => {
