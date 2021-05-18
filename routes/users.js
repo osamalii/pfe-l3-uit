@@ -15,6 +15,7 @@ router.get('/login', (req, res) => res.render('login', {user: null, title: 'Logi
 router.get('/register', (req, res) => res.render('register', {user: null, title: 'Register', errors: []}));
 
 router.post('/register', (req, res) => {
+    console.log(req.body);
     const {name, lastname, email, password, password2, gender, birthDate, cin} = req.body;
     let errors = [];
     console.log(req.body);
@@ -244,7 +245,7 @@ router.post('/demander_rendez-vous', ensureAuthenticated, (req, res)=>{
             if (city === cityCenters.name) return cityCenters.centers[1]
         });
         if(center){
-            
+
         }
     }
 });
