@@ -7,6 +7,7 @@ const hashPass = require('../utilitis/hashPass');
 const createUser = require('../utilitis/createUser');
 const passport = require('passport');
 const emailVerification = require("../utilitis/emailVerification");
+const recaptha = require("../utilitis/captcha");
 const {ensureAuthenticated} = require('../config/auth');
 
 
@@ -15,7 +16,7 @@ router.get('/login', (req, res) => res.render('login', {user: null, title: 'Logi
 router.get('/register', (req, res) => res.render('register', {user: null, title: 'Register', errors: []}));
 
 router.post('/register', (req, res) => {
-    console.log(req.body);
+
     const {name, lastname, email, password, password2, gender, birthDate, cin} = req.body;
     let errors = [];
     console.log(req.body);
@@ -74,6 +75,10 @@ router.post('/register', (req, res) => {
 //login
 
 router.post('/login', (req, res, next) => {
+    recaptha(req.body.v3Token)
+        .then(res => console.log(res))
+        // .catch(res.redirect('/users/login'));
+    // console.log(req.body);
     passport.authenticate('local', {
         successRedirect: '/dashboard',
         failureRedirect: '/users/login',
