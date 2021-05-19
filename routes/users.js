@@ -75,6 +75,7 @@ router.post('/register', (req, res) => {
 //login
 
 router.post('/login', (req, res, next) => {
+    if(process.env.NODE_ENV !== 'dev')
     recaptha(req.body.v3Token)
         .then(captcha => {
             console.log(captcha);
@@ -88,6 +89,12 @@ router.post('/login', (req, res, next) => {
             console.log(err);
             res.redirect('/')
         });
+    else
+        passport.authenticate('local', {
+            successRedirect: '/dashboard',
+            failureRedirect: '/users/login',
+            failureFlash: true
+        })(req, res, next);
 });
 
 router.get('/logout', (req, res) => {

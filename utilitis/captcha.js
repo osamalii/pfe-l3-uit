@@ -10,7 +10,6 @@ module.exports = async (token) => {
         })
         .then(google_response => google_response)
         .catch(error => error);
-    console.log(captcha);
     if(!captcha.success)
         throw new Error('Captcha Error');
     else
