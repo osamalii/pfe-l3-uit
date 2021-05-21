@@ -1,0 +1,26 @@
+{
+  "lang": "fr",
+  "h1": "Informations sur la sécurité des vaccins",
+  "h5_1": "Puis-je encore recevoir le COVID-19 même après avoir été vacciné?",
+  "p_1": "Note de l'éditeur: Vous avez donc reçu votre vaccin contre le coronavirus, attendu les deux semaines pour que votre système immunitaire réponde au vaccin et êtes maintenant entièrement vacciné. Cela signifie-t-il que vous pouvez vous frayer un chemin à travers le monde comme l'ancien jours sans craindre de propager le virus? Deborah Fuller est microbiologiste à l'Université de Washington qui travaille sur les vaccins contre les coronavirus. Elle explique ce que la science montre sur la transmission post-vaccination - et si de nouvelles variantes pourraient changer cette équation. \n ",
+  "h5_2": "La vaccination prévient-elle complètement l'infection?",
+  "p_2": "La vaccination prévient-elle complètement l'infection? \n La réponse courte est non. Vous pouvez toujours être infecté après avoir été vacciné. Mais vos chances de tomber gravement malade sont presque nulles. \n De nombreuses personnes pensent que les vaccins fonctionnent comme un bouclier, empêchant un virus d'infecter complètement les cellules. Mais dans la plupart des cas, une personne qui se fait vacciner est protégée contre la maladie, pas nécessairement contre l'infection.",
+  "h5_3": "Quels sont les effets secondaires du vaccin?",
+  "p_3": "La vaccination contre le COVID-19 vous aidera à vous protéger contre le COVID-19. Vous pouvez avoir des effets secondaires, qui sont des signes normaux que votre corps renforce sa protection. Ces effets secondaires peuvent affecter votre capacité à faire vos activités quotidiennes, mais ils devraient disparaître dans quelques jours. Certaines personnes n'ont aucun effet secondaire. ",
+  "h6": "Effets secondaires courants",
+  "h5_4": "Sur le bras où vous avez tiré:",
+  "h5_5": "Dans le reste de votre corps:",
+  "ul1": {
+    "li_1": "Douleur",
+    "li_2": "Rougeur",
+    "li_3": "Gonflement"
+  },
+  "ul2": {
+    "li_1": "Fatigue",
+    "li_2": "Maux de tête",
+    "li_3": "Douleurs musculaires",
+    "li_4": "Frissons",
+    "li_5": "Fièvre",
+    "li_6": "Nausée"
+  }
+}

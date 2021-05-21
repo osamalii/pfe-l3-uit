@@ -13,6 +13,7 @@ const flash = require('connect-flash');
 
 require('./config/passport')(passport);
 
+
 mongoose.connect(process.env.mongodb2, {useNewUrlParser: true})
     .then(() => console.log("mongodb connected"))
     .catch((e) => console.log(e));
@@ -44,6 +45,7 @@ app.use((req,res,next)=>{
     res.locals.error = req.flash('error');
     next();
 });
+
 
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));

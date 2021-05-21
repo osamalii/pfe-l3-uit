@@ -1,0 +1,36 @@
+{
+  "lang": "fr",
+  "title": "Accueil",
+  "help": {
+    "text": "COVID-19 Questions?",
+    "textAsk": "Demander ici"
+  },
+  "undernav": {
+    "text1": "MA Vaccine Portal",
+    "text2": "Restez en sécurité. Faites-vous vacciner!"
+  },
+  "vcPortal": "MA Vaccine Portal",
+  "main": {
+    "h1": "Comment obtenir le vaccin?",
+    "rightMain1": {
+      "h3": "Trouver un fournisseur de vaccins près de chez vous",
+      "p": "Si vous êtes éligible pour prendre un rendez-vous, utilisez l'outil de recherche de vaccins pour rechercher un site de vaccination.",
+      "form1": {
+        "submit": "Chercher"
+      }
+    },
+    "leftMain2": {
+      "h3": "Les résidents, les travailleurs et les étudiants âgés de 16 ans et plus sont désormais éligibles",
+      "a": "DÉTAILS"
+    }
+  },
+  "log": {
+    "h4": "Déjà inscrit?",
+    "a": "CONNEXION À VOTRE COMPTE"
+  },
+  "resources": {
+    "p1": "Informations sur la sécurité des vaccins",
+    "p2": "Ressources pédagogiques COVID-19",
+    "p3": "Questions fréquemment posées"
+  }
+}

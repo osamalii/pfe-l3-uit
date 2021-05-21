@@ -1,0 +1,36 @@
+{
+  "lang": "en",
+  "title": "Home",
+  "help": {
+    "text": "COVID-19 Questions?",
+    "textAsk": "Ask Here"
+  },
+  "undernav": {
+    "text1": "MA Vaccine Portal",
+    "text2": "Stay Safe. Get Vaccinated!"
+  },
+  "vcPortal": "MA Vaccine Portal",
+  "main": {
+    "h1": "How Do I Get the Vaccine?",
+    "rightMain1": {
+      "h3": "Find a Vaccine Provider Near You",
+      "p": "If you are eligible to book an appointment, use the vaccine finder to search for a vaccine site.",
+      "form1": {
+        "submit": "Submit"
+      }
+    },
+    "leftMain2": {
+      "h3": "Residents, Workers, and Students Ages 16+ Are Now Eligible",
+      "a": "DETAILS"
+    }
+  },
+  "log": {
+    "h4": "Already registered ?",
+    "a": "LOGIN INTO YOUR ACCOUNT"
+  },
+  "resources": {
+    "p1": "Vaccine Safety Facts",
+    "p2": "COVID-19 Educational Resources",
+    "p3": "Frequently Asked Questions"
+  }
+}

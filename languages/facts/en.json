@@ -1,0 +1,26 @@
+{
+  "lang": "en",
+  "h1": "Vaccine Safety Facts",
+  "h5_1": "Can I still get COVID-19 even after I’m vaccinated?",
+  "p_1": "Editor’s note: So you’ve gotten your coronavirus vaccine, waited the two weeks for your immune system to respond to the shot and are now fully vaccinated. Does this mean you can make your way through the world like the old days without fear of spreading the virus? Deborah Fuller is a microbiologist at the University of Washington working on coronavirus vaccines. She explains what the science shows about transmission post-vaccination – and whether new variants could change this equation.\n",
+  "h5_2": "Does vaccination completely prevent infection?",
+  "p_2": "Does vaccination completely prevent infection?\n            The short answer is no. You can still get infected after you’ve been vaccinated. But your chances of getting seriously ill are almost zero.\n            Many people think vaccines work like a shield, blocking a virus from infecting cells altogether. But in most cases, a person who gets vaccinated is protected from disease, not necessarily infection.",
+  "h5_3": "What are the side effects of the vaccine?",
+  "p_3": "COVID-19 vaccination will help protect you from getting COVID-19. You may have some side effects, which are normal signs that your body is building protection. These side effects may affect your ability to do daily activities, but they should go away in a few days. Some people have no side effects.",
+  "h6": "Common Side Effects",
+  "h5_4": "On the arm where you got the shot:",
+  "h5_5": "Throughout the rest of your body:",
+  "ul1": {
+    "li_1":"Pain",
+    "li_2": "Redness",
+    "li_3":"Swelling"
+  },
+  "ul2": {
+    "li_1": "Tiredness",
+    "li_2": "Headache",
+    "li_3": "Muscle pain",
+    "li_4": "Chills",
+    "li_5": "Fever",
+    "li_6": "Nausea"
+  }
+}
