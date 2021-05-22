@@ -48,7 +48,7 @@ app.use((req,res,next)=>{
 
 
 app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
+app.use('/users',  require('./routes/users'));
 app.use('/admin', require('./routes/admin'));
 app.use('/token', require('./routes/tokens'));
 // app.use('/api', require('./routes/api'));

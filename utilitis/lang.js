@@ -1,13 +1,10 @@
 const fs = require("fs");
 
+const pather = (lang, type) => 'languages/' + lang + '/' + type + '.json';
 
-
-
-module.exports = (lang, type) => {
-    let path = 'languages/' + lang + '.json';
-
-    if( type !== 'home') path = 'languages/' + type + '/' + lang + '.json';
-    const json = JSON.parse(fs.readFileSync(path));
-
-    return json;
+const jsoner = (lang, type) => {
+    if(lang === '') return jsoner('en', type);
+    return JSON.parse(fs.readFileSync(pather(lang,type)))
 };
+
+module.exports = jsoner;

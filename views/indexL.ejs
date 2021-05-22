@@ -60,7 +60,13 @@
     <div class="row marginT-30">
         <div class="w-50 mx-auto">
             <h4 style="display: inline-block"><%= pageL.log.h4 %> </h4>
-            <a style="display: inline-block" class="btn btn-success" href="/users/login"><%= pageL.log.a %></a>
+            <a
+                    style="display: inline-block"
+                    class="btn btn-success"
+                    href="<%= '/users/login/'+ pageL.lang  %>"
+            >
+                <%= pageL.log.a %>
+            </a>
         </div>
     </div>
     <div class="marginT-30"></div>
@@ -69,7 +75,7 @@
             <div class="card resource">
                 <div class="card-body textAlignCenter">
                     <h5 class="card-title"><i class="fas fa-shield-alt"></i></h5>
-                    <p class="card-text"><a href="<%= '/' + pageL.lang + '/facts' %>  "><%= pageL.resources.p1 %></a></p>
+                    <p class="card-text"><a href="<%=  '/facts/' + pageL.lang%>  "><%= pageL.resources.p1 %></a></p>
                 </div>
             </div>
         </div>

@@ -9,9 +9,19 @@ const passport = require('passport');
 const emailVerification = require("../utilitis/emailVerification");
 const recaptha = require("../utilitis/captcha");
 const {ensureAuthenticated} = require('../config/auth');
+const pageFieldsByLang = require('../utilitis/lang');
 
 
-router.get('/login', (req, res) => res.render('login', {user: null, title: 'Login'}));
+
+router.get('/login', (req, res) => res.render('login', {user: null, title: 'Login',pageL: pageFieldsByLang('en','login')}));
+
+router.get('/login/:lang', (req, res, next)=>{
+   const lang = req.params.lang;
+   console.log(req.params);
+    if(lang === 'en' || lang === 'fr' || lang === 'ar' || !lang)
+        res.render('loginL', {user:null, title:'Login', pageL: pageFieldsByLang(lang,'login')});
+    else next();
+});
 
 router.get('/register', (req, res) => res.render('register', {user: null, title: 'Register', errors: []}));
 

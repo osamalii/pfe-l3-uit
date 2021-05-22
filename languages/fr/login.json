@@ -1,0 +1,16 @@
+{
+  "lang": "fr",
+  "legend": "Se connecter",
+  "email_label": "E-mail",
+  "email_small": "Nous ne partagerons jamais votre e-mail avec qui que ce soit.",
+  "password_label": "Mot de pass",
+  "forgot_Pass_text": "Oublie votre mot de passe ?",
+  "forgot_Pass_reset": "changer",
+  "submit": "Login",
+  "register_text": "Vous n'avez pas de compte?",
+  "register_": "Creer compte",
+  "place_holders": {
+    "email": "exemple@monsite.com",
+    "password": "Mot de passe"
+  }
+}

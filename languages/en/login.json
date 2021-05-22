@@ -1,0 +1,16 @@
+{
+  "lang": "en",
+  "legend": "Login",
+  "email_label": "Email",
+  "email_small": "We'll communicate your email with nobody",
+  "password_label": "Password",
+  "forgot_Pass_text": "Forgot your password ?",
+  "forgot_Pass_reset": "Reset",
+  "submit": "Login",
+  "register_text": "Don't Have An Account ?",
+  "register_": "Register",
+  "place_holders": {
+    "email": "exemple@monsite.com",
+    "password": "Password"
+  }
+}

@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const {ensureAuthenticated} = require('../config/auth');
-
 const pageFieldsByLang = require('../utilitis/lang');
 
 router.get('/', function(req, res){
@@ -13,11 +12,9 @@ router.get('/:lang', function(req, res, next){
     const lang = req.params.lang;
     if(lang === 'en' || lang === 'fr' || lang === 'ar')
         res.render('indexL',{user: req.user, title:'Home', pageL:pageFieldsByLang(req.params.lang, 'home')});
-    else if (lang === 'facts')
-        res.render('factsL', {title:'Vaccine Safety Facts', factsL: pageFieldsByLang('en', 'facts')});
     else next();
 });
-router.get('/:lang/facts', (req, res, next) => {
+router.get('/facts/:lang', (req, res, next) => {
     const lang = req.params.lang;
     if(lang === 'en' || lang === 'fr' || lang === 'ar')
         res.render('factsL', {title:'Vaccine Safety Facts', factsL: pageFieldsByLang(req.params.lang, 'facts')});

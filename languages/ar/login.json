@@ -1,0 +1,16 @@
+{
+  "lang": "en",
+  "legend": "تسجيل الدخول",
+  "email_label": "البريد الإلكتروني",
+  "email_small": "لن نقوم بتوصيل بريدك الإلكتروني مع أحد",
+  "password_label": "كلمة المرور",
+  "forgot_Pass_text": "هل نسيت كلمة المرور",
+  "forgot_Pass_reset": "هل نسيت كلمة المرور",
+  "submit": "تسجيل الدخول",
+  "register_text": "ليس لديك حساب",
+  "register_": "تسجيل",
+  "place_holders": {
+    "email": "exemple@monsite.com",
+    "password": "كلمة المرور"
+  }
+}
