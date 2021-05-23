@@ -1,43 +1,96 @@
-<div class="row">
-    <%- include('./sideBare') %>
-  <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <form action="/admin/AddDoctor" method="post">
-            <fieldset>
-                <legend>Ajouter Un Medecin</legend>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Email de Medecin">
-                </div>
-                <div class="form-group">
-                    <label for="Cin">Cin</label>
-                    <input type="text" name="Cin" class="form-control" id="Cin" placeholder="Cin de Medecin">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </fieldset>
-        </form>
-  </div>
+<h1></h1>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="background-color: #d0d4ce">
+            <form action="/admin/AddDoctor" method="post">
+                <fieldset>
+                    <legend>Ajouter Un Medecin</legend>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Email de Medecin">
+                    </div>
+                    <div class="form-group">
+                        <label for="Cin">Cin</label>
+                        <input type="text" name="Cin" class="form-control" id="Cin" placeholder="Cin de Medecin">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="col-lg-12 mb-2">
+        <div class="row mt-5">
+            <form action="/admin/addCenter" method="post">
+                <fieldset>
+                    <legend>Add Center</legend>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" name="city" class="form-control" id="city" aria-describedby="cityHelp" placeholder="Enter City">
+                    </div>
+                    <div class="form-group">
+                        <label for="centername">Nom de centre</label>
+                        <input type="text" name="centerName" class="form-control" id="centername" placeholder="Nom de centre">
+                    </div>
+                    <div class="form-group">
+                        <label for="centername">Docotors</label>
+                        <input type="text" name="doctors" class="form-control" id="doctors" placeholder="doctors separated by commas">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+<hr>
+    <div class="row mt-5">
+        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="background-color: #d0d4ce">
+            <form action="/admin/addCity" method="post">
+                <fieldset>
+                    <legend>Ajouter Une ville</legend>
+                    <div class="form-group">
+                        <label for="email">Ville</label>
+                        <input type="text" name="cityName" class="form-control" id="cityName" aria-describedby="cityNameHelp" placeholder="entrer nom de ville">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row mt-5">
+        <div id="accordion" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <% if(typeof cities != 'undefined'){  %>
+                <% cities.forEach(function (city) { %>
+                    <h3><%= city.name %></h3>
+                    <ul>
+                        <% city.centers.forEach(function (center) { %>
+                            <li><%= center.centerName %></li>
+                        <%})%>
+                            <li>
+                                <form id="addCenterForm" method="post" action="/admin/addCenter">
+                                    <input class="display_Inline_Block" type="text" name="centerName" placeholder="Center name"/><input type="text" name="doctors" placeholder="Doctors C.I.N separated by (,)"/>
+                                    <input type="text" name="_cityId" hidden value="<%= city._id %>"/>
+                                    <input type="submit" class="btn btn-success"/>
+                                </form>
+
+                            </li>
+                    </ul>
+                <%})%>
+            <% } %>
+        </div>
+        <script>
+            $( "#accordion" ).accordion();
+        </script>
+    </div>
 </div>
 
-<!--<div class="col-lg-12 mb-2">-->
-<!--    <div class="row mt-5">-->
-<!--        <form action="/admin/addCenter" method="post">-->
-<!--            <fieldset>-->
-<!--                <legend>Add Center</legend>-->
-<!--                <div class="form-group">-->
-<!--                    <label for="city">City</label>-->
-<!--                    <input type="text" name="city" class="form-control" id="city" aria-describedby="cityHelp" placeholder="Enter City">-->
-<!--                </div>-->
-<!--                <div class="form-group">-->
-<!--                    <label for="centername">Nom de centre</label>-->
-<!--                    <input type="text" name="centername" class="form-control" id="centername" placeholder="Nom de centre">-->
-<!--                </div>-->
-<!--                <div class="form-group">-->
-<!--                    <label for="directeur">Directeur</label>-->
-<!--                    <input type="text" name="directeur" class="form-control" id="directeur" placeholder="Directeur">-->
-<!--                </div>-->
-<!--                <button type="submit" class="btn btn-primary">Submit</button>-->
-<!--            </fieldset>-->
-<!--        </form>-->
-<!--    </div>-->
-<!--</div>-->
-
+<script>
+    $('#addCenterForm').submit(function (event) {
+            const centerName = $('input[name="centerName"]').val();
+            alert(centerName);
+    })
+</script>

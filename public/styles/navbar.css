@@ -165,3 +165,10 @@ and (max-device-width: 576px)
  #logOutBtn{
      height: auto !important;
  }
+
+
+.display_Inline_Block{
+    display: inline-block;
+}
+
+
