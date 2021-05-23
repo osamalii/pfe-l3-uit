@@ -74,8 +74,9 @@
                                 <form method="post" id=<%="form_" + city._id %> action="/admin/addCenter">
                                     <input class="display_Inline_Block" type="text" name="centerName" placeholder="Center name"/>
                                     <input type="text" name="doctors" placeholder="Doctors C.I.N separated by (,)"/>
+                                    <input type="number" style="width: 50px" name="capacity" placeholder="capacité"/>
                                     <input type="text" name="_cityId" hidden value="<%= city._id %>"/>
-                                    <input type="submit" class="btn btn-success"/>
+                                    <input type="submit" class="btn btn-success" value="Ajouter center"/>
                                 </form>
 
                             </li>

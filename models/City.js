@@ -8,6 +8,7 @@ const CitySchema = new mongoose.Schema({
     },
     centers:[{
         centerName: String,
+        capacity:Number,
         doctors: Array,
         patients : Array,
     }]
