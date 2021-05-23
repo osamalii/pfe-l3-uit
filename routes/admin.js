@@ -107,6 +107,7 @@ router.post('/addCenter', ensureAuthenticated, async (req, res) => {
                         .then(() => {
                             console.log('center ');
                             req.flash('success_msg', 'You Added A Center');
+                            res.redirect('/dashboard');
                         })
                         .catch(err => {
                             console.log(err);

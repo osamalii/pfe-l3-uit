@@ -71,8 +71,9 @@
                             <li><%= center.centerName %></li>
                         <%})%>
                             <li>
-                                <form id="addCenterForm" method="post" action="/admin/addCenter">
-                                    <input class="display_Inline_Block" type="text" name="centerName" placeholder="Center name"/><input type="text" name="doctors" placeholder="Doctors C.I.N separated by (,)"/>
+                                <form method="post" id=<%="form_" + city._id %> action="/admin/addCenter">
+                                    <input class="display_Inline_Block" type="text" name="centerName" placeholder="Center name"/>
+                                    <input type="text" name="doctors" placeholder="Doctors C.I.N separated by (,)"/>
                                     <input type="text" name="_cityId" hidden value="<%= city._id %>"/>
                                     <input type="submit" class="btn btn-success"/>
                                 </form>
@@ -83,14 +84,17 @@
             <% } %>
         </div>
         <script>
-            $( "#accordion" ).accordion();
+            $( "#accordion" ).accordion({
+                heightStyle: "content",
+                collapsible: true
+            });
+
         </script>
     </div>
 </div>
 
 <script>
-    $('#addCenterForm').submit(function (event) {
-            const centerName = $('input[name="centerName"]').val();
-            alert(centerName);
+    $('form').submit(function (event) {
+            console.log(this);
     })
 </script>
