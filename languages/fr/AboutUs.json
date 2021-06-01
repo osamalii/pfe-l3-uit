@@ -1,0 +1,16 @@
+{
+  "lang" : "fr",
+  "h1_1" :"qui sommes-nous ? ",
+  "strong_1": "Nous voulons rendre la vaccination COVID-19 facile et accessible à tous.",
+  "p_1": "Les vaccins COVID-19 sont gratuits et disponibles pour tous ceux qui le souhaitent.\n    Nous travaillons avec des partenaires tels que des cliniques, des pharmacies et des services de santé pour fournir des informations précises et actualisées sur les services de vaccination dans votre région.",
+  "p_2": "Cette page vous est proposée par le département d'informatique de l'Université Ibn Tofail,\n        les Centers for Diseases Control, et VaccineFinder de l'hôpital du Maroc.",
+  "h6_1": "notre mission",
+  "p_3": "Améliorer la santé, la sécurité et le bien-être du Maroc par une bonne gestion des ressources publiques,\n  et en mettant l'accent sur la vaccination contre le CoronaVirus.",
+  "h6_2": "nos valeurs",
+  "ul1" :{
+    "li1" :"diriger avec une vision",
+    "li2" : "\nPoussé par la science et les données.",
+    "li3" : "Partenaire avec un but.",
+    "li4" : "S'engager et se connecter en tant qu'équipe."
+  }
+}

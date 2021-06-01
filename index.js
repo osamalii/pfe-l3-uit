@@ -5,17 +5,18 @@ const express = require('express');
 const app = express();
 const passport = require('passport');
 const session = require('express-session');
-const methodOverride = require('method-override');
 const expressLyouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 
+
 require('./config/passport')(passport);
 
 
-mongoose.connect(process.env.mongodb2, {useNewUrlParser: true})
-    .then(() => console.log("mongodb connected"))
+mongoose.connect(process.env.mongodb2, {useNewUrlParser: true,useUnifiedTopology: true})
+    .then(() => {
+        console.log("mongodb connected")})
     .catch((e) => console.log(e));
 
 
@@ -25,7 +26,7 @@ app.set('view engine','ejs');
 app.use(express.static(__dirname + '/public'));
 
 //BodyParser
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true}));
 
 app.use(session({
     secret:'asdfghjkpoiuytrewqzxcvbnm',
@@ -45,6 +46,7 @@ app.use((req,res,next)=>{
     res.locals.error = req.flash('error');
     next();
 });
+app.locals.moment = require('moment');
 
 
 app.use('/', require('./routes/index'));
@@ -55,5 +57,6 @@ app.use('/token', require('./routes/tokens'));
 app.use((req, res)=>{
     res.status(404).render('404');
 });
+
 
 module.exports = app;

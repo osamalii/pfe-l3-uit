@@ -1,0 +1,27 @@
+{
+  "lang" : "fr",
+  "legend_1" : "Inscription",
+  "label_1" :"Nom",
+  "placeholder_1": "Nom",
+  "label_2": "Prenom",
+  "placeholder_2":"Prenom",
+  "label_3": "CIN",
+  "placeholder_3" : "CIN",
+  "label_4": "Email",
+  "placeholder_4": "Enterez Votre Email",
+  "small_1": "Nous ne partagerons jamais votre courriel avec quelqu’un d’autre.",
+  "label_5": "Mot de passe",
+  "placeholder_5": "Mot de passe",
+  "label_6": "\nConfirmez votre mot de passe",
+  "placeholder_6": "Mot de passe",
+  "label_7": "Date de naissance",
+  "label_8": "Sexe",
+  "option_1": "Homme",
+  "option_2": "Femme",
+  "button_1" : "Envoyer",
+  "p_1": "posséder un compte?",
+  "a_1": "Se connecter"
+
+
+
+}

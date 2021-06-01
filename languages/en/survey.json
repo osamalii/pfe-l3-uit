@@ -1,0 +1,103 @@
+{
+  "lang": "en",
+  "tabs": [
+    {
+      "question" : "Have you had any of these symptoms today where you got the shot (injection site)?",
+      "symptoms": [
+        {
+          "name":"Pain" ,
+          "symp": "Pain"
+        },
+        {
+          "name": "Redness",
+          "symp": "Redness"
+        },
+        {
+          "name": "Swelling" ,
+          "symp": "Swelling"
+        },
+        {
+          "name": "Itching",
+          "symp": "Itching"
+        },
+        {
+          "name": "SymptomsNone",
+          "symp": "none"
+        }
+      ]
+    },
+    {
+      "question": "Have you experienced any of these symptoms today?",
+      "symptoms": [
+        {
+          "name": "Chills",
+          "symp": "Chills"
+        },
+        {
+          "name": "Headache",
+          "symp": "Headache"
+        },
+        {
+          "name": "Fatigue",
+          "symp": "Fatigue or tiredness"
+        },
+        {
+          "name": "Joint" ,
+          "symp": "Joint pains-Muscle or body aches"
+        },
+        {
+          "name":"Nausea",
+          "symp": "Nausea"
+        },
+        {
+          "name": "Vomiting" ,
+          "symp": "Vomiting"
+        },
+        {
+          "name": "Diarrhea",
+          "symp": "Diarrhea"
+        },
+        {
+          "name": "Abdominal",
+          "symp": "Abdominal pain"
+        },
+        {
+          "name": "Rash",
+          "symp" : "Rash, not including the immediate area around the injection site"
+        },
+        {
+          "name": "SymptomsNone2",
+          "symp": "none"
+        }
+      ]
+    },
+    {
+      "question": "Did any of the symptoms or health conditions you reported today cause you to:",
+      "symptoms": [
+        {
+          "name": "work",
+          "symp": "Be unable to work"
+        },
+        {
+          "name": "activities",
+          "symp": "Be unable to do your normal daily activities"
+        },
+        {
+          "name": "professional",
+          "symp": "Get care from a doctor or other healthcare professional"
+        },
+        {
+          "name": "SymptomsNone3",
+          "symp": "none"
+        }
+
+      ]
+    }
+  ],
+
+  "degrees" : {
+    "low": "Low",
+    "meduim": "Medium",
+    "severe": "Sever"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "lang" : "en",
+  "legend_1" : "Register",
+  "label_1" :"Last name",
+  "placeholder_1": "Last name",
+  "label_2": "First name",
+  "placeholder_2":"First name",
+  "label_3": "CIN",
+  "placeholder_3" : "CIN",
+"label_4": "Email",
+  "placeholder_4": "Enter Email",
+  "small_1": "We'll never share   your email with anyone else.",
+  "label_5": "Password",
+  "placeholder_5": "Password",
+  "label_6": "\nconfirm your password",
+  "placeholder_6": "password",
+  "label_7": "Birth Date",
+  "label_8": "Sex",
+  "option_1": "Male",
+  "option_2": "Female",
+  "button_1" : "Submit",
+  "p_1": "Have An Account ?",
+  "a_1": "Login"
+
+
+
+}

@@ -10,7 +10,7 @@
   "register_text": "Don't Have An Account ?",
   "register_": "Register",
   "place_holders": {
-    "email": "exemple@monsite.com",
+    "email": "example@mywebsite.com",
     "password": "Password"
   }
 }

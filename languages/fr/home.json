@@ -6,14 +6,14 @@
     "textAsk": "Demander ici"
   },
   "undernav": {
-    "text1": "MA Vaccine Portal",
+    "text1": "Mo Vaccination Portal",
     "text2": "Restez en sécurité. Faites-vous vacciner!"
   },
-  "vcPortal": "MA Vaccine Portal",
+  "vcPortal": "MO Vaccination Portal",
   "main": {
     "h1": "Comment obtenir le vaccin?",
     "rightMain1": {
-      "h3": "Trouver un fournisseur de vaccins près de chez vous",
+      "h3": "Trouvez un centre de vaccination dans votre région",
       "p": "Si vous êtes éligible pour prendre un rendez-vous, utilisez l'outil de recherche de vaccins pour rechercher un site de vaccination.",
       "form1": {
         "submit": "Chercher"

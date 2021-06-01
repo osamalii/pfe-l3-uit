@@ -1,26 +1,26 @@
 {
-  "lang": "fr",
-  "h1": "Informations sur la sécurité des vaccins",
-  "h5_1": "Puis-je encore recevoir le COVID-19 même après avoir été vacciné?",
-  "p_1": "Note de l'éditeur: Vous avez donc reçu votre vaccin contre le coronavirus, attendu les deux semaines pour que votre système immunitaire réponde au vaccin et êtes maintenant entièrement vacciné. Cela signifie-t-il que vous pouvez vous frayer un chemin à travers le monde comme l'ancien jours sans craindre de propager le virus? Deborah Fuller est microbiologiste à l'Université de Washington qui travaille sur les vaccins contre les coronavirus. Elle explique ce que la science montre sur la transmission post-vaccination - et si de nouvelles variantes pourraient changer cette équation. \n ",
-  "h5_2": "La vaccination prévient-elle complètement l'infection?",
-  "p_2": "La vaccination prévient-elle complètement l'infection? \n La réponse courte est non. Vous pouvez toujours être infecté après avoir été vacciné. Mais vos chances de tomber gravement malade sont presque nulles. \n De nombreuses personnes pensent que les vaccins fonctionnent comme un bouclier, empêchant un virus d'infecter complètement les cellules. Mais dans la plupart des cas, une personne qui se fait vacciner est protégée contre la maladie, pas nécessairement contre l'infection.",
-  "h5_3": "Quels sont les effets secondaires du vaccin?",
-  "p_3": "La vaccination contre le COVID-19 vous aidera à vous protéger contre le COVID-19. Vous pouvez avoir des effets secondaires, qui sont des signes normaux que votre corps renforce sa protection. Ces effets secondaires peuvent affecter votre capacité à faire vos activités quotidiennes, mais ils devraient disparaître dans quelques jours. Certaines personnes n'ont aucun effet secondaire. ",
-  "h6": "Effets secondaires courants",
-  "h5_4": "Sur le bras où vous avez tiré:",
-  "h5_5": "Dans le reste de votre corps:",
+  "lang": "ar",
+  "h1": "معلومات عن سلامة اللقاح",
+  "h5_1": "هل ممكن ان اصاب بكورونا حتى بعد لقاحي؟",
+  "p_1": ". بعد مرور أكثر من شهر على اللقاحات الأولى لـ COVID-19 ، لا يزال لدى العديد من الأشخاص أسئلة بشأن ما يحدث بعد تلقي الجرعة الكاملة. على الرغم من عدم وجود بيانات مؤكدة حول هذا الموضوع ، فإن فرص الإصابة بالفيروس وانتشاره بعد التطعيم منخفضة للغاية ، وفقًا لأحد الباحثين في الأمراض المعدية بجامعة ألاباما في برمنغهام.\n\nيقول Paul Goepfert ، دكتور في الطب ، وهو أستاذ في قسم الأمراض المعدية UAB ، إن خلاصة القول هي أن اللقاح على الأرجح لا يمنع انتشار الفيروس ، ولكنه على الأرجح يقلل من طول الوقت الذي يتخلى فيه الشخص عن الفيروس ",
+  "h5_2": "هل التطعيم يمنع العدوى تماما؟",
+  "p_2": " .هل التطعيم يمنع العدوى تماما؟\n الجواب القصير هو لا. لا يزال من الممكن أن تصاب بالعدوى بعد التطعيم. لكن فرص إصابتك بمرض خطير تكاد تكون معدومة.\n يعتقد الكثير من الناس أن اللقاحات تعمل كدرع ، حيث تمنع الفيروس من إصابة الخلايا تمامًا. لكن في معظم الحالات ، يكون الشخص الذي يحصل على اللقاح محميًا من المرض ، وليس بالضرورة العدوى",
+  "h5_3": "ما هي الآثار الجانبية للقاح؟",
+  "p_3": ".التطعيم ضد الكورونا سيساعد على حمايتك من هذا الفيروس ، فقد يكون لديك آثار جانبية ، وهي علامات طبيعية على أن جسمك يقوي حمايته. يمكن أن تؤثر هذه الآثار الجانبية على قدرتك على القيام بأنشطتك اليومية ، ولكن يجب أن تختفي في غضون أيام قليلة. بعض الناس ليس لديهم آثار جانبية ",
+  "h6": "الآثار الجانبية الشائعة",
+  "h5_4":"أعراض/آثار موضعية",
   "ul1": {
-    "li_1": "Douleur",
-    "li_2": "Rougeur",
-    "li_3": "Gonflement"
+    "li_1": "ألم",
+    "li_2": " احمرار في موضع الحقن",
+    "li_3": "تورم  في موضع الحقن"
   },
+  "h5_5":"أعراض/آثار جهازية",
   "ul2": {
-    "li_1": "Fatigue",
-    "li_2": "Maux de tête",
-    "li_3": "Douleurs musculaires",
-    "li_4": "Frissons",
-    "li_5": "Fièvre",
-    "li_6": "Nausée"
+    "li_1": "إرهاق",
+    "li_2": "صداع في الرأس",
+    "li_3": "آلام في العضلات",
+    "li_4": "قشعريرة",
+    "li_5": "حمى",
+    "li_6": "غثيان"
   }
 }

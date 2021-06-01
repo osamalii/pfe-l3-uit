@@ -43,7 +43,7 @@ router.post('/addCity', ensureAuthenticated, (req, res) => {
                         } else {
                             const newCity = new City({
                                 name: cityName.toUpperCase(),
-                                director: String,
+                                capacity:0,
                                 doctors: [],
                                 patients: [],
                             });
@@ -86,7 +86,7 @@ router.post('/AddDoctor', ensureAuthenticated, (req, res) => {
 
 router.post('/addCenter', ensureAuthenticated, async (req, res) => {
     if (req.user.AccountType === 'admin') {
-        const {centerName, _cityId, doctors} = req.body;
+        const {centerName, _cityId, doctors, capacity} = req.body;
         City.findOne({_id: _cityId})
             .then(theCity => {
                 let ex = true;
@@ -102,6 +102,7 @@ router.post('/addCenter', ensureAuthenticated, async (req, res) => {
                         centerName: centerName.toUpperCase(),
                         doctors: doctors.split(',').map(el => GetUseIdByCin(el)).filter(e => e),
                         patients: [],
+                        capacity:capacity
                     });
                     theCity.save()
                         .then(() => {
@@ -173,5 +174,38 @@ router.post('/addCenter', ensureAuthenticated, async (req, res) => {
 
     }
 });
+
+
+router.post('/autoAddCenter',  (req, res)=>{
+    let {centers, cityName, doctors, capacities} = req.body;
+    console.log(centers);
+    centers=centers.split('--');
+    doctors=doctors.split('--');
+    capacities=capacities.split('--');
+    const newCity = new City({
+        name: cityName.toUpperCase(),
+        centers:[]
+    });
+    for (let i = 0; i < centers.length; i++){
+        newCity.centers.push(
+            {
+                centerName: centers[i].toUpperCase(),
+                doctors: doctors[i],
+                capacity: capacities[i],
+                patients: []
+            });
+    }
+    newCity.save(function (err) {
+        console.log(err);
+    });
+
+
+});
+
+// City.collection.remove();
+
+// City.find({name:'TÉMARA'}).then(city=>console.log(city));
+
+
 
 module.exports = router;

@@ -10,26 +10,50 @@ const emailVerification = require("../utilitis/emailVerification");
 const recaptha = require("../utilitis/captcha");
 const {ensureAuthenticated} = require('../config/auth');
 const pageFieldsByLang = require('../utilitis/lang');
+const City = require('../models/City');
+const Appointment = require('../models/Appointment');
+const Calendar = require('../models/Calendar');
+const moment = require('moment'); // require
+const Survey = require('../models/Survey'); // require
 
 
+router.get('/login', (req, res) => res.redirect('/users/login/en'));
 
-router.get('/login', (req, res) => res.render('login', {user: null, title: 'Login',pageL: pageFieldsByLang('en','login')}));
-
-router.get('/login/:lang', (req, res, next)=>{
-   const lang = req.params.lang;
-   console.log(req.params);
+router.get('/login/:lang', (req, res, next) => {
+    const lang = req.params.lang;
+    console.log(req.params);
     if(lang === 'en' || lang === 'fr' || lang === 'ar' || !lang)
-        res.render('loginL', {user:null, title:'Login', pageL: pageFieldsByLang(lang,'login')});
+        res.render('loginL', {
+            user:req.user,
+            title:'Login',
+            pageL: pageFieldsByLang(req.params.lang,'login'),
+            lang : lang,
+            footer: pageFieldsByLang(req.params.lang, 'footer')
+        });
     else next();
 });
 
-router.get('/register', (req, res) => res.render('register', {user: null, title: 'Register', errors: []}));
+router.get('/register', (req, res) => res.redirect('/users/register/en'));
+
+router.get('/register/:lang', (req, res,next) => {
+    const lang = req.params.lang;
+    console.log(req.params);
+    if(lang === 'en' || lang === 'fr' || lang === 'ar' || !lang)
+        res.render('register',{
+            user:req.user ,
+            title:'register',
+            register:pageFieldsByLang(req.params.lang,'register'),
+            lang:lang,
+            footer:pageFieldsByLang(req.params.lang , 'footer'),
+            errors: []
+        });
+    else next();
+});
 
 router.post('/register', (req, res) => {
-
+    console.log(req.body);
     const {name, lastname, email, password, password2, gender, birthDate, cin} = req.body;
     let errors = [];
-    console.log(req.body);
     if (!name || !lastname || !email || !password || !password2 || !gender || !birthDate || !cin) {
         errors.push({msg: 'please fill in all fields'});
     }
@@ -59,12 +83,13 @@ router.post('/register', (req, res) => {
             ['birthDate', birthDate],
             ['gender', gender],
             ['cin', cin],
-            ['AccountType', 'patient']
+            ['isVerified', true], // temp for automation ... to remove completely
+            ['AccountType', 'doctor']   //temp for automation ... must be patient
         ];
         createUser(userArr, true)
             .then(creation => {
                 console.log(creation);
-                emailVerification(creation.email, creation._id, 'verify');
+                // emailVerification(creation.email, creation._id, 'verify'); // temp(only for automation) it should be done for verifying
                 req.flash('success_msg', 'Complete registration by verifying your email');
                 res.redirect('/users/login');
             })
@@ -85,25 +110,34 @@ router.post('/register', (req, res) => {
 //login
 
 router.post('/login', (req, res, next) => {
-    if(process.env.NODE_ENV !== 'dev')
-    recaptha(req.body.v3Token)
-        .then(captcha => {
-            console.log(captcha);
+    if (process.env.NODE_ENV !== 'dev')
+        recaptha(req.body.v3Token)
+            .then(captcha => {
+                console.log(captcha);
                 passport.authenticate('local', {
                     successRedirect: '/dashboard',
                     failureRedirect: '/users/login',
                     failureFlash: true
                 })(req, res, next);
-        })
-        .catch((err)=>{
-            console.log(err);
-            res.redirect('/')
-        });
+            })
+            .catch((err) => {
+                console.log(err);
+                res.redirect('/')
+            });
     else
-        passport.authenticate('local', {
-            successRedirect: '/dashboard',
-            failureRedirect: '/users/login',
-            failureFlash: true
+        passport.authenticate('local', function (err, user, info) {
+            if (err) {
+                return next(err);
+            }
+            if (!user) {
+                return res.redirect('/users/login');
+            }
+            req.logIn(user, function (err) {
+                if (err) {
+                    return next(err);
+                }
+                return res.redirect('/dashboard');
+            });
         })(req, res, next);
 });
 
@@ -116,7 +150,14 @@ router.get('/logout', (req, res) => {
 // password reset routes
 
 router.get('/requestresetpassword', function (req, res) {
-    res.render('partials/resetPassword');
+    res.redirect('/requestresetpassword/en');
+});
+
+router.get('/requestresetpassword/:lang', function (req, res, next) {
+    const lang = req.params.lang;
+    if(lang === 'en' || lang === 'fr' || lang === 'ar' || !lang)
+        res.render('partials/resetPassword', {resetPassword:pageFieldsByLang(lang, "resetPassword"), footer: pageFieldsByLang(lang,"footer")})
+    else next();
 });
 
 router.post('/requestresetpassword', function (req, res) {
@@ -137,9 +178,9 @@ router.get('/requestresetpassword/:token', function (req, res) {
         .then(token => {
             console.log(token);
             if (token) {
-                res.render('partials/resetPasswordForm', {token: token.token});
+                res.render('partials/resetPasswordForm', {token: token.token, title: 'request reset password'});
             } else {
-                res.redirect('/');
+                res.render('404');
             }
         });
 });
@@ -148,28 +189,28 @@ router.post('/resetpassword', async (req, res) => {
     let errors = [];
     await Token.findOne({token: req.body.token})
         .then(token => {
-            if(token) errors.push({msg: 'Token does not exists'})
+            if (token) errors.push({msg: 'Token does not exists'})
         });
-    if(req.body.password1 !== req.body.password2)
+    if (req.body.password1 !== req.body.password2)
         errors.push({msg: 'Passwords dont match'});
 
     if (errors.length > 0) {
-        res.render('partials/resetPassword', {errors});
+        res.render('partials/resetPassword', {errors, title: 'reset password'});
         return;
     }
     await Token.findOne({token: req.body.token})
         .then(token => {
-                User.findOne({_id: token._userId})
-                    .then(user => {
-                        if (user) {
-                            User.updateOne({_id: token._userId}, {password: hashPass(req.body.password1)})
-                                .then(() => {
-                                    Token.deleteOne({_userId: user._id}).catch(err => console.log(err));
-                                    req.flash('success_msg', 'Password changed, log in with your new password');
-                                    res.redirect('/users/login');
-                                })
-                        }
-                    })
+            User.findOne({_id: token._userId})
+                .then(user => {
+                    if (user) {
+                        User.updateOne({_id: token._userId}, {password: hashPass(req.body.password1)})
+                            .then(() => {
+                                Token.deleteOne({_userId: user._id}).catch(err => console.log(err));
+                                req.flash('success_msg', 'Password changed, log in with your new password');
+                                res.redirect('/users/login');
+                            })
+                    }
+                })
         });
 });
 
@@ -184,7 +225,7 @@ router.get('/completeRegistration/:token', (req, res) => {
                 User.findOne({_id: token._userId})
                     .then(user => {
                         if (user) {
-                            res.render('doctor/doctorRegistration', {_userId: user._id});
+                            res.render('doctor/doctorRegistration', {_userId: user._id, title: 'doctor registration'});
                         }
                     });
             }
@@ -204,20 +245,20 @@ router.post('/registeradoctor', (req, res) => {
         errors.push({msg: 'password should be at least 8 characters'});
     }
     if (errors.length > 0) {
-        res.render('doctor/doctorRegistration', {_userId: _userId, errors});
+        res.render('doctor/doctorRegistration', {_userId: _userId, errors, title: 'doctor registration'});
         return;
     }
     User.findOne({_id: _userId})
         .then(user => {
             if (user) {
                 User.updateOne({_id: _userId}, {
-                        name,
-                        lastname,
-                        password: hashPass(password),
-                        gender,
-                        birthDate,
-                        isVerified: true
-                    })
+                    name,
+                    lastname,
+                    password: hashPass(password),
+                    gender,
+                    birthDate,
+                    isVerified: true
+                })
                     .then(completedUser => {
                         req.flash('success_msg', 'Registration Completed, you can LogIn');
                         res.redirect('/users/login');
@@ -229,53 +270,176 @@ router.post('/registeradoctor', (req, res) => {
 });
 
 // demander rendez-vous
+//  Appointment.collection.remove();
+// Calendar.collection.remove();
 
-let cities = [
-    {
-        name:'KENITRA',
-        centers: [
-            {
-                name:'CROISSANT ROUGE MAROCAON OULAD OUJIH',
-                capacity: 50
-            },
-            {
-                name:'OULED OUUJIH II',
-                capacity: 20
-            }
-        ]
-    },
-    {
-        name: '',
-        centers: []
-    }
-];
+// City.find({}).then(cities => {
+//     for(let i = 0; i < cities.length; i++){
+//         let centers = cities[i].centers;
+//         for (let j = 0; j < centers.length; j++)
+//            createNewDayInTheCalendar(centers[j]._id, cities[i]._id ,new Date(2021,6,1))
+//                .then(()=>console.log("calendar added"));
+//     }
+// });
 
-let rendez_vous = [
-    {
-        date: null,
-        _userId: '1234567890',
-        center: null
-    },
-    {
-        date: null,
-        _userId: '1234567891',
-        center: null
-    }
-];
+// Calendar.updateMany({}, {appointments : [], numPatients:0});
 
-router.post('/demander_rendez-vous', ensureAuthenticated, (req, res)=>{
+
+router.post('/demander_rendez-vous', ensureAuthenticated, (req, res) => {
     let _userId = req.body._userId;
-    if(_userId == req.user._id && req.user.AccountType === 'patient') { //later ensure that he's not vaccinated yet or he's asking for 2 rendez-vous
+    console.log('asking for appointment');
+    if (_userId == req.user._id.toString() && req.user.AccountType === 'patient') { //later ensure that he's not vaccinated yet or he's asking for 2 rendez-vous
         const city = cin2City(req.user.cin);
-        const center = cities.filter(cityCenters => {
-            if (city === cityCenters.name) return cityCenters.centers[1]
-        });
-        if(center){
+        Appointment.remove({_userId: _userId});
+        City.findOne({name: city.toUpperCase()})
+            .then(async theCity => {
+                    if (theCity) {
+                        const calendar = await Calendar.find({_cityId: theCity._id})
+                            .then(async theCalendar => {
+                                let sorted = await getLastDays(theCalendar.sort((a, b) => new moment(b.day).format('YYYYMMDD') - new moment(a.day).format('YYYYMMDD'))).then(r => r);
+                                sorted = sorted.sort((a, b) => a.numPatients - b.numPatients).sort((a, b) => new moment(a.day).format('YYYYMMDD') - new moment(b.day).format('YYYYMMDD'));
+                                const center = await getTheCenter(theCity, sorted[0]._centerId);
+                                if (sorted[0].numPatients >= 100) {
+                                    console.log(center._id, theCity._id, sorted[0].day);
+                                    return await createNewDayInTheCalendar(center._id, theCity._id, sorted[0].day)
+                                } else
+                                    return sorted[0];
+                            });
+                        const center = await getTheCenter(theCity._id, calendar._centerId);
+                        const rendez_vous = new Appointment({
+                            date: calendar.day,
+                            _userId: _userId,
+                            dayRange: (calendar.numPatients < center.capacity / 2) ? 'am' : 'pm',
+                            _centerId: center._id
+                        });
+                        rendez_vous.save()
+                            .then(async () => {
+                                await Calendar.findOne({_id: calendar._id})
+                                    .then(cal => {
+                                        cal.appointments.push(rendez_vous._id);
+                                        cal.set('numPatients', parseFloat(calendar.numPatients + (100 / center.capacity)));
+                                        cal.save()
+                                            .then(async () => {
 
-        }
+                                                res.redirect('/dashboard');
+                                            });
+                                    });
+                            });
+                    }
+                }
+            );
     }
 });
 
 
+router.get('/survey',ensureAuthenticated, (req, res) => {
+    if (req.user.AccountType === 'patient') {
+        res.render('survey', {
+            title: 'survey',
+            fields: pageFieldsByLang('en', 'survey')
+        });
+    }else {
+        res.render('404');
+    }
+});
+
+router.post('/survey', ensureAuthenticated,(req, res, next) => {
+    if(req.user.AccountType === 'patient')
+    {
+        const {
+            fever, feverRate, Pain, Redness, Swelling, Itching, SymptomsNone, Chills, Headache, Fatigue, Joint, Nausea, Vomiting, Diarrhea, AbdominalRash,
+            SymptomsNone2, workcheck, activitiescheck, professionalcheck, SymptomsNone3
+        } = req.body;
+        let survey = {
+            _userId: req.user._id
+        };
+        if (fever !== '-1') survey.feverRate = parseInt(feverRate) || 0;
+        else survey.feverRate = 0;
+        if (!('SymptomsNone' in req.body)) {
+            survey.pain = parseInt(Pain) || 0;
+            survey.redness = parseInt(Redness) || 0;
+            survey.Swelling = parseInt(Swelling) || 0;
+            survey.Itching = parseInt(Itching) || 0;
+        }
+        if (!('SymptomsNone2' in req.body)) {
+            survey.Chills = parseInt(Chills) || 0;
+            survey.Headache = parseInt(Headache) || 0;
+            survey.Fatigue = parseInt(Fatigue) || 0;
+            survey.Joint = parseInt(Joint) || 0;
+            survey.Nausea = parseInt(Nausea) || 0;
+            survey.Vomiting = parseInt(Vomiting) || 0;
+            survey.Diarrhea = parseInt(Diarrhea) || 0;
+            survey.AbdominalRash = parseInt(AbdominalRash) || 0;
+        }
+        if (!('SymptomsNone3' in req.body)) {
+            survey.workcheck = (workcheck && (workcheck === 'on' ? 1 : 0)) || 0;
+            survey.activitiescheck = (activitiescheck && (activitiescheck === 'on' ? 1 : 0)) || 0;
+            survey.professionalcheck = (professionalcheck && (professionalcheck === 'on' ? 1 : 0)) || 0;
+        }
+        let newSurvey = new Survey(survey);
+        console.log(newSurvey);
+        newSurvey.save()
+            .then(() => {
+                res.status(200).redirect('/');
+            })
+            .catch(err => console.log(err));
+    }
+    else
+    {
+        res.render('404');
+    }
+
+});
+
+async function createNewDayInTheCalendar(_centerId, _cityId, date) {
+    const calendar = new Calendar({
+        numPatients: 0,
+        _centerId: _centerId,
+        _cityId: _cityId,
+        Appointment: [],
+        day: moment(date).add(1, 'day').format()
+    });
+    await calendar.save()
+        .then(() => {
+            Calendar.findOne({_id: calendar._id}).then((c) => console.log("the new calendar " + c));
+            console.log('new day created in the calendar ' + moment(date).add(1, 'day').format());
+        });
+    return calendar;
+}
+
+async function getTheCenter(_cityId, _centerId) {
+    return await City.findOne({_id: _cityId})
+        .then(theCity => {
+            if (theCity) {
+                for (let i = 0; i < theCity.centers.length; i++) {
+                    let center = theCity.centers[i];
+                    if (center._id.toString() == _centerId.toString()) {
+                        return center;
+                    }
+                }
+            }
+        });
+}
+
+async function getLastDays(calendar) {
+    let ids = [];
+    let centers = [];
+    for (let i = 0; i < calendar.length; i++) {
+        console.log(centers.indexOf(calendar[i]._centerId));
+        console.log((calendar[i]._centerId));
+        console.log(centers.indexOf(calendar[i]._centerId.toString()) === -1);
+        if (centers.indexOf(calendar[i]._centerId.toString()) === -1) {
+            ids.push(calendar[i]._id);
+            centers.push(calendar[i]._centerId.toString());
+        }
+    }
+    return new Promise((resolve, reject) => {
+        Calendar.find({_id: {$in: ids}}, (err, docs) => {
+            resolve(docs);
+        });
+    });
+}
+
 
 module.exports = router;
+

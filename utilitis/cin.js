@@ -1,6 +1,6 @@
 let cin_by_validity = [
     {key:["A", "AA", "AJ"], city: "Rabat"}, //
-    {key:["AB", "AE"] , city :"Salé"},
+    {key:["AB", "AE"] , city :"Sale"},
     {key: ["AD"], city : "Témara"},
     {key:["B", "BB", "BE", "BH", "BJ", "BK", "BL", "BM", "BF"], city: "Casablanca"},
     {key:["C", "CC", "CD"], city:"Fès"},
@@ -23,7 +23,7 @@ let cin_by_validity = [
     {key:["FJ"],city: "Ahfir"},
     {key:["FK"],city: "Touissit"},
     {key:["FL"], city : "Beni Tadjite"},
-    {key:["G"], city: "Kénitra, Sidi Yahya Gharb"}, //
+    {key:["G"], city: "Kenitra"}, //
     {key:["GA"], city: "Sidi Slimane, Sidi Yahya Gharb"},//
     {key:["GB"],city: "Souk El Arbâa du Gharb"},
     {key:["GK"], city : "Sidi Kacem"}, //

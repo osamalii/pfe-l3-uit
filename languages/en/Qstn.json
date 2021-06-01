@@ -1,0 +1,66 @@
+{
+  "lang": "en",
+  "h1_1": "Frequently Asked Questions ",
+  "h2_1" : " Information, type and composition of the vaccine",
+  "h5_1": "How the national vaccination strategy against the COVID-19 virus will be deployed?",
+  "p_1": "\nThe deployment of the national vaccination strategy against the COVID-19 virus will be in the form of a vaccination campaign targeting the population aged over 17 years, according to a vaccination schedule in two injections. This target population is estimated at 25,000,000.",
+  "p_2" : "\nVaccination will be carried out gradually, so as to ensure vaccination of the entire target population. Priority is given to staff working on the front line, in this case, Health Professionals, public authorities, security forces and National Education staff. Thereafter, vaccination will be extended to the general population according to the age group.",
+  "p_3": "Vaccination against the COVID-19 virus will be carried out at all Primary Health Care Establishments: Health Centers.\n\nThe vaccination campaign will be carried out at these vaccination stations according to two modes: a fixed mode where the population moves to the vaccination station and a mobile mode in which vaccination teams attached to the station will mobilize to mobile vaccination points. .",
+  "p_4": "Measures are in place to allow the population to be vaccinated under good conditions while respecting the quality of the vaccine throughout the supply chain: from reception to administration.",
+  "h5_2": "\nHow vaccines work?",
+  "p_5": "Vaccines stimulate the protective immune responses of the human body so that if a person is infected with a pathogen, the immune system can quickly prevent the infection from spreading throughout the body and causing disease. In this way, the vaccines mimic a natural infection without causing disease.",
+  "p_6": "\nNot all people infected with SARS-CoV-2 develop disease (Covid-19 is the disease caused by the SARS-CoV-2 virus). These people have an asymptomatic infection but can still pass the virus on to others. Most vaccines do not completely prevent infection, but prevent infection from spreading throughout the body and causing disease. Many vaccines can also prevent transmission, potentially leading to collective protection whereby unvaccinated people are protected from infection by vaccinated people around them, as they are less likely to be exposed to the virus.",
+  "h2_2": "\nSecurity and guarantee?",
+  "h5_3": "How to know if the vaccine against the COVID-19 virus is safe?",
+  "p_7": "Like other vaccines, vaccines developed to fight the COVID-19 virus must undergo extensive and rigorous testing before they are introduced into a country. Once used, they will be continuously monitored to ensure that they are safe for those who receive them.",
+  "p_8": "\nThere are many strong protective mechanisms to ensure the safety of vaccines against the COVID-19 virus. These trials, which involve people in good health or with balanced medical conditions, are specially designed to identify any common side effects or other safety concerns.",
+  "p_9": "\nIf a clinical trial shows that a vaccine against the COVID-19 virus is safe and effective, a series of efficacy and safety reviews should be conducted, including regulatory review and approval in the country where the vaccine is made.",
+  "h5_4": "Are the COVID-19 virus vaccines used in Morocco safe?",
+  "p_10": "\nThe vaccine data is heartwarming. The trials performed did not raise any safety concerns, although rare, mild to moderate side effects (injection site pain, skin reaction, headache, mild fever) were reported in a few participants. clinical trials in Morocco. The results of the latter confirmed that these side effects were transient, comparable to other vaccines of the same type and that no serious side effects were reported.",
+  "h5_5": "\nWhat vaccines against the COVID-19 virus will be used in Morocco?",
+  "p_11": "As part of the vaccination strategy, and in a proactive vision, Morocco has conducted a survey around the world to identify which vaccines have available and satisfactory health data. Currently, the two vaccines in use are:",
+  "p_12": "- The Sinopharm laboratory vaccine: it is an inactivated vaccine developed by a method applied for about fifty years. This method is used for the development of vaccines against influenza, rabies, polio and pertussis ...",
+  "p_13": "\n- The AstraZeneca laboratory vaccine: it is a viral vector vaccine in which the virus lacks a reproductive gene which does not present an infectious risk for the body but has the power to trigger an immune response. The Ebola vaccine is one of them.",
+  "h2_3": "\nClinical tests",
+  "h5_5": "\nWhat are the results of clinical trials, carried out in Morocco, on the vaccine against the COVID-19 virus?",
+  "p_14":"Biomedical research in Morocco is scrupulously regulated, conducted in accordance with international requirements. In the context of the Covid-19 pandemic, Morocco participated in the multicenter trials of phase III of the vaccine against the Covid-19 virus, which constitutes the first clinical vaccine trial in Morocco since independence. This randomized, double-blind, multicenter clinical trial is considered scientifically to have a strong level of evidence.",
+  "p_15": "\nThe clinical trial is being carried out at 3 sites with a total of 600 participants. The vaccine was administered with a vaccination schedule in two doses, on D0 and D21. The objective is to assess the immunogenicity and safety of the vaccine in a population aged 17 and over. To date, no serious side effects have been recorded. As with other vaccines, local side effects such as pain at the injection site, rash, headache, fatigue, have been reported.",
+  "h2_4" : "Registration and vaccination appointment",
+  "h5_6": "\nHow can I register for the vaccine against the Covid-19 virus?",
+  "p_16": "First you have to access to our website \"vaccination-covid19\" and after that you must register to have an account on the website and like this you have the right to demand an  appointment.",
+  "h5_7": "What time do I have to go to the vaccination center?",
+  "p_17": "Appointments are fixed by half-day (morning or afternoon). Typically, the appointment message indicates the current date and the half-day (morning or afternoon).",
+  "h5_8": "Can I get vaccinated at any vaccination center?",
+  "p_18": "No, you must go to the vaccination center that has been assigned to you. The allocation of the vaccination center takes into account your current domicile indicated on your CNIE card or residence permit.",
+  "h5_9": "What are the contraindications for the anti-covid-19 vaccine?",
+  "p_19": "Anyone aged 17 and over can be vaccinated with the Covid-19 vaccine, regardless of the disease or current treatment, except for the following situations :",
+"ul1": {
+  "li1" : "Pregnant women.",
+  "li2": "\nBreastfeeding women.",
+  "li3" : "People with a history of anaphylactic shock or angioedema.",
+  "li4": "\nPeople who have had an allergic reaction to the first dose of this vaccine."
+},
+  "h2_5": "Other Questions ",
+  "h5_10": "I have tested positive for the coronavirus in the past (symptomatic or asymptomatic). Am I eligible for vaccination?",
+  "p_20": "\nYes, you are eligible, provided:",
+  "ul2": {
+    "li1" : "Vaccination should be postponed in people with ongoing SARS-CoV-2 infection. The deadline is four weeks after the onset of symptoms provided the patient has recovered.",
+    "li2": "\nFor asymptomatic people, the same period of four weeks must be observed from the first positive sample (1st positive PCR)."
+  },
+  "h5_11" : "Can the coronavirus vaccine be given in parallel with other inactivated or live vaccines",
+  "p_21": "\nThe programming of the anti-Covid-19 vaccine and other vaccines must be separated as follows:",
+  "ul3": {
+    "li1": "At least 14 days between an inactivated vaccine and the anti-Covid vaccine.",
+    "li2": "\nAt least 4 weeks between a live vaccine and the anti-Covid vaccine."
+  },
+  "p_22" : "Urgent vaccinations (anti rabies, anti-meningococcal, serum-antitetanus) should be given priority when indicated regardless of vaccination status compared to vaccination against COVID-19.",
+  "h5_12" : " \nI got Covid-19 after the first dose of the vaccine. Am I eligible for the 2nd dose?",
+  "p_23" : "The second dose of the vaccine should be postponed. The deadline is four weeks after the onset of symptoms provided the patient has recovered."
+
+
+
+
+
+
+
+}

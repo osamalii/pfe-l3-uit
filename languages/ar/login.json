@@ -10,7 +10,7 @@
   "register_text": "ليس لديك حساب",
   "register_": "تسجيل",
   "place_holders": {
-    "email": "exemple@monsite.com",
+    "email": "البريد الإلكتروني",
     "password": "كلمة المرور"
   }
 }

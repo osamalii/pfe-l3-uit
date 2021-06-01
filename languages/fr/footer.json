@@ -1,0 +1,27 @@
+{
+  "lang" : "fr",
+  "h5_1" : "\nServices en ligne",
+  "ul1" : {
+    "li1": "Connexion",
+    "li2": "Inscription",
+    "li3": "\nDemandez un rendez-vous",
+    "li4": "\nRemplissez le questionnaire"
+  },
+  "h5_2": "informations sur le vaccin",
+  "ul2" : {
+    "li1": "Importance et mode d'action",
+    "li2": "Sécurité/efficacité",
+    "li3": "Population cible",
+    "li4": "Dispositif"
+
+  },
+  "h5_3": "À propos",
+  "ul3" :{
+    "li1": "À propos de nous",
+    "li2" : "Lieux",
+    "li3": "Confidentialité ",
+    "li4": "Conditions générales"
+
+}
+
+}
