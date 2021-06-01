@@ -1,0 +1,30 @@
+<%
+let ar_text_alignment='', padding_20='', ar_flex='', padding_arabic;
+if(lang==='ar'){
+    ar_text_alignment='arabic_text';
+    padding_arabic='paddingR-20';
+    ar_flex='ar_justify_evenly';
+}
+%>
+
+
+<div class="marginT-120"></div>
+<div class="marginB-30"></div>
+
+<div class="container  <%= ar_text_alignment%>">
+    <h1 class="txt  <%= ar_text_alignment%>"><%=privacy.h1_1%></h1>
+    <div class="marginT-30"></div>
+
+    <h5  <%= ar_text_alignment%>><%=privacy.h5_1%></h5>
+    <p class="lead">
+        <%=privacy.p_1%>
+    </p>
+    <h5  <%= ar_text_alignment%>><%=privacy.h5_2%></h5>
+    <p class="lead">
+        <%=privacy.p_2%>
+    </p>
+    <h5  <%= ar_text_alignment%>><%privacy.h5_3%></h5>
+    <p class="lead">
+        <%=privacy.p_3%>
+    </p>
+</div>

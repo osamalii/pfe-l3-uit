@@ -1,0 +1,29 @@
+<%
+let ar_text_alignment='', padding_20='', ar_flex='', padding_arabic;
+if(lang==='ar'){
+    ar_text_alignment='arabic_text';
+    padding_arabic='paddingR-20';
+    ar_flex='ar_justify_evenly';
+}
+%>
+
+
+<div class="marginT-120"></div>
+<div class="marginB-30"></div>
+<h1 class="txt"><%=importance.h1_1%></h1>
+<div class="marginT-30"></div>
+<div class="container  <%= ar_text_alignment%>">
+    <div class="row" >
+        <div class="col-sm-12 col-md-5 col-lg-5">
+        <img src="../img/importance1.png" class="Imp">
+        </div>
+        <div class="col-sm-12 col-md-5 col-lg-5">
+            <img src="../img/importance2.png" class="Imp">
+        </div>
+    </div>
+
+    <p class="lead">
+     <%= importance.p_1%>
+    </p>
+
+</div>

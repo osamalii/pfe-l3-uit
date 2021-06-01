@@ -1,0 +1,49 @@
+<%
+let ar_text_alignment='', padding_20='', ar_flex='', padding_arabic;
+if(lang==='ar'){
+    ar_text_alignment='arabic_text';
+    padding_arabic='paddingR-20';
+    ar_flex='ar_justify_evenly';
+}
+%>
+
+
+
+<div class="marginT-120"></div>
+<div class="container">
+    <div class="row mt-5  <%= ar_text_alignment%>">
+        <form id="loginForm" action="/users/login" method="post" >
+            <fieldset>
+                <legend><%= pageL.legend%></legend>
+                <%- include('./partials/messages.ejs') %>
+                <input id="Captcha_token" name="v3Token" hidden value="">
+                <div class="form-group">
+                    <label for="Email"><%= pageL.email_label%></label>
+                    <input type="email" name="email" class="form-control <%= ar_text_alignment%>" id="Email" aria-describedby="emailHelp" placeholder="<%= pageL.place_holders.email%>" value="<% typeof name != 'undefined' ? name : '' %>" >
+                    <small id="emailHelp" class="form-text text-muted"><%= pageL.email_small%></small>
+                </div>
+                <div class="form-group">
+                    <label for="Password"><%= pageL.password_label%></label>
+                    <input type="password" name="password" class="form-control <%= ar_text_alignment%>" id="Password" placeholder="<%= pageL.place_holders.password%>">
+                    <p> <small id="emailHelp" class="form-text text-muted"><%= pageL.forgot_Pass_text%> <a href="/users/requestresetpassword/<%=lang%>"><%= pageL.forgot_Pass_reset%></a> </small></p>
+                </div>
+                <button type="submit" class="g-recaptcha btn btn-primary"><%= pageL.submit%></button>
+            </fieldset>
+        </form>
+    </div>
+    <div class="col-lg-4  <%= ar_text_alignment%>">
+        <p class="lead mt-4 "><%= pageL.register_text%> <a href="/users/register/<%=lang%>"><%= pageL.register_ %></a></p>
+    </div>
+</div>
+<script>
+    $( document ).ready(function() {
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6Lc5rtoaAAAAAE4kzLLdtW0XLnOpCGHMfuXACA0t', {action: 'demo'})
+                .then(function(token) {
+                    $('#Captcha_token').attr('value', token);
+                });
+        });
+    });
+
+</script>
+

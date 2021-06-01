@@ -1,25 +1,26 @@
 {
-  "lang"  : "ar",
-  "h5_1": "الخدمات الإلكترونية",
-  "ul1":{
-    "li1":"تسجيل الدخول",
-    "li2":"إنشاء حساب ",
-    "li3":"طلب موعد",
-    "li4":"املأ الاستبيان"
+  "lang" : "en",
+  "h5_1" : "Online Services",
+  "ul1": {
+    "li1": "login",
+    "li2": "Registration",
+    "li3": "Ask for an appointment",
+    "li4": "Fill the questionnaire"
   },
-  "h5_2": "معلومات عن اللقاح",
+  "h5_2": "Informations about the vaccine",
   "ul2": {
-    "li1": "أهميته وكيفية عمله",
-    "li2": "سلامته/فعاليته",
-    "li3": "الفئة المستهدفة",
-    "li4": "عملية التلقيح"
+    "li1" : "Importance and mode of action",
+    "li2": "Safety / efficiency",
+    "li3": "Target population",
+    "li4": "Mechanism"
 
   },
-  "h5_3": "حول",
+  "h5_3": "About",
   "ul3": {
-    "li1": "معلومات عنا",
-    "li2": "المواقع",
-    "li3": "الخصوصية",
-    "li4": "الشروط"
+    "li1": "About Us",
+    "li2" :"Locations",
+    "li3" : "Privacy",
+    "li4": "Terms"
   }
+
 }

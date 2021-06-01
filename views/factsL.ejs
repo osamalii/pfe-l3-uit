@@ -1,0 +1,71 @@
+<%
+let ar_text_alignment='', padding_20='', ar_flex='', padding_arabic  , ar_lu_style='';
+if(lang==='ar'){
+    ar_text_alignment='arabic_text';
+    padding_arabic='paddingR-20';
+    ar_flex='ar_justify_evenly';
+    ar_lu_style='ar_ul';
+}
+%>
+
+
+<div class="marginT-120"></div>
+<div class="marginB-30"></div>
+<h1 class="textAlignCenter"><%= factsL.h1%></h1>
+<div class="marginT-30"></div>
+<div class="container <%= ar_text_alignment%>">
+    <h5><%= factsL.h5_1%></h5>
+    <div class="container">
+        <p class="lead">
+            <%= factsL.p_1%>
+        </p>
+    </div>
+
+    <h5><%= factsL.h5_2%></h5>
+    <div class="container">
+        <p class="lead">
+            <%= factsL.p_2%>
+        </p>
+    </div>
+    <h5><%= factsL.h5_3%></h5>
+    <div class="container">
+        <p class="lead">
+            <%= factsL.p_3%>
+        <h6><%= factsL.h6%></h6>
+        <div class="row row-cols-1 row-cols-md-3 g-4 <%= ar_text_alignment%>">
+            <div class="col <%= ar_text_alignment%>">
+                <div class="card topleftborderraduis">
+                    <img src="/img/pick.png" class="card-img-top sideEffectImg" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= factsL.h5_4%></h5>
+                        <p class="card-text">
+                        <ul class="<%=ar_lu_style%>">
+                            <li><%= factsL.ul1.li_1%></li>
+                            <li><%= factsL.ul1.li_2%></li>
+                            <li><%= factsL.ul1.li_3%></li>
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col <%= ar_text_alignment%>">
+                <div class="card topleftborderraduis">
+                    <img src="/img/fever.png" class="card-img-top sideEffectImg" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= factsL.h5_5%></h5>
+                        <p class="card-text">
+                        <ul class="<%=ar_lu_style%>">
+                            <li><%= factsL.ul2.li_1%></li>
+                            <li><%= factsL.ul2.li_2%></li>
+                            <li><%= factsL.ul2.li_3%></li>
+                            <li><%= factsL.ul2.li_4%></li>
+                            <li><%= factsL.ul2.li_5%></li>
+                            <li><%= factsL.ul2.li_6%></li>
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

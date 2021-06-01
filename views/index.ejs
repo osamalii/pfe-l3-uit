@@ -1,0 +1,98 @@
+<div class="position-fixed" id="help">
+    <a id="askbtn" class="btn">
+        <strong>COVID-19 Questions?</strong>
+        <br>
+        <span>Ask Here</span>
+    </a>
+</div>
+<article>
+    <div id="underNav" class="row marginT-100">
+        <div class="container">
+            <h1>MA Vaccine Portal</h1>
+            <img id="map" src="/img/map.png" style="display:inline-block" alt="Map">
+            <h3 style="display:inline-block">Stay Safe. Get Vaccinated!</h3>
+        </div>
+        <div id="myCrousel" class="carousel slide" data-bs-ride="carousel">
+            <div id="carouselImgs" class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/img/vaccination1.jpg" class="d-block w-100" alt="Vaccination">
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/vaccination2.jpg" class="d-block w-100" alt="Vaccination">
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/vaccination3.jpg" class="d-block w-100" alt="Vaccination">
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+<div class="marginT-30"></div>
+<div class="container" id="vcPortal">
+    MA Vaccine Portal
+</div>
+<div id="main" class="container">
+    <h1 class="marginT-30 marginB-30">How Do I Get the Vaccine?</h1>
+    <div class="row">
+        <div class="col-lg-5 col-sm-12 col-md-5 topleftborderraduis" id="rightMain1">
+            <h3>Find a Vaccine Provider Near You</h3>
+            <p>
+                If you are eligible to book an appointment, use the vaccine finder to search for a vaccine site.
+            </p>
+            <form action="/chercherCenter" method="post">
+                <fieldset>
+                    <legend></legend>
+                    <div class="form-group">
+                        <input type="text" name="city" class="form-control" id="city" aria-describedby="cityHelp"
+                               placeholder="Enter city">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-lg-1 col-md-1"></div>
+        <div class="marginT-30"></div>
+        <div class="col-lg-5 col-sm-12 col-md-5 topleftborderraduis " id="leftMain2">
+            <h3>Residents, Workers, and Students Ages 16+ Are Now Eligible</h3>
+            <a class="btn btn-primary">DETAILS</a>
+        </div>
+    </div>
+    <div class="marginT-30"></div>
+    <div class="row marginT-30">
+        <div class="w-50 mx-auto">
+            <h4 style="display: inline-block">Already registered ? </h4>
+            <a style="display: inline-block" class="btn btn-success" href="/users/login">LOGIN INTO YOUR ACCOUNT</a>
+        </div>
+    </div>
+    <div class="marginT-30"></div>
+
+
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="resources">
+        <div class="col">
+            <div class="card resource">
+                <div class="card-body textAlignCenter">
+                    <h5 class="card-title"><i class="fas fa-shield-alt"></i></h5>
+                    <p class="card-text"><a href="/facts">Vaccine Safety Facts</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card resource">
+                <div class="card-body textAlignCenter">
+                    <h5 class="card-title"><i class="fas fa-book"></i></h5>
+                    <p class="card-text"><a href="/ressource">COVID-19 Educational Resources</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card resource">
+                <div class="card-body textAlignCenter">
+                    <h5 class="card-title"><i class="fas fa-question"></i></h5>
+                    <p class="card-text"><a href="/Qstn">Frequently Asked Questions</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

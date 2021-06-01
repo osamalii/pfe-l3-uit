@@ -1,0 +1,40 @@
+<%
+let ar_text_alignment='', padding_20='', ar_flex='', padding_arabic  , ar_lu_style='';
+if(lang==='ar'){
+    ar_text_alignment='arabic_text';
+    padding_arabic='paddingR-20';
+    ar_flex='ar_justify_evenly';
+    ar_lu_style='ar_ul';
+}
+%>
+<div class="marginT-120"></div>
+<div class="marginB-30"></div>
+
+<div class="container <%= ar_text_alignment%>">
+    <h1 class="txt"><%=AboutUs.h1_1%></h1>
+<strong class="txt"><%=AboutUs.strong_1%></strong>
+<p class=lead>
+    <%=AboutUs.p_1%>
+</p>
+    <p class="lead">
+        <%=AboutUs.p_2%>
+    </p>
+    <div class="row">
+        <div class="col-sm-12 col-lg-6 col-md-6">
+            <h6 class="value" ><%=AboutUs.h6_1%></h6>
+            <p class="lead">
+               <%=AboutUs.p_3%>
+            </p>
+        </div>
+        <div class="col-sm-12 col-lg-6 col-md-6" >
+            <h6 class="value"><%=AboutUs.h6_2%></h6>
+            <ul class="lead <%=ar_lu_style%>">
+                <li><%=AboutUs.ul1.li1%></li>
+                <li><%=AboutUs.ul1.li2%></li>
+                <li><%=AboutUs.ul1.li3%></li>
+                <li><%=AboutUs.ul1.li4%></li>
+            </ul>
+        </div>
+    </div>
+</div>
+

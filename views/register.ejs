@@ -1,0 +1,69 @@
+<%
+let ar_text_alignment='', padding_20='', ar_flex='', padding_arabic;
+if(lang==='ar'){
+    ar_text_alignment='arabic_text';
+    padding_arabic='paddingR-20';
+    ar_flex='ar_justify_evenly';
+}
+%>
+
+
+
+<div class="marginT-120"></div>
+<div class="container  <%= ar_text_alignment%>">
+    <div class="row">
+        <form action="/users/register" method="post">
+            <%- include('./partials/messages.ejs') %>
+            <fieldset>
+                <legend><%=register.legend_1%></legend>
+                <div class="form-group  <%= ar_text_alignment%>">
+                    <label for="name"><%=register.label_1%></label>
+                    <input type="text" class="form-control  <%= ar_text_alignment%>" id="name" name="name" placeholder="<%=register.placeholder_1%>" value="<%= typeof name != 'undefined' ? name : '' %>">
+                </div>
+                <div class="form-group  <%= ar_text_alignment%>">
+                    <label for="Prenom"><%=register.label_2%></label>
+                    <input type="text" class="form-control  <%= ar_text_alignment%>" id="Prenom" name="lastname" placeholder="<%=register. placeholder_2%>" value="<%= typeof lastname != 'undefined' ? lastname : '' %>">
+                </div>
+                <div class="form-group  <%= ar_text_alignment%>">
+                    <label for="Prenom"><%=register.label_3%></label>
+                    <input type="text" class="form-control  <%= ar_text_alignment%>" id="cin" name="cin" placeholder="<%=register.placeholder_3%>" value="<%= typeof cin != 'undefined' ? cin : '' %>">
+                </div>
+                <div class="form-group  <%= ar_text_alignment%>">
+                    <label for="Email"><%=register.label_4%></label>
+                    <input type="email" class="form-control  <%= ar_text_alignment%>" id="Email" name="email" aria-describedby="emailHelp" placeholder="<%=register.placeholder_4%>" value="<%= typeof eamil != 'undefined' ? email : '' %>" >
+                    <small id="emailHelp" class="form-text text-muted"><%=register.small_1%></small>
+                </div>
+                <div class="form-group  <%= ar_text_alignment%>">
+                    <label for="Password"><%=register.label_5%></label>
+                    <input type="password" class="form-control  <%= ar_text_alignment%>" id="Password" name="password" placeholder="<%=register.placeholder_5%>">
+                </div>
+                <div class="form-group  <%= ar_text_alignment%>">
+                    <label for="Password2"><%=register.label_6%></label>
+                    <input type="password" class="form-control  <%= ar_text_alignment%>" id="Password2" name="password2" placeholder="<%=register.placeholder_6%>">
+                </div>
+                <div class="form-group  <%= ar_text_alignment%>">
+                    <label for="Password2"><%=register.label_7%></label>
+                    <input id="date" name="birthDate" class="form-control  <%= ar_text_alignment%>" id="birthDate" type="date" value="1975-01-01">
+
+                </div>
+                <div class="form-group  <%= ar_text_alignment%>">
+                    <label for="gender"><%=register.label_8%></label>
+                    <select class="form-control  <%= ar_text_alignment%>" name="gender" id="gender">
+                        <option><%=register.option_1%></option>
+                        <option><%=register.option_2%></option>
+                    </select>
+                </div>
+                <button data-sitekey="6Lc5rtoaAAAAAE4kzLLdtW0XLnOpCGHMfuXACA0t"
+                        data-callback='onSubmit'
+                        data-action='submit'
+                        type="submit" class="btn btn-primary  <%= ar_text_alignment%>"><%=register.button_1%></button>
+            </fieldset>
+        </form>
+
+    </div>
+    <div class="row">
+        <p class="lead mt-4"><%=register.p_1%> <a href="/users/login/<%=lang%>"><%=register.a_1%></a></p>
+    </div>
+</div>
+
+
