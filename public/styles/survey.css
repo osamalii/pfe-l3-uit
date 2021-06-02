@@ -1,6 +1,5 @@
-body {
-    background: #eee
-}
+@import url('https://fonts.googleapis.com/css2?family=Stint+Ultra+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap');
 
 #regForm {
     background-color: #ffffff;
@@ -11,7 +10,7 @@ body {
 }
 
 #register {
-    color: #6A1B9A
+    color: #09538b
 }
 
 h1 {
@@ -29,7 +28,7 @@ h1 {
 }
 
 .tab input:focus {
-    border: 1px solid #6a1b9a !important;
+    border: 1px solid #09538b !important;
     outline: none
 }
 
@@ -42,7 +41,7 @@ input.invalid {
 }
 
 button {
-    background-color: #6A1B9A;
+    background-color: #09538b;
     color: #ffffff;
     border: none;
     border-radius: 50%;
@@ -84,7 +83,7 @@ button:focus {
     justify-content: center;
     align-items: center;
     font-size: 15px;
-    color: #6a1b9a;
+    color: #09538b;
     opacity: 0.5
 }
 
@@ -94,7 +93,7 @@ button:focus {
 
 .step.finish {
     color: #fff;
-    background: #6a1b9a;
+    background: #09538b;
     opacity: 1
 }
 
@@ -106,4 +105,22 @@ button:focus {
 
 .thanks-message {
     display: none
+}
+
+.redColor{
+    color: red;
+}
+
+.greenColor{
+    color: green;
+}
+
+.orangeColor{
+    color: orange;
+}
+
+.degreesP{
+    font-family: 'Noto Sans TC';
+    font-size: 1.3rem;
+    line-height: 22px;
 }

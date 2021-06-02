@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 const UserSchema = new mongoose.Schema({
-   name:{
+    name:{
        type: String,
    },
     lastname:{
@@ -36,10 +36,6 @@ const UserSchema = new mongoose.Schema({
     isVerified: {
        type: Boolean, default: false
     },
-    hasAppointment:{
-       type:Boolean,
-        default: false
-    }
 });
 
 const User = mongoose.model('User', UserSchema);

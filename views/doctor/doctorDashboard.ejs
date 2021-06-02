@@ -14,6 +14,7 @@
 </div>
 
 <div class="" style="margin-top: 50px">
+    <form id="vaccinatePatient" action="/users/vaccinate_patient" method="post"></form>
     <input name="_userId" value="<%=user._id%>" hidden>
     <% if(typeof appointments != 'undefined') {%>
         <hr>
@@ -44,7 +45,7 @@
                             <textarea class="form-control" placeholder="Commentaire, diagnostique ..." id="inputAvis"></textarea>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="isVaccinated" checked>
+                            <input class="form-check-input" type="checkbox" value="" id="isVaccinated" >
                             <label class="form-check-label" for="flexCheckChecked">
                                 Marque comme vaccine
                             </label>

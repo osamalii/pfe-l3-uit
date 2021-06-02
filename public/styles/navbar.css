@@ -8,6 +8,13 @@ and (max-device-width: 576px)
     }
 }
 
+body{
+    background-image: url("../img/form1.svg");
+    background-repeat: no-repeat;
+    background-size: 700px;
+    background-position: 100% 1%;
+}
+
 #myNavbar{
     background-color: #09538b !important;
     height: 100px;

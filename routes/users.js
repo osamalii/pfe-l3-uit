@@ -16,7 +16,7 @@ const Calendar = require('../models/Calendar');
 const moment = require('moment'); // require
 const Survey = require('../models/Survey'); // require
 
-
+router.get('/survey', (req, res, next) => res.redirect('/users/survey/en'));
 router.get('/login', (req, res) => res.redirect('/users/login/en'));
 
 router.get('/login/:lang', (req, res, next) => {
@@ -110,35 +110,39 @@ router.post('/register', (req, res) => {
 //login
 
 router.post('/login', (req, res, next) => {
-    if (process.env.NODE_ENV !== 'dev')
-        recaptha(req.body.v3Token)
-            .then(captcha => {
-                console.log(captcha);
-                passport.authenticate('local', {
-                    successRedirect: '/dashboard',
-                    failureRedirect: '/users/login',
-                    failureFlash: true
-                })(req, res, next);
-            })
-            .catch((err) => {
-                console.log(err);
-                res.redirect('/')
-            });
-    else
-        passport.authenticate('local', function (err, user, info) {
-            if (err) {
-                return next(err);
-            }
-            if (!user) {
-                return res.redirect('/users/login');
-            }
-            req.logIn(user, function (err) {
+    const lang = req.body.lang || 'en';
+    console.log(lang);
+    if(lang === 'en' || lang === 'fr' || lang === 'ar'){
+        if (process.env.NODE_ENV !== 'dev')
+            recaptha(req.body.v3Token)
+                .then(captcha => {
+                    console.log(captcha);
+                    passport.authenticate('local', {
+                        successRedirect: '/dashboard'/+lang,
+                        failureRedirect: '/users/login/'+lang,
+                        failureFlash: true
+                    })(req, res, next);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    res.redirect('/')
+                });
+        else
+            passport.authenticate('local', function (err, user, info) {
                 if (err) {
                     return next(err);
                 }
-                return res.redirect('/dashboard');
-            });
-        })(req, res, next);
+                if (!user) {
+                    return res.redirect('/users/login/'+lang);
+                }
+                req.logIn(user, function (err) {
+                    if (err) {
+                        return next(err);
+                    }
+                    return res.redirect('/dashboard/'+lang);
+                });
+            })(req, res, next);
+    }
 });
 
 router.get('/logout', (req, res) => {
@@ -148,16 +152,15 @@ router.get('/logout', (req, res) => {
 });
 
 // password reset routes
-
 router.get('/requestresetpassword', function (req, res) {
     res.redirect('/requestresetpassword/en');
 });
 
 router.get('/requestresetpassword/:lang', function (req, res, next) {
     const lang = req.params.lang;
-    if(lang === 'en' || lang === 'fr' || lang === 'ar' || !lang)
-        res.render('partials/resetPassword', {resetPassword:pageFieldsByLang(lang, "resetPassword"), footer: pageFieldsByLang(lang,"footer")})
-    else next();
+    if(lang === 'en' || lang === 'fr' || lang === 'ar')
+        res.render('partials/resetPassword', {resetPassword:pageFieldsByLang(lang, "resetPassword"), lang:lang,footer: pageFieldsByLang(lang,"footer")})
+    else res.redirect('/404_not_found');
 });
 
 router.post('/requestresetpassword', function (req, res) {
@@ -331,15 +334,22 @@ router.post('/demander_rendez-vous', ensureAuthenticated, (req, res) => {
     }
 });
 
-
-router.get('/survey',ensureAuthenticated, (req, res) => {
-    if (req.user.AccountType === 'patient') {
-        res.render('survey', {
-            title: 'survey',
-            fields: pageFieldsByLang('en', 'survey')
-        });
-    }else {
-        res.render('404');
+router.get('/survey/:lang',ensureAuthenticated, (req, res, next) => {
+    const lang = req.params.lang;
+    if((req.user.AccountType === 'patient') && (lang === 'en' || lang === 'fr' || lang === 'ar')){
+        Survey.findOne({_userId:req.user._id})
+            .then(survey => {
+               if(!survey) res.redirect('')
+            });
+            res.render('survey', {
+                title: 'survey',
+                fields: pageFieldsByLang(lang, 'survey'),
+                lang: lang,
+                footer: pageFieldsByLang(lang, 'footer')
+            });
+    }
+    else {
+        res.redirect('/Page_Not_found');
     }
 });
 

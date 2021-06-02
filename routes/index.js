@@ -31,7 +31,8 @@ router.get('/:lang', function (req, res, next) {
             lang: lang,
             footer: pageFieldsByLang(req.params.lang, 'footer')
         });
-    else next();
+    else res.status(404).render('404', {lang:"en",error:pageFieldsByLang("en", "404"), footer:pageFieldsByLang("en", "footer")});
+
 });
 
 router.get('/facts/:lang', (req, res, next) => {
@@ -106,71 +107,73 @@ router.get('/targetPopulation/:lang', (req, res, next) => {
     else next();
 });
 
-router.get('/dashboard', ensureAuthenticated,(req, res) => {
-    if (req.user.AccountType === 'admin'){
-        City.find({})
-            .then(cities => {
-                res.render('dashboard', {user: req.user, title: 'Dashboard', cities:cities});
+router.get('/dashboard', ensureAuthenticated, (req, res)=> res.redirect('/dashboard/en'));
+
+router.get('/dashboard/:lang', ensureAuthenticated,(req, res, next) => {
+    const lang = req.params.lang;
+    if (lang === 'en' || lang === 'fr' || lang === 'ar'){
+        if(req.user.AccountType === 'patient')
+        getAppointmentInfo(req.user._id)
+            .then(theAppointment => {
+                theAppointment.date = moment(theAppointment.date).format("dddd, MMMM Do YYYY");
+                Calendar.findOne({"appointments": theAppointment._id})
+                    .then(theCalendar=>{
+                        if(!theCalendar) return res.render('dashboard', { title: "Dashboard" , user: req.user,lang:'en'});
+                        City.findOne({"centers._id":theCalendar._centerId})
+                            .then(theCity=>{
+                                res.render('dashboard', { title: "Dashboard" ,
+                                    user: req.user,
+                                    appointment:{
+                                        date:theAppointment.date ,
+                                        center: findTheCenter(theCity,theCalendar._centerId).centerName
+                                    },
+                                    lang:lang,
+                                    footer:pageFieldsByLang(lang, 'footer')
+                                })
+                            })
+                    });
             });
+        else if (req.user.AccountType === 'admin')
+            City.find({})
+                .then(cities => {
+                    res.render('dashboard', {user: req.user, title: 'Dashboard', cities:cities, lang:'en',footer:pageFieldsByLang("en", "footer")});
+                });
+        else if (req.user.AccountType === 'doctor')
+            findTheCenterDoc(req.user.cin)
+                .then((theCenter =>{
+                    Appointment.find({_centerId:mongoose.Types.ObjectId(theCenter._id)}).sort({'day': -1})
+                        .then(async appointments => {
+                            let arr = [];
+                            let date = moment('2021-07-02');
+                            for (let i = 0; i < appointments.length; i++){
+                                const info = await getUserInfo(appointments[i]._userId).then(info => info).catch(() => false);
+                                arr.push({
+                                    _id:appointments[i]._id,
+                                    date:appointments[i].date,
+                                    _userId:appointments[i]._userId,
+                                    dayRange:appointments[i].dayRange,
+                                    _centerId:appointments[i]._centerId,
+                                    userInfo:{
+                                        name: info.name,
+                                        lastname: info.lastname,
+                                        gender: info.gender,
+                                        cin: info.cin,
+                                        birthDate: info.birthDate
+                                    }
+                                });
+                            }
+                            res.render('dashboard', {user: req.user, title: 'Dashboard', appointments:arr, day:date, lang:"en",footer:pageFieldsByLang("en", "footer")})
+                        })
+                }));
     }
-    else if(req.user.AccountType === 'patient'){
-      getAppointmentInfo(req.user._id)
-          .then(theAppointment => {
-              theAppointment.date = moment(theAppointment.date).format("dddd, MMMM Do YYYY");
-              Calendar.findOne({"appointments": theAppointment._id})
-                  .then(theCalendar=>{
-                      if(!theCalendar) return res.render('dashboard', { title: "Dashboard" , user: req.user});
-                      // console.log('theClendar =  ' +theCalendar);
-                     City.findOne({"centers._id":theCalendar._centerId})
-                         .then(theCity=>{
-                             res.render('dashboard', { title: "Dashboard" ,
-                                 user: req.user,
-                                 appointment:{
-                                     date:theAppointment.date ,
-                                     center: findTheCenter(theCity,theCalendar._centerId).centerName
-                                 }
-                             })
-                         })
-                  });
-          });
-    }else if (req.user.AccountType === 'doctor'){
-        findTheCenterDoc(req.user.cin)
-            .then((theCenter =>{
-                console.log(theCenter._id);
-              Appointment.find({_centerId:mongoose.Types.ObjectId(theCenter._id)}).sort({'day': -1})
-                  .then(async appointments => {
-                      let arr = [];
-                      let date = moment('2021-07-02');
-                      for (let i = 0; i < appointments.length; i++){
-                              const info = await getUserInfo(appointments[i]._userId).then(info => info).catch(err => false);
-                              console.log("info == " + info);
-                               arr.push({
-                                  _id:appointments[i]._id,
-                                  date:appointments[i].date,
-                                  _userId:appointments[i]._userId,
-                                  dayRange:appointments[i].dayRange,
-                                  _centerId:appointments[i]._centerId,
-                                  userInfo:{
-                                      name: info.name,
-                                      lastname: info.lastname,
-                                      gender: info.gender,
-                                      cin: info.cin,
-                                      birthDate: info.birthDate
-                                  }
-                              });
-                      }
-                      console.log("Arr == "+ arr[0].userInfo);
-                     res.render('dashboard', {user: req.user, title: 'Dashboard', appointments:arr, day:date})
-                  })
-        }));
-    }
+
+    console.log("addddmmmiinn");
 });
 
 router.get('/getUserInfo/:user', ensureAuthenticated, async (req, res) => {
     const _userId = req.params.user;
     if(req.user.AccountType === 'doctor'){
        const userInfo = await getUserInfo(_userId);
-       console.log(userInfo);
        res.send(userInfo);
     }
 });
@@ -237,7 +240,7 @@ function findTheCenter(theCity,centerId){
 }
 
 async function findTheCenterDoc(cin){
-    const promise = new Promise((resolve, reject)=>{
+    return  promise = new Promise((resolve, reject)=>{
         City.find({})
             .then(cities => {
                 for (let i = 0; i < cities.length; i++){
@@ -245,9 +248,7 @@ async function findTheCenterDoc(cin){
                     for (let z = 0; z < centers.length; z++){
                         let doctors = centers[z].doctors;
                         for (let j = 0; j < doctors.length; j++){
-                            // console.log(doctors[j] == cin);
-                            if (doctors[j] == cin){
-                                console.log(centers[z]);
+                            if (doctors[j] === cin){
                                 resolve(centers[z]);
                             }
                         }
@@ -255,6 +256,5 @@ async function findTheCenterDoc(cin){
                 }
             })
     });
-    return promise;
 }
 

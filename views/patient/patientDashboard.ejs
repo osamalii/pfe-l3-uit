@@ -1,11 +1,17 @@
 
 <h1>Hello I'm <%= user.name %> And I'm a Patient</h1>
-<form method="post" action="/users/demander_rendez-vous">
-    <input type="text" hidden name="_userId" value="<%= user._id %>">
-     <button class="btn btn-success">Demander Rendez-vous</button>
-</form>
-<% if (typeof appointment !== 'undefined'){ console.log(appointment)%>
-    <h1>votre rendez-vous a ete fixe le: <%= moment(appointment.date).format("dddd MMMM Do YYYY") %></h1>
-    <p>dans le centre: <%= appointment.center%></p>
+
+<% if (typeof appointment !== 'undefined'){ %>
+
+    <h4> <i class="fas fa-check-circle"></i> Votre rendez-vous a ete fixe le: <%= moment(appointment.date).format("dddd MMMM Do YYYY") %></h4>
+    <h6>dans le centre: <%= appointment.center%> <i class="fas fa-hospital"></i></h6>
+
+<%} else {%>
+
+    <form method="post" action="/users/demander_rendez-vous">
+        <input type="text" hidden name="_userId" value="<%= user._id %>">
+        <button class="btn btn-success" id="demanderRdv">Demander Rendez-vous <i class="fas fa-calendar-check"></i></button>
+    </form>
+
 <%}%>
 

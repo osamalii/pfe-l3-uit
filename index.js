@@ -9,6 +9,7 @@ const expressLyouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
+const pageFieldsByLang = require('./utilitis/lang');
 
 
 require('./config/passport')(passport);
@@ -55,7 +56,7 @@ app.use('/admin', require('./routes/admin'));
 app.use('/token', require('./routes/tokens'));
 // app.use('/api', require('./routes/api'));
 app.use((req, res)=>{
-    res.status(404).render('404');
+    res.status(404).render('404', {lang:"en",error:pageFieldsByLang("en", "404"), footer:pageFieldsByLang("en", "footer")});
 });
 
 
