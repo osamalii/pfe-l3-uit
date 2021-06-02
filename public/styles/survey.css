@@ -108,15 +108,15 @@ button:focus {
 }
 
 .redColor{
-    color: red;
+    color: red !important;
 }
 
 .greenColor{
-    color: green;
+    color: green !important;
 }
 
 .orangeColor{
-    color: orange;
+    color: orange !important;
 }
 
 .degreesP{

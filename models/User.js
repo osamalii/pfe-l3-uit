@@ -36,6 +36,12 @@ const UserSchema = new mongoose.Schema({
     isVerified: {
        type: Boolean, default: false
     },
+    avis:{
+        type: String
+    },
+    hasAppointment:{
+        type: Boolean
+    }
 });
 
 const User = mongoose.model('User', UserSchema);

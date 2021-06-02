@@ -35,14 +35,21 @@
                 <h6>VACCINE</h6>
             </div>
         </a>
-<select id="lang">
-    <option value="en">English</option>
-    <option value="fr">Francais</option>
-    <option value="ar">Arabic</option>
-</select>
 
+        <% if (typeof user !== 'undefined'){ %>
+        <a href="/dashboard" style="font-size: 20px">
+            <i class="fas fa-user-circle"></i>
+        </a>
+        <%}%>
     </div>
 </nav>
+<div id="langContainer">
+    <select id="lang" class="form-select form-select-lg" aria-label=".form-select-lg example">
+        <option value="en">English</option>
+        <option value="fr">Francais</option>
+        <option value="ar">العربية</option>
+    </select>
+</div>
 
 <script>
     $( "#lang" )
@@ -53,6 +60,6 @@
                 window.location.href = Params.join('/');
             });
         })
-        // .trigger( "change" );
+
 </script>
 

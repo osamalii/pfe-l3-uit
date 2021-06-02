@@ -9,6 +9,7 @@ const moment = require('moment');
 const mongoose = require('mongoose');
 const Appointment = require('../models/Appointment');
 const getUserInfo = require('../utilitis/getUserInfo');
+const getUserInfoByCin = require('../utilitis/getUserInfoByCin');
 
 router.get('/', (req, res) => res.redirect("/en"));
 router.get('/facts' , (req,res)=>res.redirect("/facts/en"));
@@ -19,7 +20,7 @@ router.get('/importance' , (req,res)=>res.redirect("/importance/en"));
 router.get('/Safety' , (req,res)=>res.redirect("/Safety/en"));
 router.get('/targetPopulation' , (req,res)=>res.redirect("/targetPopulation/en"));
 router.get('/Mechanism' , (req,res)=>res.redirect("/targetPopulation/en"));
-
+router.get('/dashboard', ensureAuthenticated, (req, res)=> res.redirect('/dashboard/en'));
 
 router.get('/:lang', function (req, res, next) {
     const lang = req.params.lang;
@@ -32,7 +33,6 @@ router.get('/:lang', function (req, res, next) {
             footer: pageFieldsByLang(req.params.lang, 'footer')
         });
     else res.status(404).render('404', {lang:"en",error:pageFieldsByLang("en", "404"), footer:pageFieldsByLang("en", "footer")});
-
 });
 
 router.get('/facts/:lang', (req, res, next) => {
@@ -107,8 +107,6 @@ router.get('/targetPopulation/:lang', (req, res, next) => {
     else next();
 });
 
-router.get('/dashboard', ensureAuthenticated, (req, res)=> res.redirect('/dashboard/en'));
-
 router.get('/dashboard/:lang', ensureAuthenticated,(req, res, next) => {
     const lang = req.params.lang;
     if (lang === 'en' || lang === 'fr' || lang === 'ar'){
@@ -118,7 +116,7 @@ router.get('/dashboard/:lang', ensureAuthenticated,(req, res, next) => {
                 theAppointment.date = moment(theAppointment.date).format("dddd, MMMM Do YYYY");
                 Calendar.findOne({"appointments": theAppointment._id})
                     .then(theCalendar=>{
-                        if(!theCalendar) return res.render('dashboard', { title: "Dashboard" , user: req.user,lang:'en'});
+                        if(!theCalendar) return res.render('dashboard', {  lang:lang, footer:pageFieldsByLang(lang, 'footer'),title: "Dashboard" , user: req.user,lang:'en'});
                         City.findOne({"centers._id":theCalendar._centerId})
                             .then(theCity=>{
                                 res.render('dashboard', { title: "Dashboard" ,
@@ -153,13 +151,7 @@ router.get('/dashboard/:lang', ensureAuthenticated,(req, res, next) => {
                                     _userId:appointments[i]._userId,
                                     dayRange:appointments[i].dayRange,
                                     _centerId:appointments[i]._centerId,
-                                    userInfo:{
-                                        name: info.name,
-                                        lastname: info.lastname,
-                                        gender: info.gender,
-                                        cin: info.cin,
-                                        birthDate: info.birthDate
-                                    }
+                                    userInfo:info
                                 });
                             }
                             res.render('dashboard', {user: req.user, title: 'Dashboard', appointments:arr, day:date, lang:"en",footer:pageFieldsByLang("en", "footer")})
@@ -175,6 +167,19 @@ router.get('/getUserInfo/:user', ensureAuthenticated, async (req, res) => {
     if(req.user.AccountType === 'doctor'){
        const userInfo = await getUserInfo(_userId);
        res.send(userInfo);
+    }else {
+        res.redirect('Page_not_found');
+    }
+});
+
+
+router.get('/getUserInfoByCin/:cin', ensureAuthenticated, async (req, res) => {
+    const _userCin = req.params.cin;
+    if(req.user.AccountType === 'doctor'){
+        const userInfo = await getUserInfoByCin(_userCin);
+        res.send(userInfo);
+    }else {
+        res.redirect('Page_not_found');
     }
 });
 

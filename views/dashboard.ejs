@@ -1,7 +1,9 @@
 <div class="container fluid marginT-120">
-    <h1>Dashboard</h1>
-    <a href="/users/logout" class="btn btn-secondary">Logout <i class="fas fa-sign-out-alt"></i></a>
-    <p class="lead mb-3"> Welcome <%= user.name %></p>
+    <div class="textAlignCenter">
+        <h1 style="display: inline-block">Dashboard</h1>
+        <a style="display: inline-block" href="/users/logout">Logout <i class="fas fa-sign-out-alt"></i></a>
+    </div>
+    <p class="lead mb-3 text-capitalize"> Welcome <%= user.name %></p>
 
     <%- include('./partials/messages.ejs') %>
 

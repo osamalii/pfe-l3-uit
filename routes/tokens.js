@@ -3,6 +3,8 @@ const router = express.Router();
 const User = require('../models/User');
 const Token = require('../models/Token');
 const emailVerification = require("../utilitis/emailVerification");
+const pageFieldsByLang = require('../utilitis/lang');
+
 
 router.get('/confirmation/:token', function(req, res){
     console.log(req.params);
@@ -37,7 +39,7 @@ router.get('/confirmation/:token', function(req, res){
 
             });
         }
-        res.render("emailVerification", {title:"email verification"});
+        res.render("emailVerification",{lang:'en', footer: pageFieldsByLang('en', 'footer') ,title:"email verification"});
     });
     // res.render('index',{user: req.user, title:'Home'})
 });

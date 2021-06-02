@@ -13,6 +13,7 @@ body{
     background-repeat: no-repeat;
     background-size: 700px;
     background-position: 100% 1%;
+    overflow-x: hidden;
 }
 
 #myNavbar{
@@ -24,8 +25,8 @@ body{
 }
 #underNav{
     display: block;
-    overflow: auto;
-    margin-top: 100px;
+    /*overflow: auto;*/
+    /*margin-top: 100px;*/
     overflow: hidden;
     /*margin-top: 100px;*/
     background: rgb(6,56,87);
@@ -243,4 +244,19 @@ input.is-invalid {
 
 .ar_ul{
     direction: rtl;
+}
+ select{
+     float: right;
+     background-color: #063857;
+     color: white;
+     border: none;
+     margin-right: 20px !important;
+ }
+
+#langContainer{
+    margin-left:0;
+    background-color: #063857;
+    height: 26px;
+    width: 100%;
+    margin-top: 100px;
 }

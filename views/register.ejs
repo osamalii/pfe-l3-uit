@@ -6,14 +6,12 @@ if(lang==='ar'){
     ar_flex='ar_justify_evenly';
 }
 %>
-
-
-
 <div class="marginT-120"></div>
 <div class="container  <%= ar_text_alignment%>">
     <div class="row">
         <form action="/users/register" method="post">
             <%- include('./partials/messages.ejs') %>
+            <input hidden name="lang" value="<%=lang%>">
             <fieldset>
                 <legend><%=register.legend_1%></legend>
                 <div class="form-group  <%= ar_text_alignment%>">

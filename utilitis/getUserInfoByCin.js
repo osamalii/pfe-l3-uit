@@ -1,9 +1,8 @@
 const User = require('../models/User');
 
-
-async function getUserInfo(_userId) {
+async function getUserInfoByCin(_userCin) {
     let promise = new Promise((resolve, reject)=>{
-        User.findOne({_id:_userId})
+        User.findOne({cin:_userCin, AccountType:'patient'})
             .then(theUser => {
                 const info = {
                     name: theUser.name,
@@ -21,4 +20,4 @@ async function getUserInfo(_userId) {
     return promise;
 }
 
-module.exports = getUserInfo;
+module.exports = getUserInfoByCin;

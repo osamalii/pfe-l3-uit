@@ -1,22 +1,19 @@
-<h1>Hello I'm <%= user.name %> And I'm a Doctor</h1>
-<div class="row mt-5" style="background-color: aliceblue;padding: 20px">
-    <form id="loginForm" action="/users/userInfo" method="post">
+<div class="shadow-lg p-3 mb-5 bg-body rounded row mt-5" style="padding: 20px">
         <fieldset>
             <legend>Get Information About a User</legend>
-            <div class="form-group">
+            <div class="form-floating d-inline">
                 <label for="cin">Cin</label>
                 <input type="text" name="cin" class="form-control" id="cin" aria-describedby="emailHelp" placeholder="cin" >
-                <small id="emailHelp" class="form-text text-muted"></small>
             </div>
-            <button type="submit" class="g-recaptcha btn btn-primary">Search</button>
+            <button  data-bs-toggle="modal"
+                     data-bs-target="#exampleModal"
+                     id="searchByCin" class="g-recaptcha btn btn-primary d-inline">Search</button>
         </fieldset>
-    </form>
 </div>
 
-<div class="" style="margin-top: 50px">
-    <form id="vaccinatePatient" action="/users/vaccinate_patient" method="post"></form>
-    <input name="_userId" value="<%=user._id%>" hidden>
-    <% if(typeof appointments != 'undefined') {%>
+<div class="shadow-lg p-3 mb-5 bg-body rounded  row mt-5" style="margin-top: 50px">
+    <form id="vaccinatePatient" action="/users/vaccinate_patient" method="post">
+    <input name="_userCin" id="_userCin" value="" hidden>
         <hr>
         <h2 class="textAlignCenter">Schedule <%= moment(day).format("dddd, MMMM Do YYYY");%></h2>
             <h1>Existing Users:</h1>
@@ -41,56 +38,58 @@
                             </div>
                         </div>
                         <div class="form-floating">
-                            <label for="floatingTextarea">Avis medcin</label>
-                            <textarea class="form-control" placeholder="Commentaire, diagnostique ..." id="inputAvis"></textarea>
+                            <label for="avis">Avis medcin</label>
+                            <textarea class="form-control" name="avis" placeholder="Commentaire, diagnostique ..." id="inputAvis"></textarea>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="isVaccinated" >
-                            <label class="form-check-label" for="flexCheckChecked">
+                            <input class="form-check-input" name="isVaccinated" type="checkbox" value="1" id="isVaccinated" >
+                            <label class="form-check-label" for="isVaccinated">
                                 Marque comme vaccine
                             </label>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" id="submitVaccination" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
         </div>
-            <div id="users-contain" class="ui-widget">
-                <table id="users" class="ui-widget ui-widget-content">
-                    <thead>
-                    <tr class="ui-widget-header ">
-                        <th>Name</th>
-                        <th>Last name</th>
-                        <th>Cin</th>
-                        <th>Gender</th>
-                        <th>Age</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <% appointments.forEach(function (appointment){%>
-                    <tr>
-                        <td><%= appointment.userInfo.name.toUpperCase()%></td>
-                        <td><%=appointment.userInfo.lastname.toUpperCase() %></td>
-                        <td><%=appointment.userInfo.cin.toUpperCase() %></td>
-                        <td><%=appointment.userInfo.gender.toUpperCase() %></td>
-                        <td><%=moment(new Date()).diff(moment(appointment.userInfo.birthDate), "years") %></td>
-                        <td><button onclick="alertt(this.id)"
-                                    id="moreInfo_<%=appointment._userId%>"
-                                    type="button" class="btn btn-primary"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                more
-                            </button></td>
-                        </td>
-                    </tr>
-                    <% })%>
-                    </tbody>
-                </table>
-            </div>
+    </form>
+    <% if(typeof appointments != 'undefined') {%>
+        <table class="table">
+            <thead>
+            <tr class="ui-widget-header ">
+                <th scope="col">Name</th>
+                <th scope="col">Last name</th>
+                <th scope="col">Cin</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Age</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% appointments.forEach(function (appointment){%>
+                <tr>
+                    <th scope="row"><%= appointment.userInfo.name.toUpperCase()%></th>
+                    <th scope="row"><%=appointment.userInfo.lastname.toUpperCase() %></th>
+                    <th scope="row"><%=appointment.userInfo.cin.toUpperCase() %></th>
+                    <th scope="row"><%=appointment.userInfo.gender.toUpperCase() %></th>
+                    <th scope="row"><%=moment(new Date()).diff(moment(appointment.userInfo.birthDate), "years") %></th>
+                    <th scope="row"><button onclick="alertt(this.id)"
+                                <% let disabledAttr; appointment.userInfo.isVaccinated ? disabledAttr = 'disabled' : ''%>
+                                <%=disabledAttr%>
+                                id="moreInfo_<%=appointment._userId%>"
+                                type="button" class="btn btn-primary"
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                            more
+                        </button></th>
+                    </td>
+                </tr>
+            <% })%>
+            </tbody>
+        </table>
     <%}%>
 </div>
 
@@ -98,8 +97,28 @@
      function alertt(id) {
          $.get('/getUserInfo/'+ id.replace('moreInfo_', '') , function (data) {
               console.log(data);
+             $('#submitVaccination').attr('disabled', false);
               $("#inputName").attr('value', data.name);
               $("#inputLast").attr('value', data.lastname);
+              $("#_userCin").attr('value', data.cin);
          })
      }
+     $('#searchByCin').click(searchByCin);
+
+     function searchByCin() {
+         let cin = $('#cin').val();
+         $.get('/getUserInfoByCin/'+ cin , function (data) {
+             $('#submitVaccination').attr('disabled', true);
+              console.log(data);
+              $("#inputName").attr('value', data.name);
+              $("#inputLast").attr('value', data.lastname);
+              $("#_userCin").attr('value', data.cin);
+              if(data.isVaccinated){
+                  $('#isVaccinated').attr("checked", true);
+                  $('#isVaccinated').attr("disabled", true);
+              }
+         })
+     }
+
+
 </script>

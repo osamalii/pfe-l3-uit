@@ -1,7 +1,7 @@
 <h1></h1>
 <div class="container">
-    <div class="row mt-5">
-        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="background-color: #d0d4ce">
+    <div class="shadow p-3 mb-5 bg-body rounded row mt-5">
+        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <form action="/admin/AddDoctor" method="post">
                 <fieldset>
                     <legend>Ajouter Un Medecin</legend>
@@ -21,8 +21,7 @@
 
     <hr>
 
-    <div class="col-lg-12 mb-2">
-        <div class="row mt-5">
+    <div class="shadow p-3 mb-5 bg-body rounded row mt-5">
             <form action="/admin/addCenter" method="post">
                 <fieldset>
                     <legend>Add Center</legend>
@@ -42,10 +41,11 @@
                 </fieldset>
             </form>
         </div>
-    </div>
-<hr>
-    <div class="row mt-5">
-        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="background-color: #d0d4ce">
+
+    <hr>
+
+    <div class="shadow p-3 mb-5 bg-body rounded row mt-5">
+        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <form action="/admin/addCity" method="post">
                 <fieldset>
                     <legend>Ajouter Une ville</legend>
@@ -61,7 +61,7 @@
 
     <hr>
 
-    <div class="row mt-5">
+    <div class="shadow p-3 mb-5 bg-body rounded row mt-5">
         <div id="accordion" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <% if(typeof cities != 'undefined'){  %>
                 <% cities.forEach(function (city) { %>

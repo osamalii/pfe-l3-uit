@@ -37,8 +37,7 @@ router.get('/register', (req, res) => res.redirect('/users/register/en'));
 
 router.get('/register/:lang', (req, res,next) => {
     const lang = req.params.lang;
-    console.log(req.params);
-    if(lang === 'en' || lang === 'fr' || lang === 'ar' || !lang)
+    if(lang === 'en' || lang === 'fr' || lang === 'ar')
         res.render('register',{
             user:req.user ,
             title:'register',
@@ -51,7 +50,9 @@ router.get('/register/:lang', (req, res,next) => {
 });
 
 router.post('/register', (req, res) => {
-    console.log(req.body);
+    let lang = req.body.lang;
+    if(lang !== 'en' || lang !== 'fr' || lang !== 'ar') lang = 'en';
+    console.log(lang);
     const {name, lastname, email, password, password2, gender, birthDate, cin} = req.body;
     let errors = [];
     if (!name || !lastname || !email || !password || !password2 || !gender || !birthDate || !cin) {
@@ -71,25 +72,28 @@ router.post('/register', (req, res) => {
             lastname,
             email,
             cin,
-            title: 'Register'
+            title: 'Register',
+            lang: lang,
+            footer: pageFieldsByLang(lang, 'footer'),
+            register: pageFieldsByLang(lang, 'register'),
         });
-    } else {
+    }
+    else {
         let userArr = [
-            ['name', name],
-            ['lastname', lastname],
+            ['name', name.toUpperCase()],
+            ['lastname', lastname.toUpperCase()],
             ['email', email],
             ['password', password],
             ['password2', password2],
             ['birthDate', birthDate],
             ['gender', gender],
-            ['cin', cin],
-            ['isVerified', true], // temp for automation ... to remove completely
-            ['AccountType', 'doctor']   //temp for automation ... must be patient
+            ['cin', cin.toUpperCase()],
+            ['AccountType', 'patient']   //temp for automation ... must be patient
         ];
         createUser(userArr, true)
             .then(creation => {
                 console.log(creation);
-                // emailVerification(creation.email, creation._id, 'verify'); // temp(only for automation) it should be done for verifying
+                emailVerification(creation.email, creation._id, 'verify');
                 req.flash('success_msg', 'Complete registration by verifying your email');
                 res.redirect('/users/login');
             })
@@ -101,7 +105,10 @@ router.post('/register', (req, res) => {
                     lastname,
                     email,
                     cin,
-                    title: 'Register'
+                    title: 'Register',
+                    lang: lang,
+                    footer: pageFieldsByLang(lang, 'footer'),
+                    register: pageFieldsByLang(lang, 'register'),
                 });
             })
     }
@@ -159,8 +166,12 @@ router.get('/requestresetpassword', function (req, res) {
 router.get('/requestresetpassword/:lang', function (req, res, next) {
     const lang = req.params.lang;
     if(lang === 'en' || lang === 'fr' || lang === 'ar')
-        res.render('partials/resetPassword', {resetPassword:pageFieldsByLang(lang, "resetPassword"), lang:lang,footer: pageFieldsByLang(lang,"footer")})
-    else res.redirect('/404_not_found');
+        res.render('partials/resetPassword', {
+            resetPassword:pageFieldsByLang(lang, "resetPassword"),
+            lang:lang,
+            footer: pageFieldsByLang(lang,"footer")
+        })
+    else next();
 });
 
 router.post('/requestresetpassword', function (req, res) {
@@ -181,31 +192,40 @@ router.get('/requestresetpassword/:token', function (req, res) {
         .then(token => {
             console.log(token);
             if (token) {
-                res.render('partials/resetPasswordForm', {token: token.token, title: 'request reset password'});
+                res.render('partials/resetPasswordForm', {
+                    token: token.token,
+                    title: 'request reset password',
+                    lang:'en',
+                    footer: pageFieldsByLang('en', "footer")
+                    });
             } else {
-                res.render('404');
+                res.redirect('Page_not_found');
             }
         });
 });
 
 router.post('/resetpassword', async (req, res) => {
+    console.log('rest', req.body);
     let errors = [];
     await Token.findOne({token: req.body.token})
         .then(token => {
-            if (token) errors.push({msg: 'Token does not exists'})
+            if (!token) errors.push({msg: 'Token does not exists'})
         });
     if (req.body.password1 !== req.body.password2)
         errors.push({msg: 'Passwords dont match'});
-
+    console.log("errors",errors);
     if (errors.length > 0) {
-        res.render('partials/resetPassword', {errors, title: 'reset password'});
+        res.render('partials/resetPassword', {errors, lang:"en",resetPassword: pageFieldsByLang('en', 'resetPassword'),footer:pageFieldsByLang("en", "footer") ,title: 'reset password'});
         return;
     }
+    console.log('after errors')
     await Token.findOne({token: req.body.token})
         .then(token => {
             User.findOne({_id: token._userId})
                 .then(user => {
-                    if (user) {
+                    console.log(user);
+                    if (user)
+                    {
                         User.updateOne({_id: token._userId}, {password: hashPass(req.body.password1)})
                             .then(() => {
                                 Token.deleteOne({_userId: user._id}).catch(err => console.log(err));
@@ -248,7 +268,7 @@ router.post('/registeradoctor', (req, res) => {
         errors.push({msg: 'password should be at least 8 characters'});
     }
     if (errors.length > 0) {
-        res.render('doctor/doctorRegistration', {_userId: _userId, errors, title: 'doctor registration'});
+        res.render('doctor/doctorRegistration', {_userId: _userId, errors, footer: pageFieldsByLang('en', 'footer'),lang:'en',title: 'doctor registration'});
         return;
     }
     User.findOne({_id: _userId})
@@ -280,7 +300,7 @@ router.post('/registeradoctor', (req, res) => {
 //     for(let i = 0; i < cities.length; i++){
 //         let centers = cities[i].centers;
 //         for (let j = 0; j < centers.length; j++)
-//            createNewDayInTheCalendar(centers[j]._id, cities[i]._id ,new Date(2021,6,1))
+//            createNewDayInTheCalendar(centers[j]._id, cities[i]._id ,new Date(2021,6,0))
 //                .then(()=>console.log("calendar added"));
 //     }
 // });
@@ -291,7 +311,7 @@ router.post('/registeradoctor', (req, res) => {
 router.post('/demander_rendez-vous', ensureAuthenticated, (req, res) => {
     let _userId = req.body._userId;
     console.log('asking for appointment');
-    if (_userId == req.user._id.toString() && req.user.AccountType === 'patient') { //later ensure that he's not vaccinated yet or he's asking for 2 rendez-vous
+    if (_userId == req.user._id.toString() && !req.user.isVaccinated && req.user.AccountType === 'patient') { //later ensure that he's not vaccinated yet or he's asking for 2 rendez-vous
         const city = cin2City(req.user.cin);
         Appointment.remove({_userId: _userId});
         City.findOne({name: city.toUpperCase()})
@@ -323,7 +343,7 @@ router.post('/demander_rendez-vous', ensureAuthenticated, (req, res) => {
                                         cal.set('numPatients', parseFloat(calendar.numPatients + (100 / center.capacity)));
                                         cal.save()
                                             .then(async () => {
-
+                                                User.updateOne({_id:_userId},{hasAppointment :true});
                                                 res.redirect('/dashboard');
                                             });
                                     });
@@ -331,6 +351,23 @@ router.post('/demander_rendez-vous', ensureAuthenticated, (req, res) => {
                     }
                 }
             );
+    }else res.redirect('Page_Not_Found');
+});
+
+router.post('/vaccinate_patient', ensureAuthenticated, (req, res)=>{
+    if(req.user.AccountType === 'doctor'){
+           User.findOne({cin:req.body._userCin})
+               .then(user => {
+                   if(!user) res.redirect('Page_not_foud');
+                   else {
+                       user.isVaccinated = true;
+                       user.avis = req.body.avis;
+                       user.save().then(()=> console.log("Patient is marked as vaccinated now"));
+                       res.redirect('/dashboard/en');
+                   }
+               })
+    }else {
+        res.redirect('Page_Not_Found');
     }
 });
 
@@ -339,13 +376,16 @@ router.get('/survey/:lang',ensureAuthenticated, (req, res, next) => {
     if((req.user.AccountType === 'patient') && (lang === 'en' || lang === 'fr' || lang === 'ar')){
         Survey.findOne({_userId:req.user._id})
             .then(survey => {
-               if(!survey) res.redirect('')
-            });
-            res.render('survey', {
-                title: 'survey',
-                fields: pageFieldsByLang(lang, 'survey'),
-                lang: lang,
-                footer: pageFieldsByLang(lang, 'footer')
+                console.log(survey);
+               if(survey) res.redirect('/dashboard/'+lang);
+                else {
+                   res.render('survey', {
+                       title: 'survey',
+                       fields: pageFieldsByLang(lang, 'survey'),
+                       lang: lang,
+                       footer: pageFieldsByLang(lang, 'footer')
+                   });
+               }
             });
     }
     else {
@@ -396,7 +436,7 @@ router.post('/survey', ensureAuthenticated,(req, res, next) => {
     }
     else
     {
-        res.render('404');
+        res.redirect('/Page_not_found');
     }
 
 });
