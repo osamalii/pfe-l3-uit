@@ -35,24 +35,23 @@ if(pageL.lang==='ar'){
 <div id="main" class="container <%=ar_text_alignment%>">
     <h1 class="marginT-30 marginB-30 <%=padding_arabic%>"><%= pageL.main.h1 %></h1>
     <div class="row <%=ar_flex%>">
-        <div class="col-lg-5 col-sm-12 col-md-5 topleftborderraduis" id="rightMain1">
+        <div class="shadow p-3 mb-5 bg-body rounded col-lg-5 col-sm-12 col-md-5 topleftborderraduis" id="rightMain1">
             <h3><%= pageL.main.rightMain1.h3 %></h3>
-            <p>
-                <%= pageL.main.rightMain1.p %>
-            </p>
-            <form action="/chercherCenter" method="post">
-                <fieldset>
-                    <legend></legend>
-                    <div class="form-group">
-                        <input type="text" name="city" class="form-control" id="city" aria-describedby="cityHelp" placeholder="">
-                    </div>
-                    <button type="submit" class="btn btn-primary"><%= pageL.main.rightMain1.form1.submit %></button>
-                </fieldset>
-            </form>
+            <ol>
+                <li><p class="fw-light">
+                        <a href="/users/login/<%=lang%>" class="link-success"><%=pageL.main.rightMain1.li1_span1%></a>
+                        <%=pageL.main.rightMain1.li1_1%>
+                        <a href="/users/register/<%=lang%>" class="link-primary"> <%=pageL.main.rightMain1.li1_span2%></a>
+                        <%=pageL.main.rightMain1.li1_2%>
+                    </p>
+                </li>
+                <li><p class="fw-light"><%=pageL.main.rightMain1.li2%></p></li>
+                <li><p class="fw-light"><%=pageL.main.rightMain1.li3%></p></li>
+            </ol>
         </div>
         <div class="col-lg-1 col-md-1"></div>
         <div class="marginT-30"></div>
-        <div class="col-lg-5 col-sm-12 col-md-5 topleftborderraduis " id="leftMain2">
+        <div class="shadow p-3 mb-5 bg-body rounded col-lg-5 col-sm-12 col-md-5 topleftborderraduis " id="leftMain2">
             <h3><%= pageL.main.leftMain2.h3 %></h3>
             <a class="btn btn-primary"><%= pageL.main.leftMain2.a %></a>
         </div>
@@ -74,7 +73,7 @@ if(pageL.lang==='ar'){
     <div class="marginT-30"></div>
     <div class="row row-cols-1 row-cols-md-3 g-4" id="resources">
         <div class="col">
-            <div class="card resource">
+            <div class="shadow p-3 mb-5 bg-body rounded card resource">
                 <div class="card-body textAlignCenter">
                     <h5 class="card-title"><i class="fas fa-shield-alt"></i></h5>
                     <p class="card-text"><a href="<%=  '/facts/' + pageL.lang%>  "><%= pageL.resources.p1 %></a></p>
@@ -82,7 +81,7 @@ if(pageL.lang==='ar'){
             </div>
         </div>
         <div class="col">
-            <div class="card resource">
+            <div class="shadow p-3 mb-5 bg-body rounded card resource">
                 <div class="card-body textAlignCenter">
                     <h5 class="card-title"><i class="fas fa-book"></i></h5>
                     <p class="card-text"><a href="/Ressource/<%=lang%>"><%= pageL.resources.p2  %></a></p>
@@ -90,7 +89,7 @@ if(pageL.lang==='ar'){
             </div>
         </div>
         <div class="col">
-            <div class="card resource">
+            <div class="shadow p-3 mb-5 bg-body rounded card resource">
                 <div class="card-body textAlignCenter">
                     <h5 class="card-title"><i class="fas fa-question"></i></h5>
                     <p class="card-text"><a href="<%=  '/Qstn/' + pageL.lang%> "><%= pageL.resources.p3 %></a></p>

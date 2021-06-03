@@ -13,15 +13,21 @@
   "main": {
     "h1": "How Do I Get the Vaccine?",
     "rightMain1": {
-      "h3": "Find a Center Vaccine in your area ",
+      "h3": "What You Need to Do to Get Your Vaccine",
       "p": "If you are eligible to book an appointment, use the vaccine finder to search for a vaccine site.",
+      "li1_1": "into your account or",
+      "li1_span1":"Login",
+      "li1_span2":"create",
+      "li1_2": "one",
+      "li2": "go to your dashboard",
+      "li3": "Book an Appointment in the Provider’s Scheduling System",
       "form1": {
         "submit": "Submit"
       }
     },
 
     "leftMain2": {
-      "h3": "Residents, Workers, and Students Ages 16+ Are Now Eligible",
+      "h3": "Residents, Workers, and Students Ages Are Now Eligible",
       "a": "DETAILS"
     }
   },
