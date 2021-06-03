@@ -9,11 +9,11 @@
     "text1": "Mo Vaccination Portal",
     "text2": "Restez en sécurité. Faites-vous vacciner!"
   },
-  "vcPortal": "MO Vaccination Portal",
+  "vcPortal": "MA Vaccination Portal",
   "main": {
-    "h1": "Comment obtenir le vaccin?",
+    "h1": "Vaccination contre la Covid",
     "rightMain1": {
-      "h3": "Trouvez un centre de vaccination dans votre région",
+      "h3": "Comment se faire vacciner?",
       "li1_1": "vous á votre compte ou",
       "li1_span1":"Connecter",
       "li1_span2":"créer",
@@ -27,7 +27,8 @@
       }
     },
     "leftMain2": {
-      "h3": "Les résidents, les travailleurs et les étudiants sont désormais éligibles",
+      "h3": "Vous venez d’être vacciné(e) contre la covid-19",
+      "p": "Répondez au questionnaire",
       "a": "DÉTAILS"
     }
   },

@@ -123,6 +123,7 @@ router.get('/dashboard/:lang', ensureAuthenticated,(req, res, next) => {
                                     user: req.user,
                                     appointment:{
                                         date:theAppointment.date ,
+                                        dayRange:theAppointment.dayRange,
                                         center: findTheCenter(theCity,theCalendar._centerId).centerName
                                     },
                                     lang:lang,

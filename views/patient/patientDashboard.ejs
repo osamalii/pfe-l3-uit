@@ -3,13 +3,14 @@
         <% if (typeof appointment !== 'undefined'){ %>
         <div class="card col">
             <div class="card-body">
-                <h5 class="card-title">Rendez-vous</h5>
+                <h5 class="card-title">Rendez-vous <i class="fas fa-check-circle greenColor"></i></h5>
                 <h6 class="card-subtitle mb-2 text-muted">Details:</h6>
                 <p class="card-text">
-                <h4> <i class="fas fa-check-circle greenColor"></i>
-                    Votre rendez-vous a ete fixe le: <%= moment(appointment.date).format("dddd MMMM Do YYYY") %>
-                </h4>
-                <h6>dans le centre: <%= appointment.center%> <i class="fas fa-hospital"></i></h6>
+                <input type="text" id="appointmentDate" value="<%=appointment.date%>" hidden/>
+                <h4> <i class="fas fa-calendar-check"></i> Votre rendez-vous a été fixe le: </h4>
+                    <p id="appointmentDateP" class="lead text-capitalize"><%= moment(appointment.date).format("dddd MMMM Do YYYY")%> | <%= appointment.dayRange%> </p>
+                <h5><i class="fas fa-hospital"></i> Dans le centre: </h5>
+                    <p class="lead"><%= appointment.center%> </p>
                 </p>
             </div>
         </div>
@@ -26,5 +27,8 @@
 
 
 <script>
-    console.log(moment().local('ar').format("dddd MMMM Do YYYY") )
+    moment().local('fr');
+    var d = $('#appointmentDate').val();
+    console.log()
+    $('#appointmentDateP').text(moment(d).format("dddd MMMM Do YYYY"));
 </script>

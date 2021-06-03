@@ -11,7 +11,7 @@ if(pageL.lang==='ar'){
         <div class="container ">
             <h1><%= pageL.undernav.text1 %></h1>
             <img id="map" src="/img/map.png" style="display:inline-block" alt="Map">
-            <h3 style="display:inline-block"><%= pageL.undernav.text2 %></h3>
+            <h3 style="display:inline-block; color: white"><%= pageL.undernav.text2 %></h3>
         </div>
         <div id="myCrousel" class="carousel slide" data-bs-ride="carousel">
             <div id="carouselImgs" class="carousel-inner">
@@ -37,8 +37,8 @@ if(pageL.lang==='ar'){
     <div class="row <%=ar_flex%>">
         <div class="shadow p-3 mb-5 bg-body rounded col-lg-5 col-sm-12 col-md-5 topleftborderraduis" id="rightMain1">
             <h3><%= pageL.main.rightMain1.h3 %></h3>
-            <ol>
-                <li><p class="fw-light">
+            <ol style="list-style: <%= lang === 'ar' ? "none" : ''%>">
+                <li class="ar_text_alignment"><p class="fw-light">
                         <a href="/users/login/<%=lang%>" class="link-success"><%=pageL.main.rightMain1.li1_span1%></a>
                         <%=pageL.main.rightMain1.li1_1%>
                         <a href="/users/register/<%=lang%>" class="link-primary"> <%=pageL.main.rightMain1.li1_span2%></a>
@@ -53,7 +53,8 @@ if(pageL.lang==='ar'){
         <div class="marginT-30"></div>
         <div class="shadow p-3 mb-5 bg-body rounded col-lg-5 col-sm-12 col-md-5 topleftborderraduis " id="leftMain2">
             <h3><%= pageL.main.leftMain2.h3 %></h3>
-            <a class="btn btn-primary"><%= pageL.main.leftMain2.a %></a>
+            <p><%= pageL.main.leftMain2.p %></p>
+            <a class="btn btn-primary" href="/users/survey/<%=lang%>"><%= pageL.main.leftMain2.a %></a>
         </div>
     </div>
     <div class="marginT-30"></div>

@@ -116,62 +116,6 @@ router.post('/addCenter', ensureAuthenticated, async (req, res) => {
                         });
                 }
             });
-
-        // const centerByCity = await City.findOne({"centers.centerName": centerName.toUpperCase()})
-        //     .then(theCity => theCity);
-        // if(centerName)
-
-        // City.findOne({name: city.toUpperCase()})
-        //     //"centers.centerName": centerName.toUpperCase()
-        //     .then(theCity => {
-        //         if (theCity) {
-        //             var ex = null;
-        //             theCity.centers.find(e => e === centerName.toUpperCase());
-        //             for(let i =0; i < theCity.centers.length;i++){
-        //                 if(theCity.centers[i].centerName === centerName){
-        //                     ex = true;
-        //                 }
-        //
-        //             }
-        //             console.log(center);
-        //             // console.log(theCity);
-        //             // theCity.centers.push({
-        //             //     centerName: centerName.toUpperCase(),
-        //             //     doctors: doctors.split(',').map(el => GetUseIdByCin(el)).filter(e => e),
-        //             //     patients: [],
-        //             // });
-        //             // theCity.save()
-        //             //     .then(() => {
-        //             //         console.log('center ');
-        //             //         req.flash('success_msg', 'You Added A Center');
-        //             //     })
-        //             //     .catch(err => {
-        //             //         console.log(err);
-        //             //         req.flash('success_msg', 'Could not Add This Center');
-        //             //     });
-        //         } else {
-        //             console.log(theCity);
-        //             // const newCity = new City({
-        //             //     name: city.toUpperCase(),
-        //             //     centers: [
-        //             //         {
-        //             //             centerName: centerName.toUpperCase(),
-        //             //             doctors: doctors.split(',').map(el => GetUseIdByCin(el)).filter(e => e),
-        //             //             patients: [],
-        //             //         }
-        //             //     ]
-        //             // });
-        //             // newCity.save()
-        //             //     .then(() => {
-        //             //         console.log('city and center saved');
-        //             //         req.flash('success_msg', 'You Added A City And A Center');
-        //             //         res.redirect('/dashboard');
-        //             //     })
-        //             //     .catch(err => console.log(err));
-        //         }
-        //     })
-
-
     }
 });
 
@@ -204,7 +148,6 @@ router.post('/autoAddCenter',  (req, res)=>{
 
 // City.collection.remove();
 
-// City.find({name:'TÉMARA'}).then(city=>console.log(city));
 
 
 
