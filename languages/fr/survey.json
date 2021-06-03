@@ -1,0 +1,103 @@
+{
+  "lang": "en",
+  "tabs": [
+    {
+      "question" : "Avez-vous eu l’un de ces symptômes aujourd’hui où vous avez reçu la piqûre (site d’injection)?",
+      "symptoms": [
+        {
+          "name":"Pain" ,
+          "symp": "douleur"
+        },
+        {
+          "name": "Redness",
+          "symp": "rougeur"
+        },
+        {
+          "name": "Swelling" ,
+          "symp": "gonflement"
+        },
+        {
+          "name": "Itching",
+          "symp": "démangeaison"
+        },
+        {
+          "name": "SymptomsNone",
+          "symp": "aucun"
+        }
+      ]
+    },
+    {
+      "question": "Avez-vous eu ces symptômes aujourd’hui ?",
+      "symptoms": [
+        {
+          "name": "Chills",
+          "symp": "frissons"
+        },
+        {
+          "name": "Headache",
+          "symp": "mal de tête"
+        },
+        {
+          "name": "Fatigue",
+          "symp": "Fatigue"
+        },
+        {
+          "name": "Joint" ,
+          "symp": "Douleurs articulaires-Douleurs musculaires ou corporelles"
+        },
+        {
+          "name":"Nausea",
+          "symp": "nausée"
+        },
+        {
+          "name": "Vomiting" ,
+          "symp": "vomissement"
+        },
+        {
+          "name": "Diarrhea",
+          "symp": "diarrhée"
+        },
+        {
+          "name": "Abdominal",
+          "symp": "douleurs abdominales"
+        },
+        {
+          "name": "Rash",
+          "symp" : "Éruption cutanée, excluant la zone immédiate autour du site d’injection"
+        },
+        {
+          "name": "SymptomsNone2",
+          "symp": "aucun"
+        }
+      ]
+    },
+    {
+      "question": "Les symptômes ou les problèmes de santé que vous avez signalés aujourd’hui vous ont-ils amenés à :",
+      "symptoms": [
+        {
+          "name": "work",
+          "symp": "Être incapable de travailler"
+        },
+        {
+          "name": "activities",
+          "symp": "Être incapable de faire vos activités quotidiennes normales"
+        },
+        {
+          "name": "professional",
+          "symp": "Obtenir des soins d’un médecin ou d’un autre professionnel de la santé"
+        },
+        {
+          "name": "SymptomsNone3",
+          "symp": "aucun"
+        }
+
+      ]
+    }
+  ],
+
+  "degrees" : {
+    "low": "Faible",
+    "meduim": "Moyen",
+    "severe": "Grave"
+  }
+}

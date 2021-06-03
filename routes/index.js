@@ -17,7 +17,7 @@ router.get('/AboutUs' , (req,res)=>res.redirect("/AboutUs/en"));
 router.get('/Ressource' , (req,res)=>res.redirect("/Ressource/en"));
 router.get('/Qstn' , (req,res)=>res.redirect("/Qstn/en"));
 router.get('/importance' , (req,res)=>res.redirect("/importance/en"));
-router.get('/Safety' , (req,res)=>res.redirect("/Safety/en"));
+router.get('/safety' , (req,res)=>res.redirect("/Safety/en"));
 router.get('/targetPopulation' , (req,res)=>res.redirect("/targetPopulation/en"));
 router.get('/Mechanism' , (req,res)=>res.redirect("/targetPopulation/en"));
 router.get('/dashboard', ensureAuthenticated, (req, res)=> res.redirect('/dashboard/en'));
@@ -83,10 +83,10 @@ router.get('/importance/:lang', (req, res, next) => {
     else next();
 });
 
-router.get('/Safety/:lang', (req, res, next) => {
+router.get('/safety/:lang', (req, res, next) => {
     const lang = req.params.lang;
     if (lang === 'en' || lang === 'fr' || lang === 'ar')
-        res.render('Safety', {
+        res.render('safety', {
             title: 'Safety',
             Safety: pageFieldsByLang(req.params.lang, 'Safety'),
             lang: lang,
@@ -119,13 +119,15 @@ router.get('/dashboard/:lang', ensureAuthenticated,(req, res, next) => {
                         if(!theCalendar) return res.render('dashboard', {  lang:lang, footer:pageFieldsByLang(lang, 'footer'),title: "Dashboard" , user: req.user,lang:'en'});
                         City.findOne({"centers._id":theCalendar._centerId})
                             .then(theCity=>{
-                                res.render('dashboard', { title: "Dashboard" ,
+                                res.render('dashboardL', {
+                                    title: "Dashboard" ,
                                     user: req.user,
                                     appointment:{
                                         date:theAppointment.date ,
                                         dayRange:theAppointment.dayRange,
                                         center: findTheCenter(theCity,theCalendar._centerId).centerName
                                     },
+                                    dashboard:pageFieldsByLang(lang, 'patientDashboard'),
                                     lang:lang,
                                     footer:pageFieldsByLang(lang, 'footer')
                                 })

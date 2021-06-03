@@ -55,7 +55,7 @@
 <script>
     $( "#lang" )
         .change(function() {
-            $( "select option:selected" ).each(function() {
+            $( "#lang option:selected" ).each(function() {
                 let Params = window.location.href.split('/')
                 Params[Params.length-1] = this.value;
                 window.location.href = Params.join('/');

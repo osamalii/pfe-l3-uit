@@ -1,0 +1,41 @@
+<%
+let ar_text_alignment='', padding_20='', ar_flex='', padding_arabic;
+if(lang==='ar'){
+    ar_text_alignment='arabic_text';
+    padding_arabic='paddingR-20';
+    ar_flex='ar_justify_evenly';
+}
+%>
+<div class="shadow p-3 mb-5 bg-body rounded row mt-5 <%=ar_text_alignment%>">
+    <% if (typeof appointment !== 'undefined'){ %>
+    <div class="card col">
+        <div class="card-body">
+            <h5 class="card-title"><%= dashboard.cardTitle %> <i class="fas fa-check-circle greenColor"></i></h5>
+            <h6 class="card-subtitle mb-2 text-muted">Details:</h6>
+            <p class="card-text">
+                <input type="text" id="appointmentDate" value="<%=appointment.date%>" hidden/>
+            <h4> <i class="fas fa-calendar-check"></i> <%= dashboard.h4%> </h4>
+            <p id="appointmentDateP" class="lead text-capitalize"><%= moment(appointment.date).format("dddd MMMM Do YYYY")%> | <%= appointment.dayRange%> </p>
+            <h5><i class="fas fa-hospital"></i> <%=dashboard.h5%> </h5>
+            <p class="lead"><%= appointment.center%> </p>
+            </p>
+        </div>
+    </div>
+    <%} else {%>
+
+        <form method="post" action="/users/demander_rendez-vous">
+            <input type="text" hidden name="_userId" value="<%= user._id %>">
+            <button class="btn btn-success" id="demanderRdv"><%=dashboard.button%><i class="fas fa-calendar-check"></i></button>
+        </form>
+
+    <%}%>
+</div>
+
+
+
+<script>
+    let Params = window.location.href.split('/');
+    moment(Params[Params.length-1]).local();
+    let d = $('#appointmentDate').val();
+    $('#appointmentDateP').text(moment(d).format("dddd MMMM Do YYYY"));
+</script>
