@@ -124,10 +124,19 @@ router.post('/login', (req, res, next) => {
             recaptha(req.body.v3Token)
                 .then(captcha => {
                     console.log(captcha);
-                    passport.authenticate('local', {
-                        successRedirect: '/dashboard'/+lang,
-                        failureRedirect: '/users/login/'+lang,
-                        failureFlash: true
+                    passport.authenticate('local', function (err, user, info) {
+                        if (err) {
+                            return next(err);
+                        }
+                        if (!user) {
+                            return res.redirect('/users/login/'+lang);
+                        }
+                        req.logIn(user, function (err) {
+                            if (err) {
+                                return next(err);
+                            }
+                            return res.redirect('/dashboard/'+lang);
+                        });
                     })(req, res, next);
                 })
                 .catch((err) => {

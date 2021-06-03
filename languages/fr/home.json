@@ -14,13 +14,20 @@
     "h1": "Comment obtenir le vaccin?",
     "rightMain1": {
       "h3": "Trouvez un centre de vaccination dans votre région",
+      "li1_1": "vous á votre compte ou",
+      "li1_span1":"Connecter",
+      "li1_span2":"créer",
+      "li1_2": "un",
+      "li2": "Aller sur votre",
+      "li2_span1": " tableau de bord",
+      "li3": "Clicker sur Prendre un Rendez-vous",
       "p": "Si vous êtes éligible pour prendre un rendez-vous, utilisez l'outil de recherche de vaccins pour rechercher un site de vaccination.",
       "form1": {
         "submit": "Chercher"
       }
     },
     "leftMain2": {
-      "h3": "Les résidents, les travailleurs et les étudiants âgés de 16 ans et plus sont désormais éligibles",
+      "h3": "Les résidents, les travailleurs et les étudiants sont désormais éligibles",
       "a": "DÉTAILS"
     }
   },

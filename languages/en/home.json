@@ -19,8 +19,9 @@
       "li1_span1":"Login",
       "li1_span2":"create",
       "li1_2": "one",
-      "li2": "go to your dashboard",
-      "li3": "Book an Appointment in the Provider’s Scheduling System",
+      "li2": "Go to your",
+      "li2_span1": "dashboard",
+      "li3": "Click on book an appointment",
       "form1": {
         "submit": "Submit"
       }
