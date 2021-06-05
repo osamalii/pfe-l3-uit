@@ -245,6 +245,8 @@ input.is-invalid {
 .ar_ul{
     direction: rtl;
 }
+
+
  select{
      float: right;
      background-color: #063857;

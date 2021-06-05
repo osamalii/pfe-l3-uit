@@ -1,9 +1,19 @@
+<%
+let ar_text_alignment='', padding_20='', ar_flex='', padding_arabic='', arLabel='', ar_ul='';
+if(lang==='ar'){
+    ar_text_alignment='arabic_text';
+    padding_arabic='paddingR-20';
+    ar_flex='ar_justify_evenly';
+    arLabel = 'arabicLabel';
+}
+%>
+
 <div class="marginT-120"></div>
-<div class="container mt-5">
+<div class="container mt-5 <%=ar_text_alignment%> <%=arLabel%>">
     <div class="row d-flex justify-content-center align-items-center">
         <div class="col-md-8">
             <form id="regForm" action="/users/survey" method="post">
-                <h1 id="register">Survey Form</h1>
+                <h1 id="register"><%= fields.tab1.h1%></h1>
                 <div class="all-steps" id="all-steps">
                     <span class="step"><i class="fas fa-thermometer-full"></i></span>
                     <span class="step"><i class="fas fa-heartbeat"></i></span>
@@ -11,17 +21,17 @@
                     <span class="step"><i class="fas fa-briefcase"></i></span>
                 </div>
                 <div class="tab">
-                    <h6>Since your COVID-19 vaccination, have you had a fever or felt feverish?</h6>
+                    <h6><%= fields.tab1.h6%></h6>
                     <fieldset id="ouiNomFever">
                         <div class="form-check">
-                            <input class="form-check-input" name="fever" onclick="showHideInput(this.id)"
+                            <input class="form-check-input <%=ar_ul%>" name="fever" onclick="showHideInput(this.id)"
                                    type="radio" id="feverOui" value="0">
-                            <label class="form-check-label" for="feverRate">Oui</label>
+                            <label class="form-check-label" for="feverRate"><%= fields.tab1.yes%></label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" name="fever" onclick="showHideInput(this.id)"
                                    type="radio" id="feverNon" value="-1" checked>
-                            <label class="form-check-label" for="feverRate">Non</label>
+                            <label class="form-check-label" for="feverRate"><%= fields.tab1.no%></label>
                         </div>
                     </fieldset>
                     <br>
@@ -50,9 +60,9 @@
                             </div>
                         </div>
                         <p class="degreesP">
-                            <span class="greenColor">Mild</span>: you notice symptoms, but they aren't a problem<br>
-                            <span class="orangeColor">Moderate</span>: symptoms that limit your normal daily activities<br>
-                            <span class="redColor">Severe</span>: symptoms make normal daily activities difficult or impossible
+                            <span class="greenColor"><%= fields.degrees.low%></span> <%= fields.degrees.description.low%><br>
+                            <span class="orangeColor"><%= fields.degrees.meduim%></span> <%= fields.degrees.description.medium%><br>
+                            <span class="redColor"><%= fields.degrees.severe%></span> <%= fields.degrees.description.sever%>
                         </p>
                     </fieldset>
                 </div>
@@ -98,10 +108,10 @@
                         </fieldset>
                     </div>
                     <% }) %>
-                    <p>
-                        <span class="greenColor">Mild</span>: you notice symptoms, but they aren't a problem<br>
-                        <span class="orangeColor">Moderate</span>: symptoms that limit your normal daily activities<br>
-                        <span class="redColor">Severe</span>: symptoms make normal daily activities difficult or impossible
+                    <p class="degreesP">
+                        <span class="greenColor"><%= fields.degrees.low%></span> <%= fields.degrees.description.low%><br>
+                        <span class="orangeColor"><%= fields.degrees.meduim%></span> <%= fields.degrees.description.medium%><br>
+                        <span class="redColor"><%= fields.degrees.severe%></span> <%= fields.degrees.description.sever%>
                     </p>
                 </div>
                 <% }) %>

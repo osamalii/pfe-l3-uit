@@ -11,7 +11,7 @@
         </fieldset>
 </div>
 
-<div class="shadow-lg p-3 mb-5 bg-body rounded  row mt-5" style="margin-top: 50px">
+<div class="shadow-lg p-3 mb-5 bg-body rounded row mt-5" style="margin-top: 50px">
     <form id="vaccinatePatient" action="/users/vaccinate_patient" method="post">
     <input name="_userCin" id="_userCin" value="" hidden>
         <hr>
@@ -116,6 +116,7 @@
               if(data.isVaccinated){
                   $('#isVaccinated').attr("checked", true);
                   $('#isVaccinated').attr("disabled", true);
+                  $('#inputAvis').val(data.avis);
               }
          })
      }

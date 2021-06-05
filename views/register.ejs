@@ -6,7 +6,6 @@ if(lang==='ar'){
     ar_flex='ar_justify_evenly';
 }
 %>
-<div class="marginT-120"></div>
 <div class="container  <%= ar_text_alignment%>">
     <div class="row">
         <form action="/users/register" method="post">
@@ -47,8 +46,8 @@ if(lang==='ar'){
                 <div class="form-group  <%= ar_text_alignment%>">
                     <label for="gender"><%=register.label_8%></label>
                     <select class="form-control  <%= ar_text_alignment%>" name="gender" id="gender">
-                        <option><%=register.option_1%></option>
-                        <option><%=register.option_2%></option>
+                        <option value="male"><%=register.option_1%></option>
+                        <option value="female"><%=register.option_2%></option>
                     </select>
                 </div>
                 <button data-sitekey="6Lc5rtoaAAAAAE4kzLLdtW0XLnOpCGHMfuXACA0t"

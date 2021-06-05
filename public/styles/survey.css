@@ -124,3 +124,8 @@ button:focus {
     font-size: 1.3rem;
     line-height: 22px;
 }
+
+.arabicLabel {
+    margin: 0 20px;
+
+}

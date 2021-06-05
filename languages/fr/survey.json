@@ -1,5 +1,11 @@
 {
-  "lang": "en",
+  "lang": "fr",
+  "tab1": {
+    "h6": "Depuis votre vaccination contre la COVID-19, avez-vous eu de la fièvre ?",
+    "h1": "questionnaire" ,
+    "yes": "oui",
+    "no": "non"
+  },
   "tabs": [
     {
       "question" : "Avez-vous eu l’un de ces symptômes aujourd’hui où vous avez reçu la piqûre (site d’injection)?",
@@ -98,6 +104,11 @@
   "degrees" : {
     "low": "Faible",
     "meduim": "Moyen",
-    "severe": "Grave"
+    "severe": "Grave",
+    "description": {
+      "low": "vous remarquez les symptômes, mais ils ne sont pas un problème",
+      "medium": "symptômes qui limitent vos activités quotidiennes normales",
+      "sever" : "les symptômes rendent les activités quotidiennes normales difficiles ou impossibles"
+    }
   }
 }

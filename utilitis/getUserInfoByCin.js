@@ -10,7 +10,8 @@ async function getUserInfoByCin(_userCin) {
                     gender: theUser.gender,
                     cin: theUser.cin,
                     birthDate: theUser.birthDate,
-                    isVaccinated:theUser.isVaccinated
+                    isVaccinated:theUser.isVaccinated,
+                    avis:theUser.avis
                 };
                 console.log(info);
                 if(theUser) resolve(info);

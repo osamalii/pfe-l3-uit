@@ -1,5 +1,11 @@
 {
   "lang": "en",
+  "tab1": {
+    "h6": "Since your COVID-19 vaccination, have you had a fever or felt feverish?",
+    "h1": "Survey Form" ,
+    "yes": "yes",
+    "no": "now"
+  },
   "tabs": [
     {
       "question" : "Have you had any of these symptoms today where you got the shot (injection site)?",
@@ -97,7 +103,12 @@
 
   "degrees" : {
     "low": "Low",
-    "meduim": "Medium",
-    "severe": "Severe"
+    "meduim": "Moderate",
+    "severe": "Severe",
+    "description": {
+      "low": "you notice symptoms, but they aren't a problem",
+      "medium": "symptoms that limit your normal daily activities",
+      "sever" : "symptoms make normal daily activities difficult or impossible"
+    }
   }
 }
