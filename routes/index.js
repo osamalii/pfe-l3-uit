@@ -116,7 +116,13 @@ router.get('/dashboard/:lang', ensureAuthenticated,(req, res, next) => {
                 theAppointment.date = moment(theAppointment.date).format("dddd, MMMM Do YYYY");
                 Calendar.findOne({"appointments": theAppointment._id})
                     .then(theCalendar=>{
-                        if(!theCalendar) return res.render('dashboard', {  lang:lang, footer:pageFieldsByLang(lang, 'footer'),title: "Dashboard" , user: req.user,lang:'en'});
+                        if(!theCalendar) return res.render('dashboardL', {
+                            lang:lang,
+                            footer:pageFieldsByLang(lang, 'footer'),
+                            title: "Dashboard",
+                            user: req.user,
+                            dashboard:pageFieldsByLang(lang, 'patientDashboard')
+                        });
                         City.findOne({"centers._id":theCalendar._centerId})
                             .then(theCity=>{
                                 res.render('dashboardL', {

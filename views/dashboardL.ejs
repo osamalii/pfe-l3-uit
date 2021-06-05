@@ -1,4 +1,12 @@
-<div class="container fluid marginT-120">
+<%
+let ar_text_alignment='', padding_20='', ar_flex='', padding_arabic;
+if(lang==='ar'){
+    ar_text_alignment='arabic_text';
+    padding_arabic='paddingR-20';
+    ar_flex='ar_justify_evenly';
+}
+%>
+<div class="container fluid marginT-120 <%=ar_text_alignment%>">
     <div class="textAlignCenter">
         <h1 style="display: inline-block"><%= dashboard.dash%></h1>
         <a style="display: inline-block" href="/users/logout"><%= dashboard.logoutA%> <i class="fas fa-sign-out-alt"></i></a>

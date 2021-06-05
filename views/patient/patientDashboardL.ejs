@@ -6,10 +6,10 @@ if(lang==='ar'){
     ar_flex='ar_justify_evenly';
 }
 %>
-<div class="shadow p-3 mb-5 bg-body rounded row mt-5 <%=ar_text_alignment%>">
+<div class="shadow p-3 mb-5 bg-body rounded row mt-5" style="display: flex;justify-content: center;">
     <% if (typeof appointment !== 'undefined'){ %>
     <div class="card col">
-        <div class="card-body">
+        <div class="card-body <%=ar_text_alignment%>">
             <h5 class="card-title"><%= dashboard.cardTitle %> <i class="fas fa-check-circle greenColor"></i></h5>
             <h6 class="card-subtitle mb-2 text-muted">Details:</h6>
             <p class="card-text">
