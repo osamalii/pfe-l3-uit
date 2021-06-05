@@ -16,6 +16,7 @@ const Calendar = require('../models/Calendar');
 const moment = require('moment'); // require
 const Survey = require('../models/Survey'); // require
 
+
 router.get('/survey', (req, res, next) => res.redirect('/users/survey/en'));
 router.get('/login', (req, res) => res.redirect('/users/login/en'));
 
@@ -257,14 +258,14 @@ router.get('/completeRegistration/:token', (req, res) => {
                 User.findOne({_id: token._userId})
                     .then(user => {
                         if (user) {
-                            res.render('doctor/doctorRegistration', {_userId: user._id, title: 'doctor registration'});
+                            res.render('responsable/responsableRegistration', {_userId: user._id, title: 'responsable registration'});
                         }
                     });
             }
         })
 });
 
-router.post('/registeradoctor', (req, res) => {
+router.post('/registeraresponsable', (req, res) => {
     let errors = [];
     const {_userId, name, lastname, password, password2, gender, birthDate} = req.body;
     if (!_userId || !name || !lastname || !password || !password2 || !gender || !birthDate) {
@@ -277,7 +278,7 @@ router.post('/registeradoctor', (req, res) => {
         errors.push({msg: 'password should be at least 8 characters'});
     }
     if (errors.length > 0) {
-        res.render('doctor/doctorRegistration', {_userId: _userId, errors, footer: pageFieldsByLang('en', 'footer'),lang:'en',title: 'doctor registration'});
+        res.render('responsable/responsableRegistration', {_userId: _userId, errors, footer: pageFieldsByLang('en', 'footer'),lang:'en',title: 'responsable registration'});
         return;
     }
     User.findOne({_id: _userId})
@@ -364,7 +365,7 @@ router.post('/demander_rendez-vous', ensureAuthenticated, (req, res) => {
 });
 
 router.post('/vaccinate_patient', ensureAuthenticated, (req, res)=>{
-    if(req.user.AccountType === 'doctor'){
+    if(req.user.AccountType === 'responsable'){
            User.findOne({cin:req.body._userCin})
                .then(user => {
                    if(!user) res.redirect('Page_not_foud');

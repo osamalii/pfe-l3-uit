@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
     },
     AccountType: {
-        type: String, //patient // doctor  // admin
+        type: String, //patient // responsable  // admin
         required:true
     },
     isVaccinated:{

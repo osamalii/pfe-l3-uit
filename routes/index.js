@@ -145,7 +145,7 @@ router.get('/dashboard/:lang', ensureAuthenticated,(req, res, next) => {
                 .then(cities => {
                     res.render('dashboard', {user: req.user, title: 'Dashboard', cities:cities, lang:'en',footer:pageFieldsByLang("en", "footer")});
                 });
-        else if (req.user.AccountType === 'doctor')
+        else if (req.user.AccountType === 'responsable')
             findTheCenterDoc(req.user.cin)
                 .then((theCenter =>{
                     Appointment.find({_centerId:mongoose.Types.ObjectId(theCenter._id)}).sort({'day': -1})
@@ -173,7 +173,7 @@ router.get('/dashboard/:lang', ensureAuthenticated,(req, res, next) => {
 
 router.get('/getUserInfo/:user', ensureAuthenticated, async (req, res) => {
     const _userId = req.params.user;
-    if(req.user.AccountType === 'doctor'){
+    if(req.user.AccountType === 'responsable'){
        const userInfo = await getUserInfo(_userId);
        res.send(userInfo);
     }else {
@@ -181,10 +181,9 @@ router.get('/getUserInfo/:user', ensureAuthenticated, async (req, res) => {
     }
 });
 
-
 router.get('/getUserInfoByCin/:cin', ensureAuthenticated, async (req, res) => {
     const _userCin = req.params.cin;
-    if(req.user.AccountType === 'doctor'){
+    if(req.user.AccountType === 'responsable'){
         const userInfo = await getUserInfoByCin(_userCin);
         res.send(userInfo);
     }else {
@@ -260,9 +259,9 @@ async function findTheCenterDoc(cin){
                 for (let i = 0; i < cities.length; i++){
                     let centers = cities[i].centers;
                     for (let z = 0; z < centers.length; z++){
-                        let doctors = centers[z].doctors;
-                        for (let j = 0; j < doctors.length; j++){
-                            if (doctors[j] === cin){
+                        let responsables = centers[z].responsables;
+                        for (let j = 0; j < responsables.length; j++){
+                            if (responsables[j] === cin){
                                 resolve(centers[z]);
                             }
                         }

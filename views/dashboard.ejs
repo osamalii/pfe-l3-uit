@@ -11,9 +11,9 @@
 
         <%- include('./patient/patientDashboard') %>
 
-    <% }else if(user.AccountType === 'doctor') {%>
+    <% }else if(user.AccountType === 'responsable') {%>
 
-        <%- include('./doctor/doctorDashboard') %>
+        <%- include('./responsable/doctorDashboard') %>
 
     <% }else if(user.AccountType === 'admin') { %>
 

@@ -6,10 +6,8 @@ const User = require('../models/User');
 const createUser = require('../utilitis/createUser');
 const emailVerification = require("../utilitis/emailVerification");
 
-
-
 async function GetUseIdByCin(cin){
-   return await User.findOne({cin:cin, AccountType: 'doctor'})
+   return await User.findOne({cin:cin, AccountType: 'responsable'})
         .then(user => {
             if(user)
                 return user._id;
@@ -22,7 +20,7 @@ function addCenter(cityId, center) {
         .then(theCity =>{
             theCity.centers.push({
                 centerName: center.centerName,
-                doctors: center.doctors,
+                responsables: center.responsables,
                 patients: [],
             });
             theCity.save();
@@ -44,7 +42,7 @@ router.post('/addCity', ensureAuthenticated, (req, res) => {
                             const newCity = new City({
                                 name: cityName.toUpperCase(),
                                 capacity:0,
-                                doctors: [],
+                                responsables: [],
                                 patients: [],
                             });
                             newCity.save(function (err) {
@@ -65,7 +63,7 @@ router.post('/AddDoctor', ensureAuthenticated, (req, res) => {
         const newUser = [
             ['cin', Cin],
             ['email', email],
-            ['AccountType', 'doctor'],
+            ['AccountType', 'responsable'],
         ];
         createUser(newUser, false)
             .catch(errors => {
@@ -86,7 +84,7 @@ router.post('/AddDoctor', ensureAuthenticated, (req, res) => {
 
 router.post('/addCenter', ensureAuthenticated, async (req, res) => {
     if (req.user.AccountType === 'admin') {
-        const {centerName, _cityId, doctors, capacity} = req.body;
+        const {centerName, _cityId, responsables, capacity} = req.body;
         City.findOne({_id: _cityId})
             .then(theCity => {
                 let ex = true;
@@ -100,7 +98,7 @@ router.post('/addCenter', ensureAuthenticated, async (req, res) => {
                 if(ex){
                     theCity.centers.push({
                         centerName: centerName.toUpperCase(),
-                        doctors: doctors.split(',').map(el => GetUseIdByCin(el)).filter(e => e),
+                        responsables: responsables.split(',').map(el => GetUseIdByCin(el)).filter(e => e),
                         patients: [],
                         capacity:capacity
                     });
@@ -121,10 +119,10 @@ router.post('/addCenter', ensureAuthenticated, async (req, res) => {
 
 
 router.post('/autoAddCenter',  (req, res)=>{
-    let {centers, cityName, doctors, capacities} = req.body;
+    let {centers, cityName, responsables, capacities} = req.body;
     console.log(centers);
     centers=centers.split('--');
-    doctors=doctors.split('--');
+    responsables=responsables.split('--');
     capacities=capacities.split('--');
     const newCity = new City({
         name: cityName.toUpperCase(),
@@ -134,7 +132,7 @@ router.post('/autoAddCenter',  (req, res)=>{
         newCity.centers.push(
             {
                 centerName: centers[i].toUpperCase(),
-                doctors: doctors[i],
+                responsables: responsables[i],
                 capacity: capacities[i],
                 patients: []
             });

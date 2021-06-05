@@ -19,9 +19,9 @@ if(lang==='ar'){
 
         <%- include('./patient/patientDashboardL') %>
 
-    <% }else if(user.AccountType === 'doctor') {%>
+    <% }else if(user.AccountType === 'responsable') {%>
 
-        <%- include('./doctor/doctorDashboard') %>
+        <%- include('./responsable/responsableDashboard') %>
 
     <% }else if(user.AccountType === 'admin') { %>
 

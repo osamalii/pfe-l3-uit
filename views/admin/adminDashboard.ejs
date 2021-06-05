@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label for="centername">Responsable</label>
-                        <input type="text" name="doctors" class="form-control" id="doctors" placeholder="responcable CIN (separé par ,)">
+                        <input type="text" name="responsables" class="form-control" id="responsables" placeholder="responcable CIN (separé par ,)">
                     </div>
                     <button type="submit" class="btn btn-primary">Ajouter</button>
                 </fieldset>
@@ -73,7 +73,7 @@
                             <li>
                                 <form method="post" id=<%="form_" + city._id %> action="/admin/addCenter">
                                     <input class="display_Inline_Block" type="text" name="centerName" placeholder="Center name"/>
-                                    <input type="text" name="doctors" placeholder="Doctors C.I.N separated by (,)"/>
+                                    <input type="text" name="responsables" placeholder="Doctors C.I.N separated by (,)"/>
                                     <input type="number" style="width: 50px" name="capacity" placeholder="capacité"/>
                                     <input type="text" name="_cityId" hidden value="<%= city._id %>"/>
                                     <input type="submit" class="btn btn-success" value="Ajouter center"/>
