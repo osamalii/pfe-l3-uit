@@ -1,13 +1,13 @@
 <div class="shadow-lg p-3 mb-5 bg-body rounded row mt-5" style="padding: 20px">
         <fieldset>
-            <legend>Get Information About a User</legend>
+            <legend>Chercher Patient</legend>
             <div class="form-floating d-inline">
                 <label for="cin">Cin</label>
                 <input type="text" name="cin" class="form-control" id="cin" aria-describedby="emailHelp" placeholder="cin" >
             </div>
             <button  data-bs-toggle="modal"
                      data-bs-target="#exampleModal"
-                     id="searchByCin" class="g-recaptcha btn btn-primary d-inline">Search</button>
+                     id="searchByCin" class="g-recaptcha btn btn-primary d-inline mt-2">Search</button>
         </fieldset>
 </div>
 
@@ -15,8 +15,8 @@
     <form id="vaccinatePatient" action="/users/vaccinate_patient" method="post">
     <input name="_userCin" id="_userCin" value="" hidden>
         <hr>
-        <h2 class="textAlignCenter">Schedule <%= moment(day).format("dddd, MMMM Do YYYY");%></h2>
-            <h1>Existing Users:</h1>
+        <h2 class="mx-auto">Calendrier <%= moment(new Date(2021,06,01)).format("dddd, MMMM Do YYYY");%></h2>
+            <h4 class="mt-5">Les patient d'aujourd'hui</h4>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -38,19 +38,19 @@
                             </div>
                         </div>
                         <div class="form-floating">
-                            <label for="avis">Avis medcin</label>
+                            <label for="avis">Description</label>
                             <textarea class="form-control" name="avis" placeholder="Commentaire, diagnostique ..." id="inputAvis"></textarea>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" name="isVaccinated" type="checkbox" value="1" id="isVaccinated" >
                             <label class="form-check-label" for="isVaccinated">
-                                Marque comme vaccine
+                                Marqué comme vacciné
                             </label>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" id="submitVaccination" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <button type="submit" id="submitVaccination" class="btn btn-primary">Sauvegarder</button>
                     </div>
                 </div>
             </div>
@@ -60,10 +60,10 @@
         <table class="table">
             <thead>
             <tr class="ui-widget-header ">
-                <th scope="col">Name</th>
-                <th scope="col">Last name</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
                 <th scope="col">Cin</th>
-                <th scope="col">Gender</th>
+                <th scope="col">Sexe</th>
                 <th scope="col">Age</th>
                 <th scope="col">Actions</th>
             </tr>
@@ -83,7 +83,7 @@
                                 type="button" class="btn btn-primary"
                                 data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
-                            more
+                            Plus
                         </button></th>
                     </td>
                 </tr>

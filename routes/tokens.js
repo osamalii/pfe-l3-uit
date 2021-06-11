@@ -39,7 +39,11 @@ router.get('/confirmation/:token', function(req, res){
 
             });
         }
-        res.render("emailVerification",{lang:'en', footer: pageFieldsByLang('en', 'footer') ,title:"email verification"});
+        res.render("emailVerification",{
+            lang:'en',
+            footer: pageFieldsByLang('en', 'footer'),
+            title:"email verification"
+        });
     });
     // res.render('index',{user: req.user, title:'Home'})
 });

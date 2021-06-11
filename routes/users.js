@@ -17,8 +17,9 @@ const moment = require('moment'); // require
 const Survey = require('../models/Survey'); // require
 
 
-router.get('/survey', (req, res, next) => res.redirect('/users/survey/en'));
-router.get('/login', (req, res) => res.redirect('/users/login/en'));
+router.get('/survey', (req, res, next) => res.redirect('/users/survey/fr'));
+router.get('/login', (req, res) => res.redirect('/users/login/fr'));
+router.get('/register', (req, res) => res.redirect('/users/register/fr'));
 
 router.get('/login/:lang', (req, res, next) => {
     const lang = req.params.lang;
@@ -34,7 +35,7 @@ router.get('/login/:lang', (req, res, next) => {
     else next();
 });
 
-router.get('/register', (req, res) => res.redirect('/users/register/en'));
+
 
 router.get('/register/:lang', (req, res,next) => {
     const lang = req.params.lang;
@@ -170,7 +171,7 @@ router.get('/logout', (req, res) => {
 
 // password reset routes
 router.get('/requestresetpassword', function (req, res) {
-    res.redirect('/requestresetpassword/en');
+    res.redirect('/requestresetpassword/fr');
 });
 
 router.get('/requestresetpassword/:lang', function (req, res, next) {
@@ -258,7 +259,12 @@ router.get('/completeRegistration/:token', (req, res) => {
                 User.findOne({_id: token._userId})
                     .then(user => {
                         if (user) {
-                            res.render('responsable/responsableRegistration', {_userId: user._id, title: 'responsable registration'});
+                            res.render('responsable/responsableRegistration', {
+                                _userId: user._id,
+                                title: 'Responsable registration',
+                                footer: pageFieldsByLang('en', 'footer'),
+                                lang: 'en'
+                            });
                         }
                     });
             }

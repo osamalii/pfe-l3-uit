@@ -2,16 +2,16 @@
 <div class="container">
     <div class="shadow p-3 mb-5 bg-body rounded row mt-5">
         <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <form action="/admin/AddDoctor" method="post">
+            <form action="/admin/AddResponsable" method="post">
                 <fieldset>
-                    <legend>Ajouter Un Medecin</legend>
+                    <legend>Ajouter Un Responsable</legend>
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Email de Medecin">
                     </div>
                     <div class="form-group">
                         <label for="Cin">Cin</label>
-                        <input type="text" name="Cin" class="form-control" id="Cin" placeholder="Cin de Medecin">
+                        <input type="text" name="Cin" class="form-control" id="Cin" placeholder="Cin de Responsable">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </fieldset>
@@ -26,8 +26,8 @@
                 <fieldset>
                     <legend>Ajouter Center</legend>
                     <div class="form-group">
-                        <label for="city">City</label>
-                        <input type="text" name="city" class="form-control" id="city" aria-describedby="cityHelp" placeholder="Enter City">
+                        <label for="city">Ville</label>
+                        <input type="text" name="city" class="form-control" id="city" aria-describedby="cityHelp" placeholder="Enterer Ville">
                     </div>
                     <div class="form-group">
                         <label for="centername">Nom de centre</label>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label for="centername">Responsable</label>
-                        <input type="text" name="responsables" class="form-control" id="responsables" placeholder="responcable CIN (separé par ,)">
+                        <input type="text" name="responsables" class="form-control" id="responsables" placeholder="responsable CIN (separé par ,)">
                     </div>
                     <button type="submit" class="btn btn-primary">Ajouter</button>
                 </fieldset>
@@ -46,7 +46,7 @@
 
     <div class="shadow p-3 mb-5 bg-body rounded row mt-5">
         <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <form action="/admin/addCity" method="post">
+            <form action="/admin/addVille" method="post">
                 <fieldset>
                     <legend>Ajouter Une ville</legend>
                     <div class="form-group">
@@ -73,7 +73,7 @@
                             <li>
                                 <form method="post" id=<%="form_" + city._id %> action="/admin/addCenter">
                                     <input class="display_Inline_Block" type="text" name="centerName" placeholder="Center name"/>
-                                    <input type="text" name="responsables" placeholder="Doctors C.I.N separated by (,)"/>
+                                    <input type="text" name="responsables" placeholder="Responsables C.I.N separated by (,)"/>
                                     <input type="number" style="width: 50px" name="capacity" placeholder="capacité"/>
                                     <input type="text" name="_cityId" hidden value="<%= city._id %>"/>
                                     <input type="submit" class="btn btn-success" value="Ajouter center"/>

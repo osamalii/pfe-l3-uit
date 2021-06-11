@@ -11,23 +11,24 @@ const Appointment = require('../models/Appointment');
 const getUserInfo = require('../utilitis/getUserInfo');
 const getUserInfoByCin = require('../utilitis/getUserInfoByCin');
 
-router.get('/', (req, res) => res.redirect("/en"));
-router.get('/facts' , (req,res)=>res.redirect("/facts/en"));
-router.get('/AboutUs' , (req,res)=>res.redirect("/AboutUs/en"));
-router.get('/Ressource' , (req,res)=>res.redirect("/Ressource/en"));
-router.get('/Qstn' , (req,res)=>res.redirect("/Qstn/en"));
-router.get('/importance' , (req,res)=>res.redirect("/importance/en"));
-router.get('/safety' , (req,res)=>res.redirect("/Safety/en"));
-router.get('/targetPopulation' , (req,res)=>res.redirect("/targetPopulation/en"));
-router.get('/Mechanism' , (req,res)=>res.redirect("/targetPopulation/en"));
-router.get('/dashboard', ensureAuthenticated, (req, res)=> res.redirect('/dashboard/en'));
+
+router.get('/', (req, res) => res.redirect("/fr"));
+router.get('/facts' , (req,res)=>res.redirect("/facts/fr"));
+router.get('/AboutUs' , (req,res)=>res.redirect("/AboutUs/fr"));
+router.get('/Ressource' , (req,res)=>res.redirect("/Ressource/fr"));
+router.get('/Qstn' , (req,res)=>res.redirect("/Qstn/fr"));
+router.get('/importance' , (req,res)=>res.redirect("/importance/fr"));
+router.get('/safety' , (req,res)=>res.redirect("/Safety/fr"));
+router.get('/targetPopulation' , (req,res)=>res.redirect("/targetPopulation/fr"));
+router.get('/Mechanism' , (req,res)=>res.redirect("/targetPopulation/fr"));
+router.get('/dashboard', ensureAuthenticated, (req, res)=> res.redirect('/dashboard/fr'));
 
 router.get('/:lang', function (req, res, next) {
     const lang = req.params.lang;
     if (lang === 'en' || lang === 'fr' || lang === 'ar')
         res.render('indexL', {
             user: req.user,
-            title: 'Home',
+            title: 'Acceuil',
             pageL: pageFieldsByLang(req.params.lang, 'home'),
             lang: lang,
             footer: pageFieldsByLang(req.params.lang, 'footer')
@@ -143,7 +144,11 @@ router.get('/dashboard/:lang', ensureAuthenticated,(req, res, next) => {
         else if (req.user.AccountType === 'admin')
             City.find({})
                 .then(cities => {
-                    res.render('dashboard', {user: req.user, title: 'Dashboard', cities:cities, lang:'en',footer:pageFieldsByLang("en", "footer")});
+                    res.render('dashboard', {
+                        user: req.user,
+                        title: 'Dashboard',
+                        cities:cities,
+                        lang:'en',footer:pageFieldsByLang("en", "footer")});
                 });
         else if (req.user.AccountType === 'responsable')
             findTheCenterDoc(req.user.cin)
@@ -163,7 +168,13 @@ router.get('/dashboard/:lang', ensureAuthenticated,(req, res, next) => {
                                     userInfo:info
                                 });
                             }
-                            res.render('dashboard', {user: req.user, title: 'Dashboard', appointments:arr, day:date, lang:"en",footer:pageFieldsByLang("en", "footer")})
+                            res.render('dashboard', {
+                                user: req.user,
+                                title: 'Dashboard',
+                                appointments:arr,
+                                day:date, lang:"en",
+                                footer:pageFieldsByLang("en", "footer")
+                            })
                         })
                 }));
     }
@@ -259,7 +270,7 @@ async function findTheCenterDoc(cin){
                 for (let i = 0; i < cities.length; i++){
                     let centers = cities[i].centers;
                     for (let z = 0; z < centers.length; z++){
-                        let responsables = centers[z].responsables;
+                        let responsables = centers[z].doctors;
                         for (let j = 0; j < responsables.length; j++){
                             if (responsables[j] === cin){
                                 resolve(centers[z]);

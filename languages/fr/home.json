@@ -6,16 +6,16 @@
     "textAsk": "Demander ici"
   },
   "undernav": {
-    "text1": "Mo Vaccination Portal",
+    "text1": "MA Vaccination Portal",
     "text2": "soyez prudent, faites-vous vacciner"
   },
   "vcPortal": "MA Vaccination Portal",
   "main": {
     "h1": "Vaccination contre la Covid",
     "rightMain1": {
-      "h3": "Comment se faire vacciner?",
+      "h3": "Comment se faire vacciner ?",
       "li1_1": "vous á votre compte ou",
-      "li1_span1":"Connecter",
+      "li1_span1":"Connectez",
       "li1_span2":"créer",
       "li1_2": "un",
       "li2": "Aller sur votre",

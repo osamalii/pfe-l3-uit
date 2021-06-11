@@ -1,10 +1,9 @@
-<div class="marginT-120"></div>
 <div class="container">
     <div class="row">
-        <form action="/users/registeradoctor" method="post">
+        <form action="/users/registeraresponsable" method="post">
             <%- include('../partials/messages.ejs') %>
             <fieldset>
-                <legend> Complete Doctor regestratiom</legend>
+                <legend> Completer inscription</legend>
                 <input type="text" hidden name="_userId" value="<%= typeof _userId != 'undefined' ? _userId : '' %>">
                 <div class="form-group">
                     <label for="name">Nom</label>
@@ -29,17 +28,14 @@
                 <div class="form-group">
                     <label for="gender">Sexe</label>
                     <select class="form-control" name="gender" id="gender">
-                        <option>Homme</option>
-                        <option>Femme</option>
+                        <option value="male">Homme</option>
+                        <option value="female">Femme</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </fieldset>
         </form>
 
-    </div>
-    <div class="row">
-        <p class="lead mt-4">Have An Account ? <a href="/users/login">Login</a></p>
     </div>
 </div>
 

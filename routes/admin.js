@@ -5,6 +5,7 @@ const City = require('../models/City');
 const User = require('../models/User');
 const createUser = require('../utilitis/createUser');
 const emailVerification = require("../utilitis/emailVerification");
+const pageFieldsByLang = require('../utilitis/lang');
 
 async function GetUseIdByCin(cin){
    return await User.findOne({cin:cin, AccountType: 'responsable'})
@@ -57,7 +58,7 @@ router.post('/addCity', ensureAuthenticated, (req, res) => {
         }
 });
 
-router.post('/AddDoctor', ensureAuthenticated, (req, res) => {
+router.post('/AddResponsable', ensureAuthenticated, (req, res) => {
     if (req.user.AccountType === 'admin') {
         const {email, Cin} = req.body;
         const newUser = [
@@ -70,14 +71,16 @@ router.post('/AddDoctor', ensureAuthenticated, (req, res) => {
                 res.render('dashboard', {
                     errors: errors,
                     title: 'dashboard',
-                    user: req.user
+                    user: req.user,
+                    footer:pageFieldsByLang('en', 'footer'),
+                    lang:'en'
                 });
             })
             .then(creation => {
                 console.log(creation._id);
                 emailVerification(email, creation._id, 'completeRegistration');
-                req.flash('success_msg', 'You Created An Doctor Account');
-                res.redirect('/dashboard');
+                req.flash('success_msg', 'You Created A Responsable Account');
+                res.redirect('/dashboard/en');
             })
     }
 });

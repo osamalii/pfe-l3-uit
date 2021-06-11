@@ -11,11 +11,11 @@ if(lang==='ar'){
     <div class="card col">
         <div class="card-body <%=ar_text_alignment%>">
             <h5 class="card-title"><%= dashboard.cardTitle %> <i class="fas fa-check-circle greenColor"></i></h5>
-            <h6 class="card-subtitle mb-2 text-muted">Details:</h6>
+            <h6 class="card-subtitle mb-2 text-muted"><%=dashboard.h6%></h6>
             <p class="card-text">
                 <input type="text" id="appointmentDate" value="<%=appointment.date%>" hidden/>
             <h4> <i class="fas fa-calendar-check"></i> <%= dashboard.h4%> </h4>
-            <p id="appointmentDateP" class="lead text-capitalize"><%= moment(appointment.date).format("dddd MMMM Do YYYY")%> | <%= appointment.dayRange%> </p>
+            <p id="appointmentDateP" class="lead text-capitalize"><%= moment(appointment.date).format("dddd MMMM Do YYYY")%> | <%= appointment.dayRange === 'am' ? ' Matin' : "Après-midi"%> </p>
             <h5><i class="fas fa-hospital"></i> <%=dashboard.h5%> </h5>
             <p class="lead"><%= appointment.center%> </p>
             </p>
@@ -36,6 +36,7 @@ if(lang==='ar'){
 <script>
     let Params = window.location.href.split('/');
     moment(Params[Params.length-1]).local();
+    moment.locale('fr');
     let d = $('#appointmentDate').val();
-    $('#appointmentDateP').text(moment(d).format("dddd MMMM Do YYYY"));
+    // $('#appointmentDateP').text(moment(d).format("dddd MMMM Do YYYY"));
 </script>

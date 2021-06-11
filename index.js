@@ -7,7 +7,6 @@ const passport = require('passport');
 const session = require('express-session');
 const expressLyouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const pageFieldsByLang = require('./utilitis/lang');
 
@@ -47,7 +46,10 @@ app.use((req,res,next)=>{
     res.locals.error = req.flash('error');
     next();
 });
-app.locals.moment = require('moment');
+
+const moment = require('moment');
+moment.locale('fr');
+app.locals.moment = moment;
 
 
 app.use('/', require('./routes/index'));
